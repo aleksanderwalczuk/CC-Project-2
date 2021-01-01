@@ -1,4 +1,2 @@
-export const App = ({options}) => {
-}
-
-
+const App = ({ options }) => {};
+export default App;
