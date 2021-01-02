@@ -7,7 +7,7 @@
     "clean": "rimraf .cache && rimraf coverage && rimraf dist && rimraf node_modules",
     "prebuild": "rimraf dist",
     "build": "parcel build index.html --public-url ./",
-    "format": "prettier --write \"src/**/*.js\" \"src/**/*.ts\" \"test/**/*.js\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.js\" \"styles/**/*.scss\" \"test/**/*.js\"",
     "start:dev": "parcel -p 8765 watch index.html",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/CodersCamp2020/CodersCamp2020.Project.JavaScript.StarWarsQuiz#readme",
   "dependencies": {
+    "normalize.css": "^8.0.1",
     "regenerator-runtime": "^0.13.7",
     "uuid": "^8.3.0"
   },
@@ -51,7 +52,8 @@
     "parcel": "^1.12.4",
     "parcel-plugin-static-files-copy": "^2.5.0",
     "prettier": "^2.1.2",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "sass": "^1.32.0"
   },
   "jest": {
     "moduleFileExtensions": [
