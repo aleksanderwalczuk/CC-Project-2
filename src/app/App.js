@@ -1,4 +1,3 @@
-
 import mainMenu from './Components/MenuOptions';
 
 const App = ({ options }) => {
