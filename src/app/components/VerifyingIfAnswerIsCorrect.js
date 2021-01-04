@@ -1,11 +1,6 @@
 
-export default function VerifyingAnswerIsCorrect() {
+export default function VerifyingAnswerIsCorrect(userAnswer, rightAnswer) {
   const userAnswerIsCorrect = { correct: "" };
-  function verifyingAnswer(userAnswer, rightAnswer) {
-    userAnswer === rightAnswer ? userAnswerIsCorrect.correct = true : userAnswerIsCorrect.correct = false;
-
-    console.log(userAnswerIsCorrect);
-    return userAnswerIsCorrect
-  }
-
+  userAnswer === rightAnswer ? userAnswerIsCorrect.correct = true : userAnswerIsCorrect.correct = false;
+  return userAnswerIsCorrect
 }; 
