@@ -14,7 +14,7 @@ export default function MenuOptions() {
   btnStarships.setAttribute('data-option', 'starships');
   btnStarships.classList.add('option');
   btnStarships.textContent = 'Starships';
-  divMenu.append(btnPeople, btnVehicles, btnStarships);
+  mainMenu.append(btnPeople, btnVehicles, btnStarships);
 
   const menuOption = {
     selectOption: '',
