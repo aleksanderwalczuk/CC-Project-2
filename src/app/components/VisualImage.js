@@ -8,8 +8,8 @@ function VisualImage(imageSource) {
   createDiv.className = "visual__box";
 
   const createImg = document.createElement("img");
-  createImg.className = "visual__image"
-  createImg.alt = "image"
+  createImg.classList.add("visual__image");
+  createImg.setAttribute("alt", "image");
 
   // Placing div with img inside container with id = "swquiz-app"
   document.querySelector("#swquiz-app").appendChild(createDiv);
