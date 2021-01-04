@@ -1,6 +1,26 @@
 function VisualImage(imageSource) {
-  const img = document.querySelector(".visual__image")
+  // Checking that img source is in base64 format
+  // FIXME: If we should use only base64/jpg, delete one condition in if 
+  const reg = /^data:image\/(?:gif|png|jpeg|bmp|webp)(?:;charset=utf-8)?;base64,(?:[A-Za-z0-9]|[+/])+={0,2}/;
+  if(reg.test(imageSource) || /.jpg/.test(imageSource)) {
+  // Creating div and img
+  const createDiv = document.createElement("div");
+  createDiv.className = "visual__box";
+
+  const createImg = document.createElement("img");
+  createImg.className = "visual__image"
+  createImg.alt = "image"
+
+  // Placing div with img inside container with id = "swquiz-app"
+  document.querySelector("#swquiz-app").appendChild(createDiv);
+  document.querySelector(".visual__box").appendChild(createImg);
+
+  // Adding sourse to img
+  const img = document.querySelector(".visual__image");
   img.setAttribute("src", imageSource);
+  } else {
+    throw new Error("Ups, format of input string is incorrect");
+  }
 }
 
 export default VisualImage;
