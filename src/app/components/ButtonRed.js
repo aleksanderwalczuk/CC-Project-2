@@ -1,12 +1,9 @@
-export default function ButtonRed(text) {
-  const isString = typeof text === 'string';
-  if (!isString) {
-    throw TypeError('Invalid data');
-  }
+import validateString from '../utils/validateString';
 
-  const hasCharacters = text.trim().length > 0;
-  if (!hasCharacters) {
-    throw new Error('Text is Empty');
+export default function ButtonRed(text) {
+  const isAValidString = validateString(text);
+  if (!isAValidString) {
+    throw new Error('Not a valid string');
   }
 
   const newButtonRed = document.createElement('button');
