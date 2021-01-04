@@ -1,4 +1,5 @@
 import createWhiteButtonWithIcon from './components/ButtonWhiteWithIcon';
+import createGameModeName from './components/GameModeName';
 
 const App = ({ options }) => {
   const quiz = document.querySelector('#swquiz-app');
@@ -7,7 +8,8 @@ const App = ({ options }) => {
     'fa',
     'fa-graduation-cap',
   );
-  quiz.append(buttonRules);
+  const gameModeInfo = createGameModeName('Who is this character?');
+  quiz.append(buttonRules, gameModeInfo);
 };
 
 export default App;
