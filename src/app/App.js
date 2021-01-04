@@ -1,8 +1,15 @@
-import ButtonRed from './components/ButtonRed';
+import createButtonRed from './components/ButtonRed';
+import createWhiteButtonWithIcon from './components/ButtonWhiteWithIcon';
 
 const App = ({ options }) => {
-  const optionsContainer = document.querySelector('#swquiz-app');
-  const buttonPlay = ButtonRed('play the game');
-  optionsContainer.append(buttonPlay);
+  const quiz = document.querySelector('#swquiz-app');
+  const buttonPlay = createButtonRed('play the game');
+  const buttonRules = createWhiteButtonWithIcon(
+    'Rules',
+    'fa',
+    'fa-graduation-cap',
+  );
+  quiz.append(buttonRules, buttonPlay);
 };
+
 export default App;
