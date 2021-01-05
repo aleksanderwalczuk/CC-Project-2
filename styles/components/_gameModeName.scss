@@ -1,8 +1,5 @@
 .mode-info {
   background-color: $color-primary;
-  color: $text-color-primary;
-  font-weight: 600;
-  font-size: $font-size-primary;
   max-width: 70vw;
   text-align: center;
   border-radius: $border-radius;
@@ -12,7 +9,13 @@
     inset 4px 5px 4px rgba(0, 0, 0, 0.5);
   padding: 20px;
 
-  &__mode-text {
+  &__heading {
+    font-size: $font-size-primary;
+    font-weight: 600;
+    color: $text-color-primary;
+  }
+
+  &__text {
     text-transform: uppercase;
   }
 }

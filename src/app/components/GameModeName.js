@@ -7,15 +7,23 @@ export default function gameMode(message) {
   }
 
   const modeInfo = document.createElement('div');
-  const modeTextElement = document.createElement('span');
-  const questionElement = document.createElement('span');
+  const heading = document.createElement('h2');
+  const modeText = document.createElement('span');
+  const question = document.createElement('span');
 
   modeInfo.id = 'mode-info';
   modeInfo.className = 'mode-info';
-  modeTextElement.className = 'mode-info__mode-text';
-  modeTextElement.innerText = `mode: `;
-  questionElement.className = 'mode-info__question';
-  questionElement.innerText = `${message}`;
-  modeInfo.append(modeTextElement, questionElement);
+
+  heading.classList.add('mode-info__heading');
+
+  modeText.classList.add('mode-info__text');
+  modeText.innerText = 'mode: ';
+
+  question.classList.add('mode-info__question');
+  question.innerText = message;
+
+  heading.append(modeText, question);
+  modeInfo.append(heading);
+
   return modeInfo;
 }
