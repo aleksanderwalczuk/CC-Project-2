@@ -5,18 +5,18 @@ function VisualImage(imageSource) {
   if(reg.test(imageSource) || /.jpg/.test(imageSource)) {
   // Creating div and img
   const createDiv = document.createElement("div");
-  createDiv.className = "visual__box";
+  createDiv.className = "visual-box";
 
   const createImg = document.createElement("img");
-  createImg.classList.add("visual__image");
+  createImg.classList.add("visual-box__image");
   createImg.setAttribute("alt", "image");
 
   // Placing div with img inside container with id = "swquiz-app"
   document.querySelector("#swquiz-app").appendChild(createDiv);
-  document.querySelector(".visual__box").appendChild(createImg);
+  document.querySelector(".visual-box").appendChild(createImg);
 
   // Adding sourse to img
-  const img = document.querySelector(".visual__image");
+  const img = document.querySelector(".visual-box__image");
   img.setAttribute("src", imageSource);
   } else {
     throw new Error("Ups, format of input string is incorrect");
