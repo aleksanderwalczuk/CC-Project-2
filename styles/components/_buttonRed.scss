@@ -12,29 +12,13 @@
   min-width: 400px;
   line-height: 1;
 
-  &__answer {
-    font-weight: 400;
-    &--success {
-      font-weight: 600;
-      background-color: $color-correct;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-        0px 4px 30px #51fc00;
-    }
-    &--fail {
-      font-weight: 600;
-      background-color: $color-fail;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-        0px 4px 30px $color-fail;
-    }
-    &--selected {
-      font-weight: 600;
-    }
+  &--red {
+    background-color: #ff0000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 30px #ff0000;
+    opacity: 0.8;
+    color: #fff;
+    text-transform: uppercase;
   }
-  &__icon {
-    position: absolute;
-    left: 8%; //check!
-  }
-
   &:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
       inset 0px 4px 4px rgba(0, 0, 0, 0.25);
