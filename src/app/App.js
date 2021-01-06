@@ -1,6 +1,7 @@
 import createButtonRed from './components/ButtonRed';
 import createWhiteButtonWithIcon from './components/ButtonWhiteWithIcon';
-import createMenuOptions from './Components/MenuOptions';
+import createMenuOptions from './components/MenuOptions';
+
 const App = ({ options }) => {
   const quiz = document.querySelector('#swquiz-app');
   const buttonPlay = createButtonRed('play the game');
@@ -9,8 +10,8 @@ const App = ({ options }) => {
     'fa',
     'fa-graduation-cap',
   );
-  const mainMenu = createMenuOptions();
-  quiz.append(buttonRules, buttonPlay, mainMenu);
+  createMenuOptions();
+  quiz.append(buttonRules, buttonPlay);
 };
 
 export default App;
