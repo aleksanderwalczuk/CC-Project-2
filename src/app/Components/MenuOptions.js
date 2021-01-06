@@ -2,7 +2,7 @@ function MenuOptions() {
   const menu = document.createElement('nav');
   menu.classList.add('menu');
   document.querySelector('#swquiz-app').append(menu);
-  const options = ['People', 'Starships', 'Vehicles'];
+  const options = ['People', 'Vehicles', 'Starships'];
   options.forEach((option) => {
     const container = document.createElement('div');
     const btn = document.createElement('button');
@@ -23,10 +23,10 @@ function MenuOptions() {
     menuOption.selectOption = this.dataset.option;
     menuElements.forEach((optionBtn) => {
       const btnOption = optionBtn;
-      btnOption.classList.remove('option--selected');
+      btnOption.style.color = 'rgba(0, 0, 0, 0.4)';
       btnOption.nextElementSibling.style.display = 'none';
     });
-    this.classList.add('option--selected');
+    this.style.color = 'rgba(0,0,0)';
     this.nextElementSibling.style.display = 'block';
   }
   menuElements.forEach((optionBtn) =>
