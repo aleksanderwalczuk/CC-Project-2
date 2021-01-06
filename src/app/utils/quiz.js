@@ -3,25 +3,27 @@ let questionScope = [];
 let type = '';
 const question = {};
 
-async function fetchItems(api) {
-  await fetch(api)
+function fetchItems(api) {
+  fetch(api)
     .then((item) => item.json())
     .then((item) => {
       questionScope.push(...item.results);
       if (item.next !== null) {
         fetchItems(item.next);
       }
+    })
+    .catch((err) => {
+      throw Error(`fetchError: ${err}`);
     });
 }
 
 function fetchQuestionScope() {
   questionScope = [];
-  fetchItems(baseApi + '/' + type + '/');
-  console.log(questionScope);
+  fetchItems(`${baseApi}/${type}/`);
 }
 
 function pickRandomId() {
-  let result = undefined;
+  let result;
   while (result === undefined) {
     result = Math.ceil(Math.random() * questionScope.length);
     if (result === questionScope.length) {
@@ -34,46 +36,58 @@ function pickRandomId() {
   return result;
 }
 
-let img = '';
-async function getUrlData(id) {
-  await fetch(`/static/assets/img/modes/${type}/${id}.jpg`)
+function getUrlData(id) {
+  fetch(`/static/assets/img/modes/${type}/${id}.jpg`)
     .then((res) => res.blob())
     .then((blob) => {
       const reader = new FileReader();
-      reader.onload = () => (question.image = reader.result);
+      reader.onload = () => {
+        question.image = reader.result;
+      };
       reader.readAsDataURL(blob);
+    })
+    .catch(() => {
+      question.err = 'imageError';
     });
 }
 
 function generateQuestion() {
   if (questionScope.length === 0) {
+    question.err = 'modeOrDataError';
     return;
   }
-  const ids = [];
-  while (ids.length !== 4) {
-    let id = pickRandomId();
-    if (!ids.some((fId) => fId === id)) {
-      ids.push(id);
+  const answersIDs = [];
+  while (answersIDs.length !== 4) {
+    const id = pickRandomId();
+    if (!answersIDs.some((fId) => fId === id)) {
+      answersIDs.push(id);
     }
   }
-  let correctIdIdx = Math.ceil(Math.random() * ids.length);
-  if (correctIdIdx === 4) {
-    correctIdIdx = 0;
+  let correctIdIdxFromAnswers = Math.ceil(
+    Math.random() * answersIDs.length,
+  );
+  if (correctIdIdxFromAnswers === 4) {
+    correctIdIdxFromAnswers = 0;
   }
-  getUrlData(ids[correctIdIdx]);
-  question.answers = ids
+  const rightAnswer = answersIDs[correctIdIdxFromAnswers];
+  const rightAnswerApiDataId = questionScope[rightAnswer].url.split(
+    '/',
+  )[5];
+  getUrlData(rightAnswerApiDataId);
+  question.answers = answersIDs
     .map((id) => questionScope[id])
     .map((item) => item.name);
-  question.rightAnswer = questionScope[ids[correctIdIdx]]['name'];
+  question.rightAnswer = questionScope[rightAnswer].name;
 }
 
 export const initGame = (mode, url) => {
-  baseApi = url || 'https://swapi.dev/api';
+  baseApi = url || process.env.SW_API_BASE_URL;
   type = mode;
   fetchQuestionScope();
 };
 
 export const getQuestion = () => {
+  question.err = '';
   setTimeout(() => generateQuestion(), 500);
   return question;
 };
