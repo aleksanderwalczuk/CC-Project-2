@@ -1,8 +1,8 @@
-import { initGame, getQuestion } from '../src/app/utils/quiz';
+import { getQuestion } from '../src/app/utils/quiz';
 
 describe('Game process tests', () => {
   it('Should return empty object, if question scope is unset', () => {
-    const expectedValue = {};
+    const expectedValue = { err: '' };
     const question = getQuestion();
     expect(question).toEqual(expectedValue);
   });
