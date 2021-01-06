@@ -1,3 +1,4 @@
-export default function IsAnswerCorrect(userAnswer, rightAnswer) {
+function isAnswerCorrect(userAnswer, rightAnswer) {
   return userAnswer === rightAnswer;
 }
+export default isAnswerCorrect;
