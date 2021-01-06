@@ -1,5 +1,5 @@
 .menu {
-  width: 1200px;
+  width: 800px;
   height: 180px;
   border-radius: 16px;
   background-color: #ffffff;
@@ -7,7 +7,7 @@
     4px 4px 40px rgba(255, 0, 0, 0.9);
   position: absolute;
   right: 20px;
-  top: 100px;
+  top: 20px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -17,7 +17,7 @@
     align-items: center;
     .option_button {
       text-align: center;
-      font-size: 42px;
+      font-size: 36px;
       color: rgba(0, 0, 0, 0.4);
       font-weight: 600;
       background-color: #ffffff;
@@ -28,7 +28,7 @@
       font-family: $font-primary;
     }
     .option_underline {
-      width: 180px;
+      width: 140px;
       height: 10px;
       border-radius: 4px;
       background: rgba(255, 0, 0, 0.5);
