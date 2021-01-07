@@ -1,4 +1,4 @@
-import { getRanking, rankPlayer } from '../src/app/RankStore';
+import { getRanking, rankPlayer } from '../src/app/logic/RankStore';
 
 describe('RankStore test', () => {
   const mode = 'people';
