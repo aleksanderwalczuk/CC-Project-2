@@ -1,4 +1,4 @@
-function MenuOptions() {
+function ModeMenu() {
   const menu = document.createElement('nav');
   menu.classList.add('menu');
   document.querySelector('#swquiz-app').append(menu);
@@ -33,4 +33,4 @@ function MenuOptions() {
     optionBtn.addEventListener('click', handleSelectOption),
   );
 }
-export default MenuOptions;
+export default ModeMenu;
