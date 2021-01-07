@@ -3,6 +3,7 @@ import Logo from './components/Logo';
 import createButtonRed from './components/ButtonRed';
 import createWhiteButtonWithIcon from './components/ButtonWhiteWithIcon';
 import createGameModeName from './components/GameModeName';
+import ModeMenu from './components/ModeMenu';
 
 const App = ({ options }) => {
   Logo();
@@ -18,6 +19,7 @@ const App = ({ options }) => {
   );
   const gameModeInfo = createGameModeName('Who is this character?');
   quiz.append(gameModeInfo, buttonRules, buttonPlay);
+  ModeMenu();
 };
 
 export default App;
