@@ -1,4 +1,4 @@
-import { initGame } from './quiz';
+import { getQuestion, initGame } from './quiz';
 
 class Game {
   constructor() {
@@ -11,6 +11,10 @@ class Game {
 
   addAnswer(answer) {
     this.answers.push(answer);
+  }
+
+  addQuestion(question) {
+    this.questions.push(question);
   }
 }
 
@@ -27,6 +31,9 @@ const processGame = (mode, url) => {
   const game = new Game();
   initGame(mode, url);
   calculateTimeLeft(game);
+  while (game.timeLeft > 0) {
+    game.addQuestion(getQuestion);
+  }
 };
 
 export default processGame;
