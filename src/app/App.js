@@ -20,6 +20,8 @@ const App = ({ options }) => {
   const gameModeInfo = createGameModeName('Who is this character?');
   quiz.append(gameModeInfo, buttonRules, buttonPlay);
 
+
+
   // humanPlayer and computerPlayer to conform with informations that appear by the end of the game
   const humanPlayerGame = {
     name: null,
@@ -72,10 +74,13 @@ const App = ({ options }) => {
       },
     ],
   };
-
+  function closeModal(modal) {
+    modal.style.display = 'none';
+  }
   const modalWindow = ModalWindow(
     humanPlayerGame,
     computerPlayerGame,
+    closeModal,
   );
   quiz.append(modalWindow);
 };
