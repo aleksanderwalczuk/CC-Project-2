@@ -1,36 +1,23 @@
-function htmlElementCreator(
-  tagName,
-  parent,
-  childrenArr,
-  id,
-  classNames,
-  inHTML,
-) {
+function htmlElementCreator(tagName, attributes, text) {
   const newElement = document.createElement(tagName);
 
-  if (parent) {
-    parent.append(newElement);
-  }
-
-  if (childrenArr) {
-    childrenArr.forEach((element) => {
-      newElement.append(element);
+  if (attributes) {
+    const attributesToAdd = Object.keys(attributes);
+    attributesToAdd.forEach((key) => {
+      newElement.setAttribute(key, attributes[key]);
     });
   }
-
-  if (id) {
-    newElement.id = id;
+  if (text) {
+    newElement.innerText = text;
   }
-
-  if (classNames) {
-    newElement.classList.add(classNames);
-  }
-
-  if (inHTML) {
-    newElement.innerHTML = inHTML;
-  }
-
   return newElement;
 }
+// USAGE:
+
+// const newDiv = htmlElementCreator(
+//   'div',
+//   { class: 'class class0', id: 'idic', src: './frfr' },
+//   'abrakadacra',
+// );
 
 export default htmlElementCreator;
