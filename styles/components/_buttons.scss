@@ -1,30 +1,38 @@
 .button {
-  font-family: $font-primary;
-  border-radius: 1rem;
-  background-color: $color-primary;
-  color: $text-color-primary;
+  // Positioning
+  position: relative;
+
+  // Display & Box Model
+  border-radius: $border-radius;
   border: 0;
-  font-weight: 500;
-  font-size: 2.5rem;
   padding: 1rem;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  position: relative;
   min-width: 400px;
+
+  // Color
+  background-color: $color-primary;
+  color: $text-color-primary;
+
+  // Text
+  font-weight: 500;
+  font-size: $font-size-primary;
   line-height: 1;
+
+  // Other
 
   &__answer {
     font-weight: 400;
     &--success {
-      font-weight: 600;
-      background-color: $color-correct;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
         0px 4px 30px #51fc00;
+      background-color: $color-correct;
+      font-weight: 600;
     }
     &--fail {
-      font-weight: 600;
-      background-color: $color-fail;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
         0px 4px 30px $color-fail;
+      background-color: $color-fail;
+      font-weight: 600;
     }
     &--selected {
       font-weight: 600;
@@ -33,6 +41,14 @@
   &__icon {
     position: absolute;
     left: 8%; //check!
+  }
+
+  &--red {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 30px #ff0000;
+    background-color: $color-fail;
+    color: $color-primary;
+    text-transform: uppercase;
+    opacity: 0.8;
   }
 
   &:hover {
