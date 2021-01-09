@@ -20,17 +20,35 @@ const App = ({ options }) => {
   const gameModeInfo = createGameModeName('Who is this character?');
 
   //TODO: to remove after accept
+  /* ------------ Examples of usage: -------------*/
 
-  const childOfTestElement = elemFactory(
-    'p',
-    { id: 'childOfTest' },
-    'Example of element',
+  const firstChildOfTestElement = elemFactory(
+    'div',
+    { id: 'firstChild' },
+    'Pierwsze dziecko',
+  );
+
+  const thirdChildOfTestElement = elemFactory(
+    'ul',
+    {},
+    'Trzecie dziecko - lista elementów:',
+    elemFactory('li', { style: 'color: red' }, 'pierwszy punkt'),
+    elemFactory('li', {}),
+    elemFactory('li', {}, 'trzeci punkt'),
   );
 
   const testElement = elemFactory(
     'div',
     { class: 'button button--success', id: 'test' },
-    childOfTestElement,
+    firstChildOfTestElement,
+    'To jest drugie dziecko',
+    thirdChildOfTestElement,
+  );
+
+  const childOfFirstChildOfTestElement = elemFactory(
+    'p',
+    {},
+    'Dziecko pierwszego dziecka',
   );
 
   render(
@@ -40,6 +58,8 @@ const App = ({ options }) => {
     buttonPlay,
     testElement,
   );
+
+  render('firstChild', childOfFirstChildOfTestElement);
 };
 
 export default App;
