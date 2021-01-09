@@ -4,6 +4,8 @@ import createButtonRed from './components/ButtonRed';
 import createWhiteButtonWithIcon from './components/ButtonWhiteWithIcon';
 import createGameModeName from './components/GameModeName';
 import ModalWindow from './components/ModalWindow';
+// MOCK DATA TO BE REMOVED
+import { humanPlayerGame, computerPlayerGame } from './mockResponse';
 
 const App = ({ options }) => {
   Logo();
@@ -20,69 +22,23 @@ const App = ({ options }) => {
   const gameModeInfo = createGameModeName('Who is this character?');
   quiz.append(gameModeInfo, buttonRules, buttonPlay);
 
-
-
-  // humanPlayer and computerPlayer to conform with informations that appear by the end of the game
-  const humanPlayerGame = {
-    name: null,
-    questionsGuessed: 2,
-    questionsAnswered: 3,
-    detailedQuestions: [
-      {
-        url: '../../static/assets/img/modes/people/1.jpg',
-        playersAnswer: 'Darth Vader',
-        correctAnswer: 'Darth Vader',
-        isCorrect: true,
-      },
-      {
-        url: '../../static/assets/img/modes/people/2.jpg',
-        playersAnswer: 'Jar Jar Binks',
-        correctAnswer: 'Darth Vader',
-        isCorrect: false,
-      },
-      {
-        url: '../../static/assets/img/modes/people/3.jpg',
-        playersAnswer: 'Luke Skywalker',
-        correctAnswer: 'Luke Skywalker',
-        isCorrect: true,
-      },
-    ],
-  };
-
-  const computerPlayerGame = {
-    name: 'Computer',
-    questionsGuessed: 1,
-    questionsAnswered: 3,
-    detailedQuestions: [
-      {
-        url: '../../static/assets/img/modes/people/1.jpg',
-        playersAnswer: 'Darth Vader',
-        correctAnswer: 'Darth Vader',
-        isCorrect: true,
-      },
-      {
-        url: '../../static/assets/img/modes/people/2.jpg',
-        playersAnswer: 'Jar Jar Binks',
-        correctAnswer: 'Darth Vader',
-        isCorrect: false,
-      },
-      {
-        url: '../../static/assets/img/modes/people/3.jpg',
-        playersAnswer: 'Darth Vader',
-        correctAnswer: 'Luke Skywalker',
-        isCorrect: false,
-      },
-    ],
-  };
-  function closeModal(modal) {
-    modal.style.display = 'none';
+  // FUNCTION TO BE PASSED TO MODAL - EXAMPLE - TO BE REMOVED FROM APP PROBABLY
+  function closeModal(event) {
+    event.preventDefault();
+    const playersName = document.querySelector('.player-form__input')
+      .value;
+    quiz.removeChild(document.querySelector('.modal'));
+    console.log('close the modal ' + playersName);
+    return playersName;
   }
+  // CREATE MODAL WINDOW
   const modalWindow = ModalWindow(
     humanPlayerGame,
     computerPlayerGame,
     closeModal,
   );
-  quiz.append(modalWindow);
+  // SHOULD BE APPENDED WHEN THE TIME ENDS - TO BE REMOVED
+  quiz.appendChild(modalWindow);
 };
 
 export default App;
