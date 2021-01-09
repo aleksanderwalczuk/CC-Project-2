@@ -1,14 +1,13 @@
 function ModeMenu() {
-  const menu = document.createElement('nav');
+  const newModeMenu = document.createElement('nav');
   const options = ['People', 'Vehicles', 'Starships'];
   options.forEach((option) => {
     const btn = document.createElement('button');
     btn.classList.add('menu_button');
     btn.textContent = option;
-    menu.append(btn);
+    newModeMenu.appendChild(btn);
   });
-  menu.classList.add('menu');
-  document.querySelector('#swquiz-app').append(menu);
+  newModeMenu.classList.add('menu');
   const menuOption = {
     selectOption: '',
   };
@@ -23,5 +22,6 @@ function ModeMenu() {
   menuElements.forEach((optionBtn) =>
     optionBtn.addEventListener('click', handleSelectOption),
   );
+  return newModeMenu;
 }
 export default ModeMenu;

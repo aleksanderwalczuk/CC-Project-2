@@ -9,7 +9,7 @@ function Logo() {
 
   // Adding to html structure
   elementA.appendChild(elementDiv);
-  document.querySelector('#swquiz-app').appendChild(elementA);
+  return elementA;
 }
 
 export default Logo;

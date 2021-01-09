@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+}
+.section {
+  display: flex;
+  &_wrapper {
+    display: flex;
+    flex-direction: column;
+    &_buttons {
+      display: flex;
+    }
+  }
+}
