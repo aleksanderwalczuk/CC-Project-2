@@ -1,53 +1,66 @@
+const game = {
+  mode: 'People', // do utworzenia CONSTANTS z trzema nazwami trybów
+  questions: [
+    {
+      image: 'base64imagestring',
+      answers: [
+        'Luke Skywalker',
+        'Leia Organa',
+        'Darth Vader',
+        'Darth Sidious',
+      ],
+      rightAnswer: 'Darth Vader',
+    },
+    {
+      image: 'base64imagestring',
+      answers: [
+        'Luke Skywalker',
+        'Leia Organa',
+        'Darth Vader',
+        'Darth Sidious',
+      ],
+      rightAnswer: 'Darth Vader',
+    },
+    {
+      image: 'base64imagestring',
+      answers: [
+        'Luke Skywalker',
+        'Leia Organa',
+        'Darth Vader',
+        'Darth Sidious',
+      ],
+      rightAnswer: 'Darth Vader',
+    },
+    {
+      image: 'base64imagestring',
+      answers: [
+        'Luke Skywalker',
+        'Leia Organa',
+        'Darth Vader',
+        'Darth Sidious',
+      ],
+      rightAnswer: 'Darth Vader',
+    },
+  ],
+};
+
 // humanPlayer and computerPlayer to conform with informations that appear by the end of the game
 const humanPlayerGame = {
   name: null,
   questionsGuessed: 2,
   questionsAnswered: 3,
-  detailedQuestions: [
-    {
-      url: '../../static/assets/img/modes/people/1.jpg',
-      playersAnswer: 'Darth Vader',
-      correctAnswer: 'Darth Vader',
-      isCorrect: true,
-    },
-    {
-      url: '../../static/assets/img/modes/people/2.jpg',
-      playersAnswer: 'Jar Jar Binks',
-      correctAnswer: 'Darth Vader',
-      isCorrect: false,
-    },
-    {
-      url: '../../static/assets/img/modes/people/3.jpg',
-      playersAnswer: 'Luke Skywalker',
-      correctAnswer: 'Luke Skywalker',
-      isCorrect: true,
-    },
-  ],
+  detailedAnswers: ['Luke Skywalker', 'Darth Sidious', 'Darth Vader'],
 };
 
 const computerPlayerGame = {
   name: 'Computer',
   questionsGuessed: 1,
-  questionsAnswered: 3,
-  detailedQuestions: [
-    {
-      url: '../../static/assets/img/modes/people/1.jpg',
-      playersAnswer: 'Darth Vader',
-      correctAnswer: 'Darth Vader',
-      isCorrect: true,
-    },
-    {
-      url: '../../static/assets/img/modes/people/2.jpg',
-      playersAnswer: 'Jar Jar Binks',
-      correctAnswer: 'Darth Vader',
-      isCorrect: false,
-    },
-    {
-      url: '../../static/assets/img/modes/people/3.jpg',
-      playersAnswer: 'Darth Vader',
-      correctAnswer: 'Luke Skywalker',
-      isCorrect: false,
-    },
+  questionsAnswered: 4,
+  detailedAnswers: [
+    'Luke Skywalker',
+    'Luke Skywalker',
+    'Luke Skywalker',
+    'Luke Skywalker',
   ],
 };
 
