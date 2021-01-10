@@ -58,10 +58,12 @@ const computerPlayerGame = {
   questionsAnswered: 4,
   detailedAnswers: [
     'Luke Skywalker',
+    // or ?
+    // { answer: 'Luke', isCorrect: true }
     'Luke Skywalker',
     'Luke Skywalker',
     'Luke Skywalker',
   ],
 };
 
-export { humanPlayerGame, computerPlayerGame };
+export { game, humanPlayerGame, computerPlayerGame };
