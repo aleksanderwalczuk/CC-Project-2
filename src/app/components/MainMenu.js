@@ -17,15 +17,10 @@ function MainMenu() {
     '../../../static/assets/img/modes/people/1.jpg',
   );
   const buttonPlay = createButtonRed('play the game');
-  const buttonHallOfFame = createWhiteButtonWithIcon(
+  const buttonRulesRanking = createWhiteButtonWithIcon(
     'Hall of fame',
     'fa',
-    'fa-graduation-cap',
-  );
-  const buttonRules = createWhiteButtonWithIcon(
-    'Rules',
-    'fa',
-    'fa-graduation-cap',
+    'fa-id-badge',
   );
   const gameModeInfo = createGameModeName('Who is this character?');
   header.classList.add('header');
@@ -36,22 +31,30 @@ function MainMenu() {
   header.append(gameLogo, modeMenu);
   section.append(visualImage, gameWrapper);
   gameWrapper.append(gameModeInfo, buttonsWrapper);
-  buttonsWrapper.append(buttonHallOfFame, buttonPlay);
+  buttonsWrapper.append(buttonRulesRanking, buttonPlay);
 
-  let rules = false;
+  let rules = true;
   function handleChangeOfView() {
-    if (!rules) {
-      rules = true;
-      buttonHallOfFame.remove();
-      buttonsWrapper.insertBefore(buttonRules, buttonPlay);
-    } else if (rules) {
+    if (rules) {
       rules = false;
-      buttonRules.remove();
-      buttonsWrapper.insertBefore(buttonHallOfFame, buttonPlay);
+      buttonRulesRanking.innerHTML = `<i></i> Rules`;
+      buttonRulesRanking.firstElementChild.classList.add(
+        'button__icon',
+        'fa',
+        'fa-graduation-cap',
+      );
+    } else {
+      rules = true;
+      buttonRulesRanking.innerHTML = `<i></i> Hall of fame`;
+      buttonRulesRanking.firstElementChild.classList.add(
+        'button__icon',
+        'fa',
+        'fa-id-badge',
+      );
     }
-    console.log(rules);
   }
-  const buttonChangeOfView = document.querySelector('.fa').parentNode;
+  const buttonChangeOfView = document.querySelector('.button__icon')
+    .parentNode;
   buttonChangeOfView.addEventListener('click', handleChangeOfView);
 }
 
