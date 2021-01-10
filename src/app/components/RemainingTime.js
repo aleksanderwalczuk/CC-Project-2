@@ -1,8 +1,14 @@
+import { Lightsaber } from "./Lightsaber";
+import { handleBladeSizeChange } from "./Lightsaber";
+
 function handleTimeChange(element){
-  let timer = 120;
+  const initialTime = 120;
+  let timer = initialTime;
 
   const idInterval = setInterval(() => {
     timer--;
+
+    let percentOfTime = (100 * timer / initialTime).toFixed(2);
 
     if(timer === 0){
       clearInterval(idInterval);
@@ -12,6 +18,8 @@ function handleTimeChange(element){
     let sec = timer % 60;
 
     element.textContent = `Time Left: ${min}m ${sec}s`;
+    
+    handleBladeSizeChange(percentOfTime);
   }, 1000);
 };
 
@@ -28,6 +36,7 @@ function RemainingTime() {
   parentElement.appendChild(counter);
   root.appendChild(parentElement);
 
+  Lightsaber();
   handleTimeChange(counter);
 };
 
