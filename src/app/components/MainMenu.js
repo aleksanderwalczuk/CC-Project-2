@@ -17,8 +17,13 @@ function MainMenu() {
     '../../../static/assets/img/modes/people/1.jpg',
   );
   const buttonPlay = createButtonRed('play the game');
-  const buttonRules = createWhiteButtonWithIcon(
+  const buttonHallOfFame = createWhiteButtonWithIcon(
     'Hall of fame',
+    'fa',
+    'fa-graduation-cap',
+  );
+  const buttonRules = createWhiteButtonWithIcon(
+    'Rules',
     'fa',
     'fa-graduation-cap',
   );
@@ -31,9 +36,23 @@ function MainMenu() {
   header.append(gameLogo, modeMenu);
   section.append(visualImage, gameWrapper);
   gameWrapper.append(gameModeInfo, buttonsWrapper);
-  buttonsWrapper.append(buttonRules, buttonPlay);
+  buttonsWrapper.append(buttonHallOfFame, buttonPlay);
 
-  // const buttonChangeView = document.querySelector('.fa');
+  let rules = false;
+  function handleChangeOfView() {
+    if (!rules) {
+      rules = true;
+      buttonHallOfFame.remove();
+      buttonsWrapper.insertBefore(buttonRules, buttonPlay);
+    } else if (rules) {
+      rules = false;
+      buttonRules.remove();
+      buttonsWrapper.insertBefore(buttonHallOfFame, buttonPlay);
+    }
+    console.log(rules);
+  }
+  const buttonChangeOfView = document.querySelector('.fa').parentNode;
+  buttonChangeOfView.addEventListener('click', handleChangeOfView);
 }
 
 export default MainMenu;
