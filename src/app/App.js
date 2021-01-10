@@ -39,7 +39,7 @@ const App = ({ options }) => {
 
   const testElement = elemFactory(
     'div',
-    { class: 'button button--success', id: 'test' },
+    { className: 'button button--success', id: 'test' },
     firstChildOfTestElement,
     'To jest drugie dziecko',
     thirdChildOfTestElement,
