@@ -4,18 +4,20 @@
 / Text /
 / Other */
 
-/* FOR THE TABLE - TODO
-tbody, thead tr { display: block; }
-tbody {
-    height: 120px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
+/* FOR THE TABLE - TODO */
+// .modal tbody, .modal thead tr { display: block; }
+// .modal tbody {
+    // height: 120px;
+    // overflow-y: auto;
+    // overflow-x: hidden;
+// }
+// .modal th:first-of-type {
+//     width: 100px;
+// }
+// .modal tbody td, .modal thead th {
+//     width: 200px;
+// }
 
-tbody td, thead th {
-    width: 200px;
-}
-*/
 .modal {
     position: absolute;
     left: 0px;
@@ -27,6 +29,22 @@ tbody td, thead th {
     align-items: center;
     justify-content: center;
     background-color: rgba(0,0,0,.8);
+    & tbody, & thead tr {
+        display: block;
+    }
+    & tbody {
+        height: 240px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    & th:first-of-type, & td:first-of-type {
+        width: 65px;
+    }
+    & tbody td, & thead th {
+        width: 206px;
+        padding: .5rem 0;
+
+    }
     &__container {
         // height: 77%;
         height: 889px;
@@ -80,6 +98,15 @@ tbody td, thead th {
         }
         &__body {
 
+        }
+        &__image {
+            // width: 65x;
+            // overflow: hidden;
+            & .visual-box__image {
+                width: 100%;
+                height: auto;
+                filter: none;
+            }
         }
         &__answer {
             color: $text-color-primary;

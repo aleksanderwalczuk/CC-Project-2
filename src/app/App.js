@@ -5,7 +5,11 @@ import createWhiteButtonWithIcon from './components/ButtonWhiteWithIcon';
 import createGameModeName from './components/GameModeName';
 import ModalWindow from './components/ModalWindow';
 // MOCK DATA TO BE REMOVED
-import { humanPlayerGame, computerPlayerGame } from './mockResponse';
+import {
+  game,
+  humanPlayerGame,
+  computerPlayerGame,
+} from './mockResponse';
 
 const App = ({ options }) => {
   Logo();
@@ -20,7 +24,7 @@ const App = ({ options }) => {
     'fa-graduation-cap',
   );
   const gameModeInfo = createGameModeName('Who is this character?');
-  quiz.append(gameModeInfo, buttonRules, buttonPlay);
+  // quiz.append(gameModeInfo, buttonRules, buttonPlay);
 
   // FUNCTION TO BE PASSED TO MODAL - EXAMPLE - TO BE REMOVED FROM APP PROBABLY
   function closeModal(event) {
@@ -28,11 +32,12 @@ const App = ({ options }) => {
     const playersName = document.querySelector('.player-form__input')
       .value;
     quiz.removeChild(document.querySelector('.modal'));
-    console.log('close the modal ' + playersName);
+    console.log(`close the modal ${playersName}`);
     return playersName;
   }
   // CREATE MODAL WINDOW
   const modalWindow = ModalWindow(
+    game,
     humanPlayerGame,
     computerPlayerGame,
     closeModal,

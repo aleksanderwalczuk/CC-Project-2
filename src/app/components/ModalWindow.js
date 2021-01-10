@@ -3,6 +3,7 @@ import ModalDetails from './ModalComponents/ModalDetails';
 import ModalForm from './ModalComponents/ModalForm';
 
 function ModalWindow(
+  game,
   humanPlayerGame,
   computerPlayerGame,
   callbackToCloseModal,
@@ -25,6 +26,7 @@ function ModalWindow(
 
   // DETAILS SECTION
   const detailsContainer = ModalDetails(
+    game,
     humanPlayerGame,
     computerPlayerGame,
   );
