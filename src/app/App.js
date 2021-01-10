@@ -52,14 +52,14 @@ const App = ({ options }) => {
   );
 
   render(
-    'swquiz-app',
+    '#swquiz-app',
     gameModeInfo,
     buttonRules,
     buttonPlay,
     testElement,
   );
 
-  render('firstChild', childOfFirstChildOfTestElement);
+  render('#firstChild', childOfFirstChildOfTestElement);
 };
 
 export default App;

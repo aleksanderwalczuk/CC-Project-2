@@ -1,13 +1,13 @@
-const render = (parentId, ...children) => {
-  if (!children || !parentId) {
+const render = (query, ...children) => {
+  if (!children || !query) {
     throw new Error(
-      'In params must have been added parentId and at least one child to render in it',
+      'Required query and at least one child in arguments',
     );
   }
+  const parentElem = document.querySelector(query);
 
-  const parentElem = document.getElementById(parentId);
   if (!parentElem) {
-    throw new Error(`Not found element with id ${parentId}`);
+    throw new Error(`Not found element by query ${query}`);
   }
 
   children.forEach((child) => {
