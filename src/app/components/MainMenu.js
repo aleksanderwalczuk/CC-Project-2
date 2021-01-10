@@ -18,7 +18,7 @@ function MainMenu() {
   );
   const buttonPlay = createButtonRed('play the game');
   const buttonRules = createWhiteButtonWithIcon(
-    'Rules',
+    'Hall of fame',
     'fa',
     'fa-graduation-cap',
   );
@@ -32,6 +32,8 @@ function MainMenu() {
   section.append(visualImage, gameWrapper);
   gameWrapper.append(gameModeInfo, buttonsWrapper);
   buttonsWrapper.append(buttonRules, buttonPlay);
+
+  // const buttonChangeView = document.querySelector('.fa');
 }
 
 export default MainMenu;
