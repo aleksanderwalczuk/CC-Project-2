@@ -3,7 +3,7 @@ import createLogo from './Logo';
 import createButtonRed from './ButtonRed';
 import createWhiteButtonWithIcon from './ButtonWhiteWithIcon';
 import createGameModeName from './GameModeName';
-import createModeMenu from './ModeMenu';
+import ModeMenu from './ModeMenu';
 
 function MainMenu() {
   const quiz = document.querySelector('#swquiz-app');
@@ -12,7 +12,6 @@ function MainMenu() {
   const gameWrapper = document.createElement('div');
   const buttonsWrapper = document.createElement('div');
   const gameLogo = createLogo();
-  const modeMenu = createModeMenu();
   const visualImage = createVisualImage(
     '../../../static/assets/img/modes/people/1.jpg',
   );
@@ -28,7 +27,8 @@ function MainMenu() {
   gameWrapper.classList.add('section_wrapper');
   buttonsWrapper.classList.add('section_wrapper_buttons');
   quiz.append(header, section);
-  header.append(gameLogo, modeMenu);
+  header.appendChild(gameLogo);
+  ModeMenu();
   section.append(visualImage, gameWrapper);
   gameWrapper.append(gameModeInfo, buttonsWrapper);
   buttonsWrapper.append(buttonRulesRanking, buttonPlay);
