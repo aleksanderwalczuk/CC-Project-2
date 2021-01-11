@@ -1,37 +1,43 @@
-import { Lightsaber } from "./Lightsaber";
-import { handleBladeSizeChange } from "./Lightsaber";
+import { handleBladeSizeChange, Lightsaber } from './Lightsaber';
 
-function handleTimeChange(element){
-  const initialTime = 120;
+function handleTimeChange(element) {
+  const initialTime = process.env.QUIZ_MAX_TIME_SECONDS;
   let timer = initialTime;
 
   const idInterval = setInterval(() => {
     timer--;
+    const percentOfTime = ((100 * timer) / initialTime).toFixed(2);
+    const min = Math.floor(timer / 60);
+    const sec = timer % 60;
+    let minToDisplay = min;
+    let secToDisplay = sec;
 
-    let percentOfTime = (100 * timer / initialTime).toFixed(2);
-
-    if(timer === 0){
+    if (timer === 0) {
       clearInterval(idInterval);
-    }
+    };
 
-    let min = Math.floor(timer / 60);
-    let sec = timer % 60;
+    if (min < 10) {
+      minToDisplay = '0' + minToDisplay;
+    };
 
-    element.textContent = `Time Left: ${min}m ${sec}s`;
-    
+    if (sec < 10) {
+      secToDisplay = '0' + secToDisplay;
+    };
+
+    element.textContent = `Time Left: ${minToDisplay}m ${secToDisplay}s`;
+
     handleBladeSizeChange(percentOfTime);
   }, 1000);
 };
 
 function RemainingTime() {
-  const root = document.querySelector("#swquiz-app");
+  const root = document.querySelector('#swquiz-app');
+  const parentElement = document.createElement('div');
+  const counter = document.createElement('div');
 
-  const parentElement = document.createElement("div");
-  parentElement.classList.add("remaining-time");
-
-  const counter = document.createElement("div");
-  counter.textContent = "Time Left : 2 m 00 s";
-  counter.classList.add("remaining-time__counter");
+  parentElement.classList.add('remaining-time');
+  counter.classList.add('remaining-time__counter');
+  counter.textContent = 'Time Left : 02 m 00 s';
 
   parentElement.appendChild(counter);
   root.appendChild(parentElement);
