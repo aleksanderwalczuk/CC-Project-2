@@ -46,13 +46,15 @@ const spreadQuestion = (_question) => {
 };
 
 const verifyImage = (question) => {
-  if (question.image.startsWith('data:image')) {
-    game.addQuestion(question);
-    spreadQuestion(question);
-  } else {
-    // Eslint warn. Function called before declaration.
-    // eslint-disable-next-line no-use-before-define
-    getNewQuestion();
+  if (game.getRunning()) {
+    if (question.image.startsWith('data:image')) {
+      game.addQuestion(question);
+      spreadQuestion(question);
+    } else {
+      // Eslint warn. Function called before declaration.
+      // eslint-disable-next-line no-use-before-define
+      getNewQuestion();
+    }
   }
 };
 
@@ -93,6 +95,7 @@ const gameRunning = () => {
     if (game.timeLeft === 0) {
       closeGame(interval);
     }
+    getNewQuestion();
   }, 500);
 };
 
