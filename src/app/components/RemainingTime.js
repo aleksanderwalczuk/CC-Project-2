@@ -27,11 +27,10 @@ function handleTimeChange(element) {
 
 function RemainingTime() {
   const root = document.querySelector('#swquiz-app');
-
   const parentElement = document.createElement('div');
-  parentElement.classList.add('remaining-time');
-
   const counter = document.createElement('div');
+
+  parentElement.classList.add('remaining-time');
   counter.textContent = 'Time Left : 02 m 00 s';
   counter.classList.add('remaining-time__counter');
 
