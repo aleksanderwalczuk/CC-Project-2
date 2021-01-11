@@ -1,9 +1,8 @@
 let baseApi;
 let questionScope = [];
 let type = '';
-const question = {};
 
-function fetchItems(api) {
+const fetchItems = (api) => {
   fetch(api)
     .then((item) => item.json())
     .then((item) => {
@@ -15,14 +14,14 @@ function fetchItems(api) {
     .catch((err) => {
       throw Error(`fetchError: ${err}`);
     });
-}
+};
 
-function fetchQuestionScope() {
+const fetchQuestionScope = () => {
   questionScope = [];
   fetchItems(`${baseApi}/${type}/`);
-}
+};
 
-function pickRandomId() {
+const pickRandomId = () => {
   let result;
   while (result === undefined) {
     result = Math.ceil(Math.random() * questionScope.length);
@@ -34,9 +33,9 @@ function pickRandomId() {
     }
   }
   return result;
-}
+};
 
-function getUrlData(id) {
+const getUrlData = (id, question) => {
   fetch(`/static/assets/img/modes/${type}/${id}.jpg`)
     .then((res) => res.blob())
     .then((blob) => {
@@ -49,12 +48,13 @@ function getUrlData(id) {
     .catch(() => {
       question.err = 'imageError';
     });
-}
+};
 
-function generateQuestion() {
+const generateQuestion = () => {
+  const question = {};
   if (questionScope.length === 0) {
     question.err = 'modeOrDataError';
-    return;
+    return question;
   }
   const answersIDs = [];
   while (answersIDs.length !== 4) {
@@ -73,12 +73,13 @@ function generateQuestion() {
   const rightAnswerApiDataId = questionScope[rightAnswer].url.split(
     '/',
   )[5];
-  getUrlData(rightAnswerApiDataId);
+  getUrlData(rightAnswerApiDataId, question);
   question.answers = answersIDs
     .map((id) => questionScope[id])
     .map((item) => item.name);
   question.rightAnswer = questionScope[rightAnswer].name;
-}
+  return question;
+};
 
 export const initGame = (mode, url) => {
   baseApi = url || process.env.SW_API_BASE_URL;
@@ -86,8 +87,4 @@ export const initGame = (mode, url) => {
   fetchQuestionScope();
 };
 
-export const getQuestion = () => {
-  question.err = '';
-  setTimeout(() => generateQuestion(), 500);
-  return question;
-};
+export const getQuestion = () => generateQuestion();
