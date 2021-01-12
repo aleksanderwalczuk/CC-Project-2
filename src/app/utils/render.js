@@ -1,5 +1,5 @@
 const render = (query, ...children) => {
-  if (!children || !query) {
+  if (children.length === 0 || !query) {
     throw new Error(
       'Required query and at least one child in arguments',
     );
