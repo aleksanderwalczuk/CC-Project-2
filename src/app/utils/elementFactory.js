@@ -1,3 +1,5 @@
+import { childrenInjector } from './render';
+
 const elementFactory = (tag, attributes, ...children) => {
   const newElement = document.createElement(tag);
 
@@ -9,13 +11,7 @@ const elementFactory = (tag, attributes, ...children) => {
     }
   });
 
-  children.forEach((child) => {
-    if (typeof child === 'string') {
-      newElement.appendChild(document.createTextNode(child));
-    } else {
-      newElement.appendChild(child);
-    }
-  });
+  childrenInjector(newElement, children);
 
   return newElement;
 };

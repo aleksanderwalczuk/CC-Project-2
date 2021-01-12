@@ -1,3 +1,12 @@
+export const childrenInjector = (parentElem, children) =>
+  children.forEach((child) => {
+    if (typeof child === 'string') {
+      parentElem.appendChild(document.createTextNode(child));
+    } else {
+      parentElem.appendChild(child);
+    }
+  });
+
 const render = (query, ...children) => {
   if (children.length === 0 || !query) {
     throw new Error(
@@ -10,9 +19,7 @@ const render = (query, ...children) => {
     throw new Error(`Not found element by query ${query}`);
   }
 
-  children.forEach((child) => {
-    parentElem.appendChild(child);
-  });
+  childrenInjector(parentElem, children);
 };
 
 export default render;
