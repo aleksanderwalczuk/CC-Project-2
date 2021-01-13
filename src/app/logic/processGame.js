@@ -1,3 +1,4 @@
+import VisualImage from '../components/VisualImage';
 import { getQuestion, initGame } from './quiz';
 
 class Game {
@@ -29,6 +30,7 @@ class Game {
     this.timeLeft = process.env.QUIZ_MAX_TIME_SECONDS;
     this.questions = [];
     this.mode = mode;
+    this.running = false;
   }
 
   changeRunningFlag() {
@@ -40,7 +42,8 @@ const game = new Game();
 
 // Will be finished when functions to display questions will be ready (eslint, ts warn - unused argument)
 // eslint-disable-next-line no-unused-vars
-const spreadQuestion = (_question) => {
+const spreadQuestion = (question) => {
+  VisualImage(question.image);
   // TODO: send question to computer player
   // TODO: send question to human player
 };
@@ -85,21 +88,26 @@ const closeGame = (interval) => {
     questions: game.questions,
   }
   */
+  // console.log(game);
   // TODO: send game data to modal
 };
 
 const gameRunning = () => {
+  // TimeRemaining();
   game.changeRunningFlag();
   const interval = setInterval(() => {
     game.reduceTime();
-    if (game.timeLeft === 0) {
+    if (game.timeLeft === 0 || !game.getRunning()) {
       closeGame(interval);
     }
     getNewQuestion();
   }, 500);
 };
 
-const processGame = (mode, url = process.env.SW_API_BASE_URL) => {
+const processGame = (
+  mode = 'people',
+  url = process.env.SW_API_BASE_URL,
+) => {
   game.newGame(mode);
   initGame(game.mode, url);
   gameRunning(game);
@@ -107,8 +115,12 @@ const processGame = (mode, url = process.env.SW_API_BASE_URL) => {
 
 export default processGame;
 export const getTimeLeft = () => ({
-  isRunning: game.isRunning,
-  timeLeft: game.getTimeLeft,
+  isRunning: game.getRunning(),
+  timeLeft: game.getTimeLeft(),
 });
-export const addAnswer = (answer) => game.addAnswer(answer);
 export const askQuestion = () => getNewQuestion();
+export const cancelGame = () => {
+  if (game.getRunning()) {
+    game.changeRunningFlag();
+  }
+};
