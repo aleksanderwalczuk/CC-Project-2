@@ -119,18 +119,18 @@ const processGame = (
   url = process.env.SW_API_BASE_URL,
 ) => {
   initGame(mode, url || 'https://swapi.dev/api');
-  let initializeAttempts = 3;
+  let initializeTimeout = 3;
   const gameInitializing = setInterval(() => {
     if (isGameInitialized()) {
       clearInterval(gameInitializing);
       startGame(mode);
     }
-    initializeAttempts -= 1;
-    if (initializeAttempts === 0) {
+    initializeTimeout -= 1;
+    if (initializeTimeout === 0) {
       clearInterval(gameInitializing);
       throw new Error('Cannot initialize game');
     }
-  }, 500);
+  }, 1000);
 };
 
 export default processGame;
