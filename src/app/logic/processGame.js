@@ -28,7 +28,7 @@ class Game {
   }
 
   newGame(mode) {
-    this.timeLeft = 5 || process.env.QUIZ_MAX_TIME_SECONDS;
+    this.timeLeft = process.env.QUIZ_MAX_TIME_SECONDS;
     this.questions = [];
     this.mode = mode;
     this.running = false;
@@ -92,9 +92,11 @@ const getNewQuestion = () => {
 };
 
 const closeGame = (interval) => {
-  game.changeRunningFlag();
   clearInterval(interval);
-  // TODO: send_to_modal(game.generateObjectForModal());
+  if (game.getRunning()) {
+    game.changeRunningFlag();
+    // TODO: send_to_modal(game.generateObjectForModal());
+  }
 };
 
 const gameRunning = () => {
