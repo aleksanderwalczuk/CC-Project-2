@@ -1,29 +1,34 @@
+import ef from '../utils/elementFactory';
 import validateString from '../utils/validateString';
 
-export default function gameMode(message) {
+function gameMode(message) {
   const isAValidString = validateString(message);
   if (!isAValidString) {
     throw new Error('Not a valid string');
   }
 
-  const modeInfo = document.createElement('div');
-  const heading = document.createElement('h2');
-  const modeText = document.createElement('span');
-  const question = document.createElement('span');
+  const question = ef(
+    'span',
+    { className: 'mode-info__question' },
+    message,
+  );
 
-  modeInfo.id = 'mode-info';
-  modeInfo.className = 'mode-info';
+  const modeText = ef(
+    'span',
+    { className: 'mode-info__text' },
+    'mode: ',
+  );
 
-  heading.classList.add('mode-info__heading');
+  const heading = ef(
+    'h2',
+    { className: 'mode-info__heading' },
+    modeText,
+    question,
+  );
 
-  modeText.classList.add('mode-info__text');
-  modeText.innerText = 'mode: ';
-
-  question.classList.add('mode-info__question');
-  question.innerText = message;
-
-  heading.append(modeText, question);
-  modeInfo.append(heading);
+  const modeInfo = ef('div', { className: 'mode-info' }, heading);
 
   return modeInfo;
 }
+
+export default gameMode;
