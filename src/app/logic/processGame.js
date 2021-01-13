@@ -1,5 +1,6 @@
+import Answers from '../components/Answers';
 import VisualImage from '../components/VisualImage';
-import { getQuestion, initGame } from './quiz';
+import { getQuestion, initGame, isGameInitialized } from './quiz';
 
 class Game {
   getTimeLeft() {
@@ -27,7 +28,7 @@ class Game {
   }
 
   newGame(mode) {
-    this.timeLeft = process.env.QUIZ_MAX_TIME_SECONDS;
+    this.timeLeft = 5 || process.env.QUIZ_MAX_TIME_SECONDS;
     this.questions = [];
     this.mode = mode;
     this.running = false;
@@ -36,16 +37,27 @@ class Game {
   changeRunningFlag() {
     this.running = !this.running;
   }
+
+  generateObjectForModal() {
+    return {
+      mode: this.mode,
+      questions: this.questions,
+    };
+  }
 }
 
 const game = new Game();
 
-// Will be finished when functions to display questions will be ready (eslint, ts warn - unused argument)
-// eslint-disable-next-line no-unused-vars
 const spreadQuestion = (question) => {
-  VisualImage(question.image);
   // TODO: send question to computer player
-  // TODO: send question to human player
+  VisualImage(question.image);
+  Answers(
+    question.answers,
+    question.rightAnswer,
+    // Eslint warn. Use before definition
+    // eslint-disable-next-line no-use-before-define
+    // TODO: HumanPlayerCallback,
+  );
 };
 
 const verifyImage = (question) => {
@@ -82,35 +94,43 @@ const getNewQuestion = () => {
 const closeGame = (interval) => {
   game.changeRunningFlag();
   clearInterval(interval);
-  /* Object send to end game modal
-  {
-    mode: game.mode,
-    questions: game.questions,
-  }
-  */
-  // console.log(game);
-  // TODO: send game data to modal
+  // TODO: send_to_modal(game.generateObjectForModal());
 };
 
 const gameRunning = () => {
-  // TimeRemaining();
+  // TODO: countdown display - TimeRemaining();
   game.changeRunningFlag();
+  getNewQuestion();
   const interval = setInterval(() => {
     game.reduceTime();
     if (game.timeLeft === 0 || !game.getRunning()) {
       closeGame(interval);
     }
-    getNewQuestion();
   }, 500);
+};
+
+const startGame = (mode) => {
+  game.newGame(mode);
+  gameRunning();
 };
 
 const processGame = (
   mode = 'people',
   url = process.env.SW_API_BASE_URL,
 ) => {
-  game.newGame(mode);
-  initGame(game.mode, url);
-  gameRunning(game);
+  initGame(mode, url || 'https://swapi.dev/api');
+  let initializeAttempts = 3;
+  const gameInitializing = setInterval(() => {
+    if (isGameInitialized()) {
+      clearInterval(gameInitializing);
+      startGame(mode);
+    }
+    initializeAttempts -= 1;
+    if (initializeAttempts === 0) {
+      clearInterval(gameInitializing);
+      throw new Error('Cannot initialize game');
+    }
+  }, 500);
 };
 
 export default processGame;

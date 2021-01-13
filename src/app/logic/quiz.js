@@ -88,3 +88,4 @@ export const initGame = (mode, url) => {
 };
 
 export const getQuestion = () => generateQuestion();
+export const isGameInitialized = () => questionScope.length > 0;
