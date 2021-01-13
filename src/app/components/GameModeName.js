@@ -1,7 +1,7 @@
 import ef from '../utils/elementFactory';
 import validateString from '../utils/validateString';
 
-function gameMode(message) {
+function GameModeName(message) {
   const isAValidString = validateString(message);
   if (!isAValidString) {
     throw new Error('Not a valid string');
@@ -31,4 +31,4 @@ function gameMode(message) {
   return modeInfo;
 }
 
-export default gameMode;
+export default GameModeName;
