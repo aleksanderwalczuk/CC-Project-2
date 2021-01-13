@@ -6,8 +6,9 @@ import createGameModeName from './GameModeName';
 import ModeMenu, { menuOption } from './ModeMenu';
 import createModeRules from './ModeRules';
 
-function PageContent(menuOption = { selectOption: 'people' }) {
-  const section = document.querySelector('.section');
+function PageContent(optionMode = { selectOption: 'people' }) {
+  console.log(optionMode);
+  const section = document.createElement('section');
   section.innerHTML = '';
   const gameWrapper = document.createElement('div');
   const buttonsWrapper = document.createElement('div');
@@ -50,21 +51,19 @@ function PageContent(menuOption = { selectOption: 'people' }) {
       );
     }
   }
-  const buttonChangeOfView = document.querySelector('.button__icon')
-    .parentNode;
-  buttonChangeOfView.addEventListener('click', handleChangeOfView);
+  buttonRulesRanking.addEventListener('click', handleChangeOfView);
+  return section;
 }
 export const LoadPage = () => {
   const quiz = document.querySelector('#swquiz-app');
   const header = document.createElement('header');
-  const section = document.createElement('section');
+  const newNav = ModeMenu();
+  const section = PageContent();
   const gameLogo = createLogo();
-
   header.classList.add('header');
   section.classList.add('section');
   quiz.append(header, section);
-  header.appendChild(gameLogo);
-  ModeMenu();
+  header.append(gameLogo, newNav);
   PageContent();
 };
 export default PageContent;

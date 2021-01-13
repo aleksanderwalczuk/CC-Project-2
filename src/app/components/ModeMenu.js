@@ -1,10 +1,8 @@
 import PageContent from './MainMenu';
 
 function ModeMenu() {
-  const newHeader = document.querySelector('.header');
   const newModeMenu = document.createElement('nav');
   const options = ['People', 'Vehicles', 'Starships'];
-  newHeader.appendChild(newModeMenu);
   options.forEach((option) => {
     const btn = document.createElement('button');
     btn.classList.add('menu__button');
@@ -12,21 +10,21 @@ function ModeMenu() {
     newModeMenu.appendChild(btn);
   });
   newModeMenu.classList.add('menu');
+  newModeMenu.firstElementChild.classList.add('menu__button--select');
   const menuOption = {
     selectOption: '',
   };
-  const menuElements = document.querySelectorAll('.menu__button');
-  function handleSelectOption() {
-    menuOption.selectOption = this.textContent;
+  function handleSelectOption(event) {
+    const menuElements = document.querySelectorAll('.menu__button');
+    menuOption.selectOption = event.target.textContent;
     menuElements.forEach((menuBtn) => {
       menuBtn.classList.remove('menu__button--select');
     });
-    this.classList.add('menu__button--select');
+    event.target.classList.add('menu__button--select');
     PageContent(menuOption);
   }
-  menuElements.forEach((optionBtn) =>
-    optionBtn.addEventListener('click', handleSelectOption),
-  );
+  newModeMenu.addEventListener('click', handleSelectOption);
   return newModeMenu;
 }
+
 export default ModeMenu;

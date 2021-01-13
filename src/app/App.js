@@ -1,4 +1,4 @@
-import LoadPage from './components/MainMenu';
+import { LoadPage } from './components/MainMenu';
 import elemFactory from './utils/elementFactory';
 import render from './utils/render';
 
