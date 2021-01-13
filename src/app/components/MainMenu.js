@@ -3,16 +3,14 @@ import createLogo from './Logo';
 import createButtonRed from './ButtonRed';
 import createWhiteButtonWithIcon from './ButtonWhiteWithIcon';
 import createGameModeName from './GameModeName';
-import ModeMenu from './ModeMenu';
+import ModeMenu, { menuOption } from './ModeMenu';
 import createModeRules from './ModeRules';
 
-function MainMenu() {
-  const quiz = document.querySelector('#swquiz-app');
-  const header = document.createElement('header');
-  const section = document.createElement('section');
+function PageContent(menuOption = { selectOption: 'people' }) {
+  const section = document.querySelector('.section');
+  section.innerHTML = '';
   const gameWrapper = document.createElement('div');
   const buttonsWrapper = document.createElement('div');
-  const gameLogo = createLogo();
   const visualImage = createVisualImage(
     '../../../static/assets/img/modes/people/1.jpg',
   );
@@ -23,14 +21,11 @@ function MainMenu() {
     'fa',
     'fa-id-badge',
   );
-  const gameModeInfo = createGameModeName('Who is this character?');
-  header.classList.add('header');
-  section.classList.add('section');
+  const gameModeInfo = createGameModeName(
+    `Who is this ${optionMode.selectOption}?`,
+  );
   gameWrapper.classList.add('section__wrapper');
   buttonsWrapper.classList.add('section__wrapper__buttons');
-  quiz.append(header, section);
-  header.appendChild(gameLogo);
-  ModeMenu();
   section.append(visualImage, gameWrapper);
   gameWrapper.append(gameModeInfo, modeRules, buttonsWrapper);
   buttonsWrapper.append(buttonRulesRanking, buttonPlay);
@@ -59,5 +54,17 @@ function MainMenu() {
     .parentNode;
   buttonChangeOfView.addEventListener('click', handleChangeOfView);
 }
+export const LoadPage = () => {
+  const quiz = document.querySelector('#swquiz-app');
+  const header = document.createElement('header');
+  const section = document.createElement('section');
+  const gameLogo = createLogo();
 
-export default MainMenu;
+  header.classList.add('header');
+  section.classList.add('section');
+  quiz.append(header, section);
+  header.appendChild(gameLogo);
+  ModeMenu();
+  PageContent();
+};
+export default PageContent;

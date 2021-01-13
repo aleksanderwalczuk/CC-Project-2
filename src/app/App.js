@@ -1,9 +1,9 @@
-import MainMenu from './components/MainMenu';
+import LoadPage from './components/MainMenu';
 import elemFactory from './utils/elementFactory';
 import render from './utils/render';
 
 const App = ({ options }) => {
-  MainMenu();
+  LoadPage();
   // VisualImage('../../static/assets/img/modes/people/1.jpg');
 
   // VisualImage('../../static/assets/img/modes/people/1.jpg');

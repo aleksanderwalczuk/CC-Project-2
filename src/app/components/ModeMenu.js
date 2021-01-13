@@ -1,3 +1,5 @@
+import PageContent from './MainMenu';
+
 function ModeMenu() {
   const newHeader = document.querySelector('.header');
   const newModeMenu = document.createElement('nav');
@@ -20,7 +22,7 @@ function ModeMenu() {
       menuBtn.classList.remove('menu__button--select');
     });
     this.classList.add('menu__button--select');
-    // console.log(menuOption);
+    PageContent(menuOption);
   }
   menuElements.forEach((optionBtn) =>
     optionBtn.addEventListener('click', handleSelectOption),
