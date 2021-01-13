@@ -4,6 +4,7 @@ import createButtonRed from './ButtonRed';
 import createWhiteButtonWithIcon from './ButtonWhiteWithIcon';
 import createGameModeName from './GameModeName';
 import ModeMenu from './ModeMenu';
+import createModeRules from './ModeRules';
 
 function MainMenu() {
   const quiz = document.querySelector('#swquiz-app');
@@ -15,6 +16,7 @@ function MainMenu() {
   const visualImage = createVisualImage(
     '../../../static/assets/img/modes/people/1.jpg',
   );
+  const modeRules = createModeRules();
   const buttonPlay = createButtonRed('play the game');
   const buttonRulesRanking = createWhiteButtonWithIcon(
     'Hall of fame',
@@ -24,13 +26,13 @@ function MainMenu() {
   const gameModeInfo = createGameModeName('Who is this character?');
   header.classList.add('header');
   section.classList.add('section');
-  gameWrapper.classList.add('section_wrapper');
-  buttonsWrapper.classList.add('section_wrapper_buttons');
+  gameWrapper.classList.add('section__wrapper');
+  buttonsWrapper.classList.add('section__wrapper__buttons');
   quiz.append(header, section);
   header.appendChild(gameLogo);
   ModeMenu();
   section.append(visualImage, gameWrapper);
-  gameWrapper.append(gameModeInfo, buttonsWrapper);
+  gameWrapper.append(gameModeInfo, modeRules, buttonsWrapper);
   buttonsWrapper.append(buttonRulesRanking, buttonPlay);
 
   let rules = true;

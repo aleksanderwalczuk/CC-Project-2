@@ -1,8 +1,4 @@
-import VisualImage from './components/VisualImage';
-import Logo from './components/Logo';
-import createButtonRed from './components/ButtonRed';
-import createWhiteButtonWithIcon from './components/ButtonWhiteWithIcon';
-import createGameModeName from './components/GameModeName';
+import MainMenu from './components/MainMenu';
 import elemFactory from './utils/elementFactory';
 import render from './utils/render';
 
@@ -10,20 +6,20 @@ const App = ({ options }) => {
   MainMenu();
   // VisualImage('../../static/assets/img/modes/people/1.jpg');
 
-  VisualImage('../../static/assets/img/modes/people/1.jpg');
+  // VisualImage('../../static/assets/img/modes/people/1.jpg');
 
-  const buttonPlay = createButtonRed('play the game');
-  const buttonRules = createWhiteButtonWithIcon(
-    'Rules',
-    'fa',
-    'fa-graduation-cap',
-  );
-  const gameModeInfo = createGameModeName('Who is this character?');
+  // const buttonPlay = createButtonRed('play the game');
+  // const buttonRules = createWhiteButtonWithIcon(
+  // 'Rules',
+  // 'fa',
+  // 'fa-graduation-cap',
+  // );
+  // const gameModeInfo = createGameModeName('Who is this character?');
 
   //TODO: to remove after accept
   /* ------------ Examples of usage: -------------*/
 
-  const firstChildOfTestElement = elemFactory(
+  /*const firstChildOfTestElement = elemFactory(
     'div',
     { id: 'firstChild' },
     'Pierwsze dziecko',
@@ -52,15 +48,15 @@ const App = ({ options }) => {
     'Dziecko pierwszego dziecka',
   );
 
-  render(
-    '#swquiz-app',
-    gameModeInfo,
-    buttonRules,
-    buttonPlay,
-    testElement,
-  );
+  //render(
+  //  '#swquiz-app',
+  // gameModeInfo,
+  // buttonRules,
+  // buttonPlay,
+  // testElement,
+  // );
 
-  render('#firstChild', childOfFirstChildOfTestElement);
+  // render('#firstChild', childOfFirstChildOfTestElement);*/
 };
 
 export default App;
