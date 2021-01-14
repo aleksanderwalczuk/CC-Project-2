@@ -8,8 +8,9 @@ export default function ButtonWhiteWithIcon(text, ...iconClass) {
   // Use html element creator after it is written
   const newButtonWhiteWithIcon = document.createElement('button');
   newButtonWhiteWithIcon.classList.add('button');
-  const newIcon = document.createElement('i');
+  const newIcon = document.createElement('span');
   newIcon.classList.add('button__icon', ...iconClass);
+  newIcon.setAttribute('aria-hidden', true);
   newButtonWhiteWithIcon.append(newIcon, text);
   return newButtonWhiteWithIcon;
 }
