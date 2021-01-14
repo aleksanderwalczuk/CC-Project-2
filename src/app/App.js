@@ -3,6 +3,7 @@ import Logo from './components/Logo';
 import createButtonRed from './components/ButtonRed';
 import createWhiteButtonWithIcon from './components/ButtonWhiteWithIcon';
 import createGameModeName from './components/GameModeName';
+
 import ModalWindow from './components/ModalWindow';
 // MOCK DATA TO BE REMOVED
 import {
@@ -11,21 +12,10 @@ import {
   computerPlayerGame,
 } from './mockResponse';
 
+import elemFactory from './utils/elementFactory';
+import render from './utils/render';
+
 const App = ({ options }) => {
-  Logo();
-
-  VisualImage('../../static/assets/img/modes/people/1.jpg');
-
-  const quiz = document.querySelector('#swquiz-app');
-  const buttonPlay = createButtonRed('play the game');
-  const buttonRules = createWhiteButtonWithIcon(
-    'Rules',
-    'fa',
-    'fa-graduation-cap',
-  );
-  const gameModeInfo = createGameModeName('Who is this character?');
-  // quiz.append(gameModeInfo, buttonRules, buttonPlay);
-
   // FUNCTION TO BE PASSED TO MODAL - EXAMPLE - TO BE REMOVED FROM APP PROBABLY
   function closeModal(event) {
     event.preventDefault();
@@ -43,7 +33,7 @@ const App = ({ options }) => {
     closeModal,
   );
   // SHOULD BE APPENDED WHEN THE TIME ENDS - TO BE REMOVED
-  quiz.appendChild(modalWindow);
+  render('#swquiz-app', modalWindow);
 };
 
 export default App;
