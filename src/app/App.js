@@ -6,7 +6,6 @@ import createGameModeName from './components/GameModeName';
 import createRemainingTime from './components/RemainingTime';
 import render from './utils/render';
 
-
 const App = ({ options }) => {
   Logo();
 
@@ -21,7 +20,13 @@ const App = ({ options }) => {
   const gameModeInfo = createGameModeName('Who is this character?');
   const remainingTime = createRemainingTime();
 
-  render('#swquiz-app', gameModeInfo, buttonRules, buttonPlay, remainingTime);
+  render(
+    '#swquiz-app',
+    gameModeInfo,
+    buttonRules,
+    buttonPlay,
+    remainingTime,
+  );
 };
 
 export default App;

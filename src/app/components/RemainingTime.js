@@ -11,19 +11,19 @@ function handleTimeChange(element) {
 
     if (timer === 0) {
       clearInterval(idInterval);
-    };
+    }
 
     if (min < 10) {
       minToDisplay = '0' + minToDisplay;
-    };
+    }
 
     if (sec < 10) {
       secToDisplay = '0' + secToDisplay;
-    };
+    }
 
     element.textContent = `Time Left: ${minToDisplay}m ${secToDisplay}s`;
   }, 1000);
-};
+}
 
 function RemainingTime() {
   const parentElement = document.createElement('div');
@@ -36,8 +36,8 @@ function RemainingTime() {
   parentElement.appendChild(counter);
 
   handleTimeChange(counter);
-  
+
   return parentElement;
-};
+}
 
 export default RemainingTime;
