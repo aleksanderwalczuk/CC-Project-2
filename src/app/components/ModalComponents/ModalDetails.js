@@ -2,7 +2,7 @@ import htmlElementCreator from '../../utils/elementFactory';
 import ModalDetailsTable from './ModalDetailsTable';
 
 function ModalDetails(game, humanPlayerGame, computerPlayerGame) {
-  console.log('adding details section')
+  // console.log('adding details section')
   const detailsContainer = htmlElementCreator('div', {
     className: 'details',
   });

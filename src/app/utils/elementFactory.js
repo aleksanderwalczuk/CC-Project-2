@@ -1,6 +1,6 @@
 import { childrenInjector } from './render';
 
-const elementFactory = (tag, attributes, ...children) => {
+const elementFactory = (tag, attributes={}, ...children) => {
   const newElement = document.createElement(tag);
 
   Object.entries(attributes).forEach(([key, value]) => {

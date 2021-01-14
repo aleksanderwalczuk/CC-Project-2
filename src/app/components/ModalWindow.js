@@ -8,10 +8,10 @@ function ModalWindow(
   computerPlayerGame,
   callbackToCloseModal,
 ) {
-  console.log('adding modal');
+  // console.log('adding modal');
   // CREATE MAIN ELEMENTS
   const modal = htmlElementCreator('div', { className: 'modal' });
-  console.log(modal)
+  // console.log(modal)
   const modalContainer = htmlElementCreator('div', {
     className: 'modal__container',
   });
@@ -54,7 +54,7 @@ function ModalWindow(
     playerForm,
     formButton,
   );
-  console.log(modal);
+  // console.log(modal);
   return modal;
 }
 

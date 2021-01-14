@@ -11,8 +11,8 @@ function chooseStyleAndAnswer(round) {
 }
 
 function ModalDetailsTable(quiz, humanData, computerData) {
-  console.log('adding details table')
-  const tableHeaders = [null, 'You', 'Computer', 'Answer'];
+  // console.log('adding details table');
+  const tableHeaders = ['', 'You', 'Computer', 'Answer'];
   const newTable = htmlElementCreator('table', {
     className: 'details__table',
   });
@@ -68,16 +68,12 @@ function ModalDetailsTable(quiz, humanData, computerData) {
     // newImageCell.appendChild(imageToInsert);
     const newHumanAnswer = htmlElementCreator(
       'td',
-      {
-        className: humanStyle, //! !!!! className
-      },
+      humanStyle === '' ? {} : { className: humanStyle },
       humanAnswer,
     );
     const newComputerAnswer = htmlElementCreator(
       'td',
-      {
-        className: computerStyle,
-      },
+      computerStyle === '' ? {} : { className: computerStyle },
       computerAnswer,
     );
     const newCorrectAnswer = htmlElementCreator(
