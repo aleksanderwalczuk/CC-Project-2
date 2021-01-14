@@ -19,8 +19,8 @@ const App = ({ options }) => {
   );
   const gameModeInfo = createGameModeName('Who is this character?');
   quiz.append(gameModeInfo, buttonRules, buttonPlay);
-
-  RemainingTime();
+  
+  quiz.append(RemainingTime());
 };
 
 export default App;

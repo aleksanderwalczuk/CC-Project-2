@@ -26,7 +26,6 @@ function handleTimeChange(element) {
 };
 
 function RemainingTime() {
-  const root = document.querySelector('#swquiz-app');
   const parentElement = document.createElement('div');
   const counter = document.createElement('div');
 
@@ -35,9 +34,10 @@ function RemainingTime() {
   counter.classList.add('remaining-time__counter');
 
   parentElement.appendChild(counter);
-  root.appendChild(parentElement);
 
   handleTimeChange(counter);
+  
+  return parentElement;
 };
 
 export default RemainingTime;
