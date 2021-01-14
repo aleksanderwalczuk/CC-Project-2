@@ -18,9 +18,6 @@ const App = ({ options }) => {
     'fa-graduation-cap',
   );
   const gameModeInfo = createGameModeName('Who is this character?');
-  quiz.append(gameModeInfo, buttonRules, buttonPlay);
-  
-  quiz.append(RemainingTime());
 };
 
 export default App;
