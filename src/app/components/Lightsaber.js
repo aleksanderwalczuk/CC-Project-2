@@ -5,8 +5,7 @@ function Lightsaber() {
   const blade = document.createElement('div');
   const redBlade = document.createElement('div');
 
-  divElement.classList.add('remaining-time__lightsaber');
-  divElement.classList.add('lightsaber');
+  divElement.classList.add('remaining-time__lightsaber', 'lightsaber');
   handle.classList.add('lightsaber__handle');
   blade.classList.add('lightsaber__blade');
   redBlade.classList.add('lightsaber__red-blade');

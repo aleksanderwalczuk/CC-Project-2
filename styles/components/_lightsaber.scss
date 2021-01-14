@@ -26,7 +26,7 @@
 
   &__red-blade {
     height: inherit;
-    background: #ffffff;
+    background: $color-primary;
     box-shadow: 10px -5px 15px #ff0000, 10px 5px 15px #ff0000,
       inset 0px 5px 4px rgba(255, 0, 0, 0.25);
     border-radius: $border-radius / 2;
