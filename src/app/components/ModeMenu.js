@@ -1,6 +1,7 @@
 import PageContent from './MainMenu';
 
 function ModeMenu() {
+  // Creating nav's elements.
   const newModeMenu = document.createElement('nav');
   const options = ['People', 'Vehicles', 'Starships'];
   options.forEach((option) => {
@@ -14,6 +15,8 @@ function ModeMenu() {
   const menuOption = {
     selectOption: '',
   };
+
+  // Function that checks which button was clicked and passes a variable with this information.
   function handleSelectOption(event) {
     const menuElements = document.querySelectorAll('.menu__button');
     menuOption.selectOption = event.target.textContent;
@@ -23,7 +26,10 @@ function ModeMenu() {
     event.target.classList.add('menu__button--select');
     PageContent(menuOption);
   }
-  newModeMenu.addEventListener('click', handleSelectOption);
+  const menuElements = [...newModeMenu.children];
+  menuElements.forEach((optionBtn) =>
+    optionBtn.addEventListener('click', handleSelectOption),
+  );
   return newModeMenu;
 }
 

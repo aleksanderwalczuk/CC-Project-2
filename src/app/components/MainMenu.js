@@ -6,8 +6,8 @@ import createGameModeName from './GameModeName';
 import ModeMenu, { menuOption } from './ModeMenu';
 import createModeRules from './ModeRules';
 
+// creating page content
 function PageContent(optionMode = { selectOption: 'People' }) {
-  console.log(optionMode);
   const section = document.querySelector('.section');
   section.textContent = '';
   const gameWrapper = document.createElement('div');
@@ -16,24 +16,22 @@ function PageContent(optionMode = { selectOption: 'People' }) {
     '../../../static/assets/img/modes/people/1.jpg',
   );
   const modeRules = createModeRules(optionMode.selectOption);
-  console.log(modeRules);
   const buttonPlay = createButtonRed('play the game');
   const buttonRulesRanking = createWhiteButtonWithIcon(
     'Hall of fame',
     'fa',
     'fa-id-badge',
   );
-  console.log(optionMode.selectOption);
   const gameModeInfo = createGameModeName(
     `Who is this ${optionMode.selectOption}?`,
   );
-  console.log(gameModeInfo);
   gameWrapper.classList.add('section__wrapper');
   buttonsWrapper.classList.add('section__wrapper__buttons');
   section.append(visualImage, gameWrapper);
   gameWrapper.append(gameModeInfo, modeRules, buttonsWrapper);
   buttonsWrapper.append(buttonRulesRanking, buttonPlay);
 
+  // Changing the rules and ranking view by pressing the button
   let rules = false;
   function handleChangeOfView() {
     if (!rules) {
@@ -59,6 +57,8 @@ function PageContent(optionMode = { selectOption: 'People' }) {
   buttonRulesRanking.addEventListener('click', handleChangeOfView);
   return section;
 }
+
+// Creating header and rendering of the page.
 export const LoadPage = () => {
   const quiz = document.querySelector('#swquiz-app');
   const header = document.createElement('header');
