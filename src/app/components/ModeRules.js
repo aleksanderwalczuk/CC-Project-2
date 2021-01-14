@@ -1,3 +1,5 @@
+import elementFactory from '../utils/elementFactory';
+
 const rulesTexts = {
   people:
     'You have one minute (1m) to answer as many questions as possible. During the game on each question you need to select who from Star Wars is showed on the left (Jar Jar Binks right now) from available options.',
@@ -8,17 +10,28 @@ const rulesTexts = {
 };
 
 const ModeRules = (mode) => {
-  const rulesElement = document.createElement('div');
-  const rulesHeader = document.createElement('header');
-  const rulesIcon = document.createElement('span');
-  const rulesTextElement = document.createElement('div');
-  rulesElement.classList.add('rules');
-  rulesHeader.classList.add('rules-header');
-  rulesIcon.classList.add('rules-icon', 'fa', 'fa-graduation-cap');
-  rulesTextElement.classList.add('rules-text');
-  rulesElement.append(rulesHeader, rulesTextElement);
-  rulesHeader.append(rulesIcon, 'Mode Rules');
-  rulesTextElement.append(rulesTexts[mode] ?? rulesTexts.people);
+  const rulesTextElement = elementFactory(
+    'div',
+    { className: 'rules-text' },
+    rulesTexts[mode] ?? rulesTexts.people,
+  );
+  const rulesIcon = elementFactory('span', {
+    className: 'rules-icon fa fa-graduation-cap',
+  });
+
+  const rulesHeader = elementFactory(
+    'header',
+    { className: 'rules-header' },
+    rulesIcon,
+    'Mode Rules',
+  );
+
+  const rulesElement = elementFactory(
+    'div',
+    { className: 'rules' },
+    rulesHeader,
+    rulesTextElement,
+  );
 
   return rulesElement;
 };
