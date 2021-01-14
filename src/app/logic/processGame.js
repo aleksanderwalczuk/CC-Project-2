@@ -1,6 +1,8 @@
 import Answers from '../components/Answers';
 import VisualImage from '../components/VisualImage';
 import { getQuestion, initGame, isGameInitialized } from './quiz';
+import { ComputerPlayer } from './ComputerPlayer';
+import { HumanPlayer } from './HumanPlayer';
 
 class Game {
   getTimeLeft() {
@@ -27,11 +29,13 @@ class Game {
     this.questions.push(question);
   }
 
-  newGame(mode) {
+  prepareNewGame(mode) {
     this.timeLeft = process.env.QUIZ_MAX_TIME_SECONDS;
     this.questions = [];
     this.mode = mode;
     this.running = false;
+    this.computerPlayer = ComputerPlayer();
+    this.humanPlayer = HumanPlayer();
   }
 
   changeRunningFlag() {
@@ -44,19 +48,33 @@ class Game {
       questions: this.questions,
     };
   }
+
+  sendAnswerToPlayerCallback() {
+    // TODO: change callback, when #75 will be merged
+    return this.humanPlayer.getAnswer;
+  }
+
+  sendQuestionToComputerPlayer(question) {
+    // TODO: change function call, when #75 will be merged
+    this.computerPlayer.getAnswer(
+      question.answers,
+      question.rightAnswer,
+    );
+  }
 }
 
 const game = new Game();
 
 const spreadQuestion = (question) => {
-  // TODO: send question to computer player
+  game.sendQuestionToComputerPlayer(question);
   VisualImage(question.image);
   Answers(
     question.answers,
     question.rightAnswer,
-    // Eslint warn. Use before definition
+    game.sendAnswerToPlayerCallback,
+    // Eslint warn, function call before definition
     // eslint-disable-next-line no-use-before-define
-    // TODO: HumanPlayerCallback,
+    askQuestion,
   );
 };
 
@@ -99,8 +117,8 @@ const closeGame = (interval) => {
   }
 };
 
-const gameRunning = () => {
-  // TODO: countdown display - TimeRemaining();
+const runGame = () => {
+  // TODO: call function, when #49 will be merged - TimeRemaining();
   game.changeRunningFlag();
   getNewQuestion();
   const interval = setInterval(() => {
@@ -112,8 +130,8 @@ const gameRunning = () => {
 };
 
 const startGame = (mode) => {
-  game.newGame(mode);
-  gameRunning();
+  game.prepareNewGame(mode);
+  runGame();
 };
 
 const processGame = (
