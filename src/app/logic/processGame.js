@@ -50,12 +50,12 @@ class Game {
   }
 
   sendAnswerToPlayerCallback() {
-    // TODO: change callback, when #75 will be merged
+    // TODO: change callback, when #74 will be merged
     return this.humanPlayer.getAnswer;
   }
 
   sendQuestionToComputerPlayer(question) {
-    // TODO: change function call, when #75 will be merged
+    // TODO: change function call, when #74 will be merged
     this.computerPlayer.getAnswer(
       question.answers,
       question.rightAnswer,
