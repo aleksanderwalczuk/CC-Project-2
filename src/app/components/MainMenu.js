@@ -37,7 +37,7 @@ function PageContent(optionMode = { selectOption: 'People' }) {
     if (!rules) {
       modeRules.remove();
       rules = true;
-      buttonRulesRanking.innerHTML = `<i></i> Rules`;
+      buttonRulesRanking.innerHTML = `<span></span> Rules`;
       buttonRulesRanking.firstElementChild.classList.add(
         'button__icon',
         'fa',
@@ -46,7 +46,7 @@ function PageContent(optionMode = { selectOption: 'People' }) {
     } else {
       rules = false;
       gameWrapper.insertBefore(modeRules, buttonsWrapper);
-      buttonRulesRanking.innerHTML = `<i></i> Hall of fame`;
+      buttonRulesRanking.innerHTML = `<span></span> Hall of fame`;
       buttonRulesRanking.firstElementChild.classList.add(
         'button__icon',
         'fa',
