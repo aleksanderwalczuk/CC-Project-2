@@ -6,35 +6,39 @@ import createGameModeName from './GameModeName';
 import ModeMenu, { menuOption } from './ModeMenu';
 import createModeRules from './ModeRules';
 
-function PageContent(optionMode = { selectOption: 'people' }) {
+function PageContent(optionMode = { selectOption: 'People' }) {
   console.log(optionMode);
-  const section = document.createElement('section');
-  section.innerHTML = '';
+  const section = document.querySelector('.section');
+  section.textContent = '';
   const gameWrapper = document.createElement('div');
   const buttonsWrapper = document.createElement('div');
   const visualImage = createVisualImage(
     '../../../static/assets/img/modes/people/1.jpg',
   );
-  const modeRules = createModeRules();
+  const modeRules = createModeRules(optionMode.selectOption);
+  console.log(modeRules);
   const buttonPlay = createButtonRed('play the game');
   const buttonRulesRanking = createWhiteButtonWithIcon(
     'Hall of fame',
     'fa',
     'fa-id-badge',
   );
+  console.log(optionMode.selectOption);
   const gameModeInfo = createGameModeName(
     `Who is this ${optionMode.selectOption}?`,
   );
+  console.log(gameModeInfo);
   gameWrapper.classList.add('section__wrapper');
   buttonsWrapper.classList.add('section__wrapper__buttons');
   section.append(visualImage, gameWrapper);
   gameWrapper.append(gameModeInfo, modeRules, buttonsWrapper);
   buttonsWrapper.append(buttonRulesRanking, buttonPlay);
 
-  let rules = true;
+  let rules = false;
   function handleChangeOfView() {
-    if (rules) {
-      rules = false;
+    if (!rules) {
+      modeRules.remove();
+      rules = true;
       buttonRulesRanking.innerHTML = `<i></i> Rules`;
       buttonRulesRanking.firstElementChild.classList.add(
         'button__icon',
@@ -42,7 +46,8 @@ function PageContent(optionMode = { selectOption: 'people' }) {
         'fa-graduation-cap',
       );
     } else {
-      rules = true;
+      rules = false;
+      gameWrapper.insertBefore(modeRules, buttonsWrapper);
       buttonRulesRanking.innerHTML = `<i></i> Hall of fame`;
       buttonRulesRanking.firstElementChild.classList.add(
         'button__icon',
@@ -57,8 +62,8 @@ function PageContent(optionMode = { selectOption: 'people' }) {
 export const LoadPage = () => {
   const quiz = document.querySelector('#swquiz-app');
   const header = document.createElement('header');
+  const section = document.createElement('section');
   const newNav = ModeMenu();
-  const section = PageContent();
   const gameLogo = createLogo();
   header.classList.add('header');
   section.classList.add('section');
