@@ -24,7 +24,7 @@ function ModalDetailsTable(quiz, humanData, computerData) {
       {
         className: 'details__table__head',
       },
-      // header,
+      header,
     );
     tableHeadRow.appendChild(tableHeader);
   });
