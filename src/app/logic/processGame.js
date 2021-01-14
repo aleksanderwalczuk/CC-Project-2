@@ -1,8 +1,8 @@
 import Answers from '../components/Answers';
 import VisualImage from '../components/VisualImage';
+import createComputerPlayer from './ComputerPlayer';
+import createPlayer from './Player';
 import { getQuestion, initGame, isGameInitialized } from './quiz';
-import { ComputerPlayer } from './ComputerPlayer';
-import { HumanPlayer } from './HumanPlayer';
 
 class Game {
   getTimeLeft() {
@@ -34,8 +34,8 @@ class Game {
     this.questions = [];
     this.mode = mode;
     this.running = false;
-    this.computerPlayer = ComputerPlayer();
-    this.humanPlayer = HumanPlayer();
+    this.computerPlayer = createComputerPlayer();
+    this.humanPlayer = createPlayer();
   }
 
   changeRunningFlag() {
@@ -46,16 +46,16 @@ class Game {
     return {
       mode: this.mode,
       questions: this.questions,
+      computerPlayer: this.computerPlayer.getModalData(),
+      humanPlayer: this.humanPlayer.getModalData(),
     };
   }
 
   sendAnswerToPlayerCallback() {
-    // TODO: change callback, when #74 will be merged
     return this.humanPlayer.getAnswer;
   }
 
   sendQuestionToComputerPlayer(question) {
-    // TODO: change function call, when #74 will be merged
     this.computerPlayer.getAnswer(
       question.answers,
       question.rightAnswer,
@@ -118,7 +118,7 @@ const closeGame = (interval) => {
 };
 
 const runGame = () => {
-  // TODO: call function, when #49 will be merged - TimeRemaining();
+  // TODO: trigger TimeRemaining();
   game.changeRunningFlag();
   getNewQuestion();
   const interval = setInterval(() => {
