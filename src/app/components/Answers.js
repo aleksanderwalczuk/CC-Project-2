@@ -21,7 +21,10 @@ const createAnswerElement = (
     );
 
     answersElement.setAttribute('disabled', true);
-    onAnsweredQuestion(answerText, correct, callback);
+    setTimeout(
+      () => onAnsweredQuestion(answerText, correct, callback),
+      1500,
+    );
   });
   answerElement.innerText = answerText;
   return answerElement;
