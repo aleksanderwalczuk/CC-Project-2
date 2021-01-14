@@ -1,4 +1,4 @@
-import htmlElementCreator from '../../utils/htmlElementCreator';
+import htmlElementCreator from '../../utils/elementFactory';
 import VisualImage from '../VisualImage';
 
 function chooseStyleAndAnswer(round) {
@@ -11,9 +11,10 @@ function chooseStyleAndAnswer(round) {
 }
 
 function ModalDetailsTable(quiz, humanData, computerData) {
+  console.log('adding details table')
   const tableHeaders = [null, 'You', 'Computer', 'Answer'];
   const newTable = htmlElementCreator('table', {
-    class: 'details__table',
+    className: 'details__table',
   });
   const tableHead = htmlElementCreator('thead');
   const tableHeadRow = htmlElementCreator('tr');
@@ -21,16 +22,16 @@ function ModalDetailsTable(quiz, humanData, computerData) {
     const tableHeader = htmlElementCreator(
       'th',
       {
-        class: 'details__table__head',
+        className: 'details__table__head',
       },
-      header,
+      // header,
     );
     tableHeadRow.appendChild(tableHeader);
   });
 
   // TABLE BODY
   const tableBody = htmlElementCreator('tbody', {
-    class: 'details__table__body',
+    className: 'details__table__body',
   });
 
   const humanAnswers = humanData.detailedAnswers;
@@ -59,30 +60,30 @@ function ModalDetailsTable(quiz, humanData, computerData) {
       computerAnswers[index],
     );
     const newImageCell = htmlElementCreator('td', {
-      class: 'details__table__image',
+      className: 'details__table__image',
       // src: paths[index],
     });
-    const imageToInsert = VisualImage(paths[index]);
-    console.log(imageToInsert)
-    newImageCell.appendChild(imageToInsert);
+    // const imageToInsert = VisualImage(paths[index]);
+    // console.log(imageToInsert)
+    // newImageCell.appendChild(imageToInsert);
     const newHumanAnswer = htmlElementCreator(
       'td',
       {
-        class: humanStyle, //! !!!! CLASS
+        className: humanStyle, //! !!!! className
       },
       humanAnswer,
     );
     const newComputerAnswer = htmlElementCreator(
       'td',
       {
-        class: computerStyle,
+        className: computerStyle,
       },
       computerAnswer,
     );
     const newCorrectAnswer = htmlElementCreator(
       'td',
       {
-        class: 'details__table__answer',
+        className: 'details__table__answer',
       },
       rightAnswer,
     );

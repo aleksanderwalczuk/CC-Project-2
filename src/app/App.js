@@ -21,7 +21,7 @@ const App = ({ options }) => {
     event.preventDefault();
     const playersName = document.querySelector('.player-form__input')
       .value;
-    quiz.removeChild(document.querySelector('.modal'));
+    // quiz.removeChild(document.querySelector('.modal'));
     console.log(`close the modal ${playersName}`);
     return playersName;
   }

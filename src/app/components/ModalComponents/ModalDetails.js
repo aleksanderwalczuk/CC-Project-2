@@ -1,14 +1,15 @@
-import htmlElementCreator from '../../utils/htmlElementCreator';
+import htmlElementCreator from '../../utils/elementFactory';
 import ModalDetailsTable from './ModalDetailsTable';
 
 function ModalDetails(game, humanPlayerGame, computerPlayerGame) {
+  console.log('adding details section')
   const detailsContainer = htmlElementCreator('div', {
-    class: 'details',
+    className: 'details',
   });
 
   const detailsHeading = htmlElementCreator(
     'h3',
-    { class: 'details__heading' },
+    { className: 'details__heading' },
     'Detailed answers',
   );
 
