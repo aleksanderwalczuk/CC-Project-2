@@ -10,6 +10,9 @@ const fetchItems = (api) => {
       if (item.next !== null) {
         fetchItems(item.next);
       }
+      if (item.count === questionScope.length) {
+        sessionStorage.setItem(type, JSON.stringify(questionScope));
+      }
     })
     .catch((err) => {
       throw Error(`fetchError: ${err}`);
@@ -84,7 +87,11 @@ const generateQuestion = () => {
 export const initGame = (mode, url) => {
   baseApi = url || process.env.SW_API_BASE_URL;
   type = mode;
-  fetchQuestionScope();
+  if (sessionStorage.getItem(mode) !== null) {
+    questionScope = JSON.parse(sessionStorage.getItem(mode));
+  } else {
+    fetchQuestionScope();
+  }
 };
 
 export const getQuestion = () => generateQuestion();
