@@ -6,7 +6,7 @@ import createGameModeName from './GameModeName';
 import ModeMenu, { menuOption } from './ModeMenu';
 import createModeRules from './ModeRules';
 
-// creating page content
+// Creating page content
 function PageContent(optionMode = { selectOption: 'People' }) {
   const section = document.querySelector('.section');
   section.textContent = '';
@@ -16,6 +16,7 @@ function PageContent(optionMode = { selectOption: 'People' }) {
     '../../../static/assets/img/modes/people/1.jpg',
   );
   const modeRules = createModeRules(optionMode.selectOption);
+  // Insert score table for player #18;
   const buttonPlay = createButtonRed('play the game');
   const buttonRulesRanking = createWhiteButtonWithIcon(
     'Hall of fame',
@@ -36,6 +37,7 @@ function PageContent(optionMode = { selectOption: 'People' }) {
   function handleChangeOfView() {
     if (!rules) {
       modeRules.remove();
+      // Insert score table for player #18;
       rules = true;
       buttonRulesRanking.innerHTML = `<span></span> Rules`;
       buttonRulesRanking.firstElementChild.classList.add(
@@ -46,6 +48,7 @@ function PageContent(optionMode = { selectOption: 'People' }) {
     } else {
       rules = false;
       gameWrapper.insertBefore(modeRules, buttonsWrapper);
+      // Delete score table for player #18;
       buttonRulesRanking.innerHTML = `<span></span> Hall of fame`;
       buttonRulesRanking.firstElementChild.classList.add(
         'button__icon',
