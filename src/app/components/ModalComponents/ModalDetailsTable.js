@@ -63,9 +63,12 @@ function ModalDetailsTable(quiz, humanData, computerData) {
       className: 'details__table__image',
       // src: paths[index],
     });
+    const imageToInsert = htmlElementCreator('img', {
+      src: paths[index],
+    });
     // const imageToInsert = VisualImage(paths[index]);
-    // console.log(imageToInsert)
-    // newImageCell.appendChild(imageToInsert);
+    console.log(imageToInsert)
+    newImageCell.appendChild(imageToInsert);
     const newHumanAnswer = htmlElementCreator(
       'td',
       humanStyle === '' ? {} : { className: humanStyle },
