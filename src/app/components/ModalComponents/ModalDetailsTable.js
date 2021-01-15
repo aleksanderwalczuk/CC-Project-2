@@ -1,5 +1,4 @@
-import htmlElementCreator from '../../utils/elementFactory';
-import VisualImage from '../VisualImage';
+import elementFactory from '../../utils/elementFactory';
 
 function chooseStyleAndAnswer(round) {
   if (!round) {
@@ -11,15 +10,14 @@ function chooseStyleAndAnswer(round) {
 }
 
 function ModalDetailsTable(quiz, humanData, computerData) {
-  // console.log('adding details table');
   const tableHeaders = ['', 'You', 'Computer', 'Answer'];
-  const newTable = htmlElementCreator('table', {
+  const newTable = elementFactory('table', {
     className: 'details__table',
   });
-  const tableHead = htmlElementCreator('thead');
-  const tableHeadRow = htmlElementCreator('tr');
+  const tableHead = elementFactory('thead');
+  const tableHeadRow = elementFactory('tr');
   tableHeaders.forEach((header) => {
-    const tableHeader = htmlElementCreator(
+    const tableHeader = elementFactory(
       'th',
       {
         className: 'details__table__head',
@@ -30,7 +28,7 @@ function ModalDetailsTable(quiz, humanData, computerData) {
   });
 
   // TABLE BODY
-  const tableBody = htmlElementCreator('tbody', {
+  const tableBody = elementFactory('tbody', {
     className: 'details__table__body',
   });
 
@@ -45,41 +43,33 @@ function ModalDetailsTable(quiz, humanData, computerData) {
     listOfAnswers.push(question.image);
     return listOfAnswers;
   }, []);
-  // console.log(paths);
-  // console.log(humanAnswers)
-  // console.log(computerAnswers)
-  // console.log(rightAnswers);
-  // console.log(numberOfRows);
 
   rightAnswers.forEach((rightAnswer, index) => {
-    const newRow = htmlElementCreator('tr');
+    const newRow = elementFactory('tr');
     const [humanAnswer, humanStyle] = chooseStyleAndAnswer(
       humanAnswers[index],
     );
     const [computerAnswer, computerStyle] = chooseStyleAndAnswer(
       computerAnswers[index],
     );
-    const newImageCell = htmlElementCreator('td', {
+    const newImageCell = elementFactory('td', {
       className: 'details__table__image',
-      // src: paths[index],
     });
-    const imageToInsert = htmlElementCreator('img', {
+    const imageToInsert = elementFactory('img', {
       src: paths[index],
     });
-    // const imageToInsert = VisualImage(paths[index]);
-    console.log(imageToInsert)
     newImageCell.appendChild(imageToInsert);
-    const newHumanAnswer = htmlElementCreator(
+    const newHumanAnswer = elementFactory(
       'td',
       humanStyle === '' ? {} : { className: humanStyle },
       humanAnswer,
     );
-    const newComputerAnswer = htmlElementCreator(
+    const newComputerAnswer = elementFactory(
       'td',
       computerStyle === '' ? {} : { className: computerStyle },
       computerAnswer,
     );
-    const newCorrectAnswer = htmlElementCreator(
+    const newCorrectAnswer = elementFactory(
       'td',
       {
         className: 'details__table__answer',

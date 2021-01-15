@@ -1,27 +1,27 @@
-import htmlElementCreator from '../../utils/elementFactory';
+import elementFactory from '../../utils/elementFactory';
 
 function ModalForm(callbackToCloseModal) {
-  const playerForm = htmlElementCreator('form', {
+  const playerForm = elementFactory('form', {
     className: 'player-form',
     id: 'player-data',
   });
 
-  const playerFormItem = htmlElementCreator('div', {
+  const playerFormItem = elementFactory('div', {
     className: 'player-form__item',
   });
-  const playerFormInput = htmlElementCreator('input', {
+  const playerFormInput = elementFactory('input', {
     className: 'player-form__input',
     type: 'text',
     name: 'name',
     id: 'name',
     required: null,
   });
-  const playerFormImage = htmlElementCreator('img', {
+  const playerFormImage = elementFactory('img', {
     className: 'player-form__image',
     src: './static/assets/ui/MasterYodaLeft.png',
   });
 
-  const playerFormLabel = htmlElementCreator(
+  const playerFormLabel = elementFactory(
     'label',
     {
       className: 'player-form__label',

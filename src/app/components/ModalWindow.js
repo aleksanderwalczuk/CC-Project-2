@@ -1,4 +1,4 @@
-import htmlElementCreator from '../utils/elementFactory';
+import elementFactory from '../utils/elementFactory';
 import ModalDetails from './ModalComponents/ModalDetails';
 import ModalForm from './ModalComponents/ModalForm';
 
@@ -8,19 +8,17 @@ function ModalWindow(
   computerPlayerGame,
   callbackToCloseModal,
 ) {
-  // console.log('adding modal');
   // CREATE MAIN ELEMENTS
-  const modal = htmlElementCreator('div', { className: 'modal' });
-  // console.log(modal)
-  const modalContainer = htmlElementCreator('div', {
+  const modal = elementFactory('div', { className: 'modal' });
+  const modalContainer = elementFactory('div', {
     className: 'modal__container',
   });
-  const modalHeader = htmlElementCreator(
+  const modalHeader = elementFactory(
     'h2',
     { className: 'mode-info__heading modal__heading' },
     'Game Over',
   );
-  const modalText = htmlElementCreator(
+  const modalText = elementFactory(
     'p',
     { className: 'modal__text' },
     `The force is strong in you young Padawan! During 2 minutes you have answered ${humanPlayerGame.questionsGuessed} / ${humanPlayerGame.questionsAnswered} questions. And Computer quessed ${computerPlayerGame.questionsGuessed} / ${computerPlayerGame.questionsAnswered}.`,
@@ -35,7 +33,7 @@ function ModalWindow(
 
   // FORM
   const playerForm = ModalForm(callbackToCloseModal);
-  const formButton = htmlElementCreator(
+  const formButton = elementFactory(
     'button',
     {
       className: 'player-form__button button button--red',
@@ -54,7 +52,6 @@ function ModalWindow(
     playerForm,
     formButton,
   );
-  // console.log(modal);
   return modal;
 }
 
