@@ -16,13 +16,11 @@ function VisualImage(imageSource) {
     document.querySelector('.visual-box').appendChild(createImg);
 
     // Adding sourse to img
-    // const img = document.querySelector('.visual-box__image');
-    createImg.setAttribute('src', imageSource);
-    return createImg;
+    const img = document.querySelector('.visual-box__image');
+    img.setAttribute('src', imageSource);
   } else {
     throw new Error('Ups, format of input string is incorrect');
   }
-  
 }
 
 export default VisualImage;

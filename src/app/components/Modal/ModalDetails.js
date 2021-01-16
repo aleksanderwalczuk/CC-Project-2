@@ -2,10 +2,6 @@ import elementFactory from '../../utils/elementFactory';
 import ModalDetailsTable from './ModalDetailsTable';
 
 function ModalDetails(game, humanPlayerGame, computerPlayerGame) {
-  const detailsContainer = elementFactory('div', {
-    className: 'details',
-  });
-
   const detailsHeading = elementFactory(
     'h3',
     { className: 'details__heading' },
@@ -19,7 +15,16 @@ function ModalDetails(game, humanPlayerGame, computerPlayerGame) {
     computerPlayerGame,
   );
 
-  detailsContainer.append(detailsHeading, detailsTable);
+  const detailsContainer = elementFactory(
+    'div',
+    {
+      className: 'details',
+    },
+    detailsHeading,
+    detailsTable,
+  );
+
+  // detailsContainer.append(detailsHeading, detailsTable);
   return detailsContainer;
 }
 

@@ -1,6 +1,6 @@
-import elementFactory from '../utils/elementFactory';
-import ModalDetails from './ModalComponents/ModalDetails';
-import ModalForm from './ModalComponents/ModalForm';
+import elementFactory from '../../utils/elementFactory';
+import ModalDetails from './ModalDetails';
+import ModalForm from './ModalForm';
 
 function ModalWindow(
   game,
@@ -9,10 +9,6 @@ function ModalWindow(
   callbackToCloseModal,
 ) {
   // CREATE MAIN ELEMENTS
-  const modal = elementFactory('div', { className: 'modal' });
-  const modalContainer = elementFactory('div', {
-    className: 'modal__container',
-  });
   const modalHeader = elementFactory(
     'h2',
     { className: 'mode-info__heading modal__heading' },
@@ -43,15 +39,25 @@ function ModalWindow(
     'May the force be with you!',
   );
 
-  // JOIN TOGETHER
-  modal.appendChild(modalContainer);
-  modalContainer.append(
+  // JOIN TOGETHER IN MAIN CONTAINER
+
+  const modalContainer = elementFactory(
+    'div',
+    {
+      className: 'modal__container',
+    },
     modalHeader,
     modalText,
     detailsContainer,
     playerForm,
     formButton,
   );
+  const modal = elementFactory(
+    'div',
+    { className: 'modal' },
+    modalContainer,
+  );
+
   return modal;
 }
 
