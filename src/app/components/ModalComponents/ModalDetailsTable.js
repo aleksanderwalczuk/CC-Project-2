@@ -10,11 +10,6 @@ function chooseStyleAndAnswer(round) {
 }
 
 function ModalDetailsTable(quiz, humanData, computerData) {
-  // TABLE BODY
-  const tableBody = elementFactory('tbody', {
-    className: 'details__table__body',
-  });
-
   const humanAnswers = humanData.detailedAnswers;
   const computerAnswers = computerData.detailedAnswers;
   const { questions } = quiz;
@@ -23,21 +18,23 @@ function ModalDetailsTable(quiz, humanData, computerData) {
   );
   const paths = questions.map((question) => question.image);
 
-  rightAnswers.forEach((rightAnswer, index) => {
-    const newRow = elementFactory('tr');
+  const answersRows = rightAnswers.map((rightAnswer, index) => {
     const [humanAnswer, humanStyle] = chooseStyleAndAnswer(
       humanAnswers[index],
     );
     const [computerAnswer, computerStyle] = chooseStyleAndAnswer(
       computerAnswers[index],
     );
-    const newImageCell = elementFactory('td', {
-      className: 'details__table__image',
-    });
     const imageToInsert = elementFactory('img', {
       src: paths[index],
     });
-    newImageCell.appendChild(imageToInsert);
+    const newImageCell = elementFactory(
+      'td',
+      {
+        className: 'details__table__image',
+      },
+      imageToInsert,
+    );
     const newHumanAnswer = elementFactory(
       'td',
       humanStyle === '' ? {} : { className: humanStyle },
@@ -55,20 +52,29 @@ function ModalDetailsTable(quiz, humanData, computerData) {
       },
       rightAnswer,
     );
-    newRow.append(
+    const newRow = elementFactory(
+      'tr',
+      {},
       newImageCell,
       newHumanAnswer,
       newComputerAnswer,
       newCorrectAnswer,
     );
-    tableBody.appendChild(newRow);
+    return newRow;
   });
 
-  // JOIN TOGETHER
+  // TABLE BODY
+  const tableBody = elementFactory(
+    'tbody',
+    {
+      className: 'details__table__body',
+    },
+    ...answersRows,
+  );
 
-  const tableHeadRow = elementFactory('tr');
+  // JOIN TOGETHER
   const tableHeaders = ['', 'You', 'Computer', 'Answer'];
-  tableHeaders.forEach((header) => {
+  const tableHeadersElements = tableHeaders.map((header) => {
     const tableHeader = elementFactory(
       'th',
       {
@@ -76,8 +82,14 @@ function ModalDetailsTable(quiz, humanData, computerData) {
       },
       header,
     );
-    tableHeadRow.appendChild(tableHeader);
+    return tableHeader;
   });
+  const tableHeadRow = elementFactory(
+    'tr',
+    {},
+    ...tableHeadersElements,
+  );
+
   const tableHead = elementFactory('thead', {}, tableHeadRow);
   const newTable = elementFactory(
     'table',
