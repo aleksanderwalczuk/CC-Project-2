@@ -1,17 +1,27 @@
-let baseApi;
-let questionScope = [];
-let type = '';
+const axios = require('axios');
+
+const gameInfo = {};
 
 const fetchItems = (api) => {
-  fetch(api)
-    .then((item) => item.json())
+  axios
+    .get(api)
+    .then((item) => item.data)
     .then((item) => {
-      questionScope.push(...item.results);
+      gameInfo.questionScope.push(...item.results);
       if (item.next !== null) {
         fetchItems(item.next);
       }
-      if (item.count === questionScope.length) {
-        sessionStorage.setItem(type, JSON.stringify(questionScope));
+      if (item.count === gameInfo.questionScope.length) {
+        gameInfo.questionScope = gameInfo.questionScope.map(
+          (value) => ({
+            name: value.name,
+            idx: value.url.split('/')[5],
+          }),
+        );
+        localStorage.setItem(
+          gameInfo.mode,
+          JSON.stringify(gameInfo.questionScope),
+        );
       }
     })
     .catch((err) => {
@@ -20,18 +30,18 @@ const fetchItems = (api) => {
 };
 
 const fetchQuestionScope = () => {
-  questionScope = [];
-  fetchItems(`${baseApi}/${type}/`);
+  gameInfo.questionScope = [];
+  fetchItems(`${gameInfo.apiUrl}/${gameInfo.mode}/`);
 };
 
 const pickRandomId = () => {
   let result;
   while (result === undefined) {
-    result = Math.ceil(Math.random() * questionScope.length);
-    if (result === questionScope.length) {
+    result = Math.ceil(Math.random() * gameInfo.questionScope.length);
+    if (result === gameInfo.questionScope.length) {
       result = 0;
     }
-    if (questionScope[result] === undefined) {
+    if (gameInfo.questionScope[result] === undefined) {
       result = undefined;
     }
   }
@@ -39,7 +49,7 @@ const pickRandomId = () => {
 };
 
 const getUrlData = (id, question) => {
-  fetch(`/static/assets/img/modes/${type}/${id}.jpg`)
+  fetch(`/static/assets/img/modes/${gameInfo.mode}/${id}.jpg`)
     .then((res) => res.blob())
     .then((blob) => {
       const reader = new FileReader();
@@ -55,7 +65,7 @@ const getUrlData = (id, question) => {
 
 const generateQuestion = () => {
   const question = {};
-  if (questionScope.length === 0) {
+  if (gameInfo.questionScope.length === 0) {
     question.err = 'modeOrDataError';
     return question;
   }
@@ -73,26 +83,27 @@ const generateQuestion = () => {
     correctIdIdxFromAnswers = 0;
   }
   const rightAnswer = answersIDs[correctIdIdxFromAnswers];
-  const rightAnswerApiDataId = questionScope[rightAnswer].url.split(
-    '/',
-  )[5];
+  const rightAnswerApiDataId =
+    gameInfo.questionScope[rightAnswer].idx;
   getUrlData(rightAnswerApiDataId, question);
-  question.answers = answersIDs
-    .map((id) => questionScope[id])
-    .map((item) => item.name);
-  question.rightAnswer = questionScope[rightAnswer].name;
+  question.answers = answersIDs.map(
+    (id) => gameInfo.questionScope[id].name,
+  );
+  question.rightAnswer = gameInfo.questionScope[rightAnswer].name;
   return question;
 };
 
 export const initGame = (mode, url) => {
-  baseApi = url || process.env.SW_API_BASE_URL;
-  type = mode;
-  if (sessionStorage.getItem(mode) !== null) {
-    questionScope = JSON.parse(sessionStorage.getItem(mode));
+  gameInfo.apiUrl =
+    url || process.env.SW_API_BASE_URL || 'https://swapi.dev/api';
+  gameInfo.mode = mode;
+  if (localStorage.getItem(mode) !== null) {
+    gameInfo.questionScope = JSON.parse(localStorage.getItem(mode));
   } else {
     fetchQuestionScope();
   }
 };
 
 export const getQuestion = () => generateQuestion();
-export const isGameInitialized = () => questionScope.length > 0;
+export const isGameInitialized = () =>
+  gameInfo.questionScope.length > 0;
