@@ -20,8 +20,7 @@ function VisualImage(imageSource) {
     img.setAttribute('src', imageSource);
   } else {
     throw new Error('Ups, format of input string is incorrect');
-  }
-  
+  }  
 }
 
 export default VisualImage;
