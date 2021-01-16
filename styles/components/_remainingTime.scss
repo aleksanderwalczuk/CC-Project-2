@@ -1,14 +1,13 @@
 .remaining-time {
   display: flex;
-  flex-direction: column;
+  flex-flow: wrap;
   justify-content: center;
-  text-align: center;
 
   &__counter {
-    font-size: $font-size-primary;
-    font-weight: bold;
     color: rgba(255, 0, 0, 0.8);
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
       4px 4px 40px rgba(255, 0, 0, 0.9);
+    font-size: $font-size-primary;
+    font-weight: bold;
   }
 }

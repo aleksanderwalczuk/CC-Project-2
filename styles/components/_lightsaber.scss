@@ -1,12 +1,14 @@
 .lightsaber {
   align-items: center;
   display: flex;
+  flex-basis: 100%;
   order: -1;
 
   &__handle {
     height: 50px;
     width: 300px;
-    background: url('../static/assets/ui/LightsaberHandle.png') no-repeat center;
+    background: url('../static/assets/ui/LightsaberHandle.png')
+      no-repeat center;
     transform: translateX(7%);
     background-size: contain;
     z-index: -1;
