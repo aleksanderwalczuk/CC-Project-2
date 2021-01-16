@@ -1,4 +1,5 @@
 import elementFactory from '../../utils/elementFactory';
+import prepareDataForDetailsTable from './prepareDataForDetailsTable'
 
 function chooseStyleAndAnswer(round) {
   if (!round) {
@@ -10,13 +11,12 @@ function chooseStyleAndAnswer(round) {
 }
 
 function ModalDetailsTable(quiz, humanData, computerData) {
-  const humanAnswers = humanData.detailedAnswers;
-  const computerAnswers = computerData.detailedAnswers;
-  const { questions } = quiz;
-  const rightAnswers = questions.map(
-    (question) => question.rightAnswer,
-  );
-  const paths = questions.map((question) => question.image);
+  const [
+    humanAnswers,
+    computerAnswers,
+    rightAnswers,
+    paths,
+  ] = prepareDataForDetailsTable(quiz, humanData, computerData);
 
   const answersRows = rightAnswers.map((rightAnswer, index) => {
     const [humanAnswer, humanStyle] = chooseStyleAndAnswer(
