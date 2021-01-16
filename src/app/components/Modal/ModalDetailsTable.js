@@ -11,12 +11,12 @@ function chooseStyleAndAnswer(round) {
 }
 
 function ModalDetailsTable(quiz, humanData, computerData) {
-  const [
+  const {
     humanAnswers,
     computerAnswers,
     rightAnswers,
     paths,
-  ] = prepareDataForDetailsTable(quiz, humanData, computerData);
+  } = prepareDataForDetailsTable(quiz, humanData, computerData);
 
   const answersRows = rightAnswers.map((rightAnswer, index) => {
     const [humanAnswer, humanStyle] = chooseStyleAndAnswer(

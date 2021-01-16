@@ -1,6 +1,6 @@
-import elementFactory from '../utils/elementFactory';
-import ModalDetails from './ModalComponents/ModalDetails';
-import ModalForm from './ModalComponents/ModalForm';
+import elementFactory from '../../utils/elementFactory';
+import ModalDetails from './ModalDetails';
+import ModalForm from './ModalForm';
 
 function ModalWindow(
   game,
