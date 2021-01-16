@@ -5,9 +5,11 @@ import createWhiteButtonWithIcon from './ButtonWhiteWithIcon';
 import createGameModeName from './GameModeName';
 import ModeMenu, { menuOption } from './ModeMenu';
 import createModeRules from './ModeRules';
+import RemainingTime from './RemainingTime';
 
 // Creating page content
 function PageContent(optionMode = { selectOption: 'People' }) {
+  const quiz = document.querySelector('#swquiz-app');
   const section = document.querySelector('.section');
   section.textContent = '';
   const gameWrapper = document.createElement('div');
@@ -58,6 +60,22 @@ function PageContent(optionMode = { selectOption: 'People' }) {
     }
   }
   buttonRulesRanking.addEventListener('click', handleChangeOfView);
+
+  buttonPlay.addEventListener('click', () => {
+    const loadingScreen = document.createElement('div');
+    loadingScreen.classList.add('loading-screen');
+    quiz.appendChild(loadingScreen);
+
+    const intervalId = setTimeout(() => {
+     quiz.removeChild(loadingScreen);
+     clearInterval(intervalId);
+    }, 3000);
+  
+    console.log('zostałem kliknięty')
+    gameWrapper.innerHTML = "";
+    quiz.appendChild(RemainingTime());
+    });
+
   return section;
 }
 
