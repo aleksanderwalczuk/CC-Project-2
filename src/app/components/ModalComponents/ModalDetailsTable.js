@@ -10,23 +10,6 @@ function chooseStyleAndAnswer(round) {
 }
 
 function ModalDetailsTable(quiz, humanData, computerData) {
-  const tableHeaders = ['', 'You', 'Computer', 'Answer'];
-  const newTable = elementFactory('table', {
-    className: 'details__table',
-  });
-  const tableHead = elementFactory('thead');
-  const tableHeadRow = elementFactory('tr');
-  tableHeaders.forEach((header) => {
-    const tableHeader = elementFactory(
-      'th',
-      {
-        className: 'details__table__head',
-      },
-      header,
-    );
-    tableHeadRow.appendChild(tableHeader);
-  });
-
   // TABLE BODY
   const tableBody = elementFactory('tbody', {
     className: 'details__table__body',
@@ -35,14 +18,10 @@ function ModalDetailsTable(quiz, humanData, computerData) {
   const humanAnswers = humanData.detailedAnswers;
   const computerAnswers = computerData.detailedAnswers;
   const { questions } = quiz;
-  const rightAnswers = questions.reduce((listOfAnswers, question) => {
-    listOfAnswers.push(question.rightAnswer);
-    return listOfAnswers;
-  }, []);
-  const paths = questions.reduce((listOfAnswers, question) => {
-    listOfAnswers.push(question.image);
-    return listOfAnswers;
-  }, []);
+  const rightAnswers = questions.map(
+    (question) => question.rightAnswer,
+  );
+  const paths = questions.map((question) => question.image);
 
   rightAnswers.forEach((rightAnswer, index) => {
     const newRow = elementFactory('tr');
@@ -86,8 +65,29 @@ function ModalDetailsTable(quiz, humanData, computerData) {
   });
 
   // JOIN TOGETHER
-  newTable.append(tableHead, tableBody);
-  tableHead.appendChild(tableHeadRow);
+
+  const tableHeadRow = elementFactory('tr');
+  const tableHeaders = ['', 'You', 'Computer', 'Answer'];
+  tableHeaders.forEach((header) => {
+    const tableHeader = elementFactory(
+      'th',
+      {
+        className: 'details__table__head',
+      },
+      header,
+    );
+    tableHeadRow.appendChild(tableHeader);
+  });
+  const tableHead = elementFactory('thead', {}, tableHeadRow);
+  const newTable = elementFactory(
+    'table',
+    {
+      className: 'details__table',
+    },
+    tableHead,
+    tableBody,
+  );
+
   return newTable;
 }
 
