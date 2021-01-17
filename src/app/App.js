@@ -31,7 +31,7 @@ const App = ({ options }) => {
   // );
 
 
-  LoadPage();
+  // LoadPage();
 
   // CREATE MODAL WINDOW
   const modalWindow = ModalWindow(
