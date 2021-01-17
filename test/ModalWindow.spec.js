@@ -36,3 +36,15 @@ describe('Count Score Test', () => {
     });
   });
 });
+
+describe('Count Score Test', () => {
+  describe('Given sample object with number of guessed and answered questions', () => {
+    const testedScore = countScore({
+      questionsAnswered: 0,
+      questionsGuessed: 0,
+    });
+    it('should return correct score', () => {
+      expect(testedScore).toEqual(0);
+    });
+  });
+});
