@@ -5,6 +5,7 @@ import createWhiteButtonWithIcon from './ButtonWhiteWithIcon';
 import createGameModeName from './GameModeName';
 import ModeMenu from './ModeMenu';
 import createModeRules from './ModeRules';
+import createScoreTable from './ScoreTable';
 import { PEOPLE } from '../constants';
 import render from '../utils/render';
 import elementFactory from '../utils/elementFactory';
@@ -13,13 +14,11 @@ import elementFactory from '../utils/elementFactory';
 function PageContent(optionMode = PEOPLE) {
   const section = document.querySelector('.section');
   section.textContent = '';
-  const gameWrapper = document.createElement('div');
-  const buttonsWrapper = document.createElement('div');
   const visualImage = createVisualImage(
     '../../../static/assets/img/modes/people/1.jpg',
   );
   const modeRules = createModeRules(optionMode);
-  // Insert score table for player #18;
+  const scoreTable = createScoreTable(optionMode);
   const buttonPlay = createButtonRed('play the game');
   const buttonRulesRanking = createWhiteButtonWithIcon(
     'Hall of fame',
@@ -28,18 +27,27 @@ function PageContent(optionMode = PEOPLE) {
   );
   const gameModeInfo = createGameModeName(optionMode);
 
-  gameWrapper.classList.add('section__wrapper');
-  buttonsWrapper.classList.add('section__wrapper__buttons');
+  const buttonsWrapper = elementFactory(
+    'div',
+    { className: 'section__wrapper__buttons' },
+    buttonRulesRanking,
+    buttonPlay,
+  );
+  const gameWrapper = elementFactory(
+    'div',
+    { className: 'section__wrapper' },
+    gameModeInfo,
+    modeRules,
+    buttonsWrapper,
+  );
   section.append(visualImage, gameWrapper);
-  gameWrapper.append(gameModeInfo, modeRules, buttonsWrapper);
-  buttonsWrapper.append(buttonRulesRanking, buttonPlay);
 
   // Changing the rules and ranking view by pressing the button
   let rules = false;
   function handleChangeOfView() {
     if (!rules) {
       modeRules.remove();
-      // Insert score table for player #18;
+      gameWrapper.insertBefore(scoreTable, buttonsWrapper);
       rules = true;
       buttonRulesRanking.innerHTML = `<span></span> Rules`;
       buttonRulesRanking.firstElementChild.classList.add(
@@ -49,8 +57,8 @@ function PageContent(optionMode = PEOPLE) {
       );
     } else {
       rules = false;
+      scoreTable.remove();
       gameWrapper.insertBefore(modeRules, buttonsWrapper);
-      // Delete score table for player #18;
       buttonRulesRanking.innerHTML = `<span></span> Hall of fame`;
       buttonRulesRanking.firstElementChild.classList.add(
         'button__icon',
