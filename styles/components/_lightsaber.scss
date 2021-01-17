@@ -1,0 +1,36 @@
+.lightsaber {
+  display: flex;
+  order: -1;
+  align-items: center;
+  flex-basis: 100%;
+
+  &__handle {
+    z-index: -1;
+    height: 50px;
+    width: 300px;
+    background: url('../static/assets/ui/LightsaberHandle.png')
+      no-repeat center;
+    transform: translateX(7%);
+    background-size: contain;
+  }
+
+  &__blade {
+    flex-basis: 100%;
+    height: 18px;
+    background-color: #bcbcbc;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: $border-radius / 2;
+
+    &--active {
+      height: inherit;
+      background: $color-primary;
+      box-shadow: 10px -5px 15px #ff0000, 10px 5px 15px #ff0000,
+        inset 0px 5px 4px rgba(255, 0, 0, 0.25);
+      border-radius: $border-radius / 2;
+    }
+
+    @media (min-width: $breakpoint-sm-max) {
+      height: 26px;
+    }
+  }
+}

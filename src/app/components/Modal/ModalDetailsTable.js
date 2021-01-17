@@ -1,5 +1,5 @@
 import elementFactory from '../../utils/elementFactory';
-import prepareDataForDetailsTable from './prepareDataForDetailsTable'
+import prepareDataForDetailsTable from './prepareDataForDetailsTable';
 
 function chooseStyleAndAnswer(round) {
   if (!round) {
