@@ -5,11 +5,19 @@ import createWhiteButtonWithIcon from './components/ButtonWhiteWithIcon';
 import createGameModeName from './components/GameModeName';
 import createRemainingTime from './components/RemainingTime';
 import render from './utils/render';
+import ModalWindow from './components/Modal/ModalWindow';
+// import handleModalClose from './logic/handleModalClose'
+// MOCK DATA TO BE REMOVED
+import {
+  game,
+  humanPlayerGame,
+  computerPlayerGame,
+} from './mockResponse';
 
 const App = ({ options }) => {
-  Logo();
+  // Logo();
 
-  VisualImage('../../static/assets/img/modes/people/1.jpg');
+  // VisualImage('../../static/assets/img/modes/people/1.jpg');
 
   const buttonPlay = createButtonRed('play the game');
   const buttonRules = createWhiteButtonWithIcon(
@@ -18,15 +26,24 @@ const App = ({ options }) => {
     'fa-graduation-cap',
   );
   const gameModeInfo = createGameModeName('Who is this character?');
-  const remainingTime = createRemainingTime();
+  // const remainingTime = createRemainingTime();
 
   render(
     '#swquiz-app',
-    gameModeInfo,
+    // gameModeInfo,
     buttonRules,
     buttonPlay,
-    remainingTime,
+    // remainingTime,
   );
+
+    // CREATE MODAL WINDOW
+    const modalWindow = ModalWindow(
+      game,
+      humanPlayerGame,
+      computerPlayerGame,
+      // handleModalClose,
+    )
+    render('#swquiz-app', modalWindow);
 };
 
 export default App;
