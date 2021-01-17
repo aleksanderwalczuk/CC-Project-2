@@ -1,4 +1,5 @@
 import elementFactory from '../../utils/elementFactory';
+import PageContent from '../PageContent';
 import { rankPlayer } from '../../logic/RankStore';
 
 function ModalForm(dataToSendToLS) {
@@ -51,6 +52,12 @@ function ModalForm(dataToSendToLS) {
     const { score, mode } = dataToSendToLS;
     rankPlayer(playersName, score, mode);
     swquiz.removeChild(document.querySelector('.modal'));
+    // usun miecz
+    swquiz.removeChild(document.querySelector('.remaining-time'));
+    // usun odpowiedzi
+    swquiz.removeChild(document.querySelector('.answers'));
+    // zaladuj page content z hall of fame dla tego trybu
+    PageContent(mode, 'rank');
   });
 
   return playerForm;
