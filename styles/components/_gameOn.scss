@@ -1,0 +1,18 @@
+.section {
+  // background: white;
+  margin-bottom: 3rem;
+  &__wrapper{
+    justify-content:space-around;
+  }
+}
+.placeholder {
+  height:100%;
+  width:100%;
+}
+
+.remaining-time {
+  position:absolute;
+  bottom:0.5rem;
+  width:90vw;
+}
+
