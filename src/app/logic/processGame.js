@@ -10,7 +10,7 @@ import generateQuestion, {
 
 class Game {
   initGame(mode) {
-    this.timeLeft = 5 || process.env.QUIZ_MAX_TIME_SECONDS;
+    this.timeLeft = process.env.QUIZ_MAX_TIME_SECONDS;
     this.questions = [];
     this.mode = mode;
     this.running = false;
@@ -32,6 +32,10 @@ class Game {
 
   getQuestions() {
     return this.questions;
+  }
+
+  getHumanPlayer() {
+    return this.humanPlayer;
   }
 
   reduceTime() {
@@ -75,11 +79,11 @@ const game = new Game();
 const spreadQuestion = (question) => {
   game.sendQuestionToComputerPlayer(question);
   updateImage(question.image);
+  // TODO: displayAnswers(...) - from GameOn
   Answers(
     question.answers,
     question.rightAnswer,
-    game.sendAnswerToPlayerCallback,
-    getNewQuestion,
+    game.getHumanPlayer(),
   );
 };
 
@@ -116,21 +120,17 @@ const closeGame = (interval) => {
   clearInterval(interval);
   if (game.getRunning()) {
     game.changeRunningFlag();
-    // querySelector just to display results.
-    document
-      .querySelector('#swquiz-app')
-      .appendChild(
-        ModalWindow(
-          game.generateObjectForModal(),
-          game.getHumanPlayerAnswers(),
-          game.getComputerPlayerAnswers(),
-        ),
-      );
+    // displayModal(...) - from GameOn
+    ModalWindow(
+      game.generateObjectForModal(),
+      game.getHumanPlayerAnswers(),
+      game.getComputerPlayerAnswers(),
+    );
   }
 };
 
 const runGame = () => {
-  // TODO: trigger TimeRemaining();
+  // TODO: executeGame(game.getMode())  - from GameOn
   game.changeRunningFlag();
   getNewQuestion();
   const interval = setInterval(() => {

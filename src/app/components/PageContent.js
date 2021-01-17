@@ -7,8 +7,6 @@ import createScoreTable from './ScoreTable';
 import { PEOPLE, STARSHIPS, VEHICLES } from '../constants';
 import elementFactory from '../utils/elementFactory';
 import { processGame } from '../logic/processGame';
-import { Lightsaber } from './Lightsaber';
-import RemainingTime from './RemainingTime';
 
 const section = {};
 const RULES = '<span></span> Rules';
@@ -64,13 +62,7 @@ function PageContent(
   const modeRules = createModeRules(optionMode);
   const scoreTable = createScoreTable(optionMode);
   const buttonPlay = createButtonRed('play the game');
-  buttonPlay.addEventListener('click', () => {
-    processGame(optionMode);
-    // querySelector to display time left demo
-    document
-      .querySelector('#swquiz-app')
-      .appendChild(RemainingTime());
-  });
+  buttonPlay.addEventListener('click', () => processGame(optionMode));
   const buttonRulesRanking = createWhiteButtonWithIcon(
     `${section.buttonDisplay === RANK ? 'Hall of fame' : 'Rules'}`,
     'fa',
