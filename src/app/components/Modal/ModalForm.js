@@ -1,4 +1,5 @@
 import elementFactory from '../../utils/elementFactory';
+import { rankPlayer } from '../../logic/RankStore';
 
 function ModalForm(dataToSendToLS) {
   const playerFormInput = elementFactory('input', {
@@ -41,16 +42,15 @@ function ModalForm(dataToSendToLS) {
     playerFormLabel,
   );
 
-  // ADD EVENT TO SUBMIT EVENT
+  // ADD EVENT TO SUBMIT
   playerForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const swquiz = document.querySelector('#swquiz-app');
     const playersName = document.querySelector('.player-form__input')
       .value;
-    const dataToPass = { ...dataToSendToLS, nickname: playersName };
+    const { score, mode } = dataToSendToLS;
+    rankPlayer(playersName, score, mode);
     swquiz.removeChild(document.querySelector('.modal'));
-    console.log(dataToPass);
-    console.log(`close the modal ${playersName}`);
   });
 
   return playerForm;
