@@ -6,8 +6,7 @@ const createAnswerElement = (
   answerText,
   correct,
   answersElement,
-  onAnsweredQuestion,
-  callback,
+  humanPlayer,
 ) => {
   const answerElement = elementFactory('div', {
     className: 'button button__answer',
@@ -21,21 +20,13 @@ const createAnswerElement = (
     );
 
     answersElement.setAttribute('disabled', true);
-    setTimeout(
-      () => onAnsweredQuestion(answerText, correct, callback),
-      1500,
-    );
+    humanPlayer.getAnswer(answerText, correct);
   });
   answerElement.innerText = answerText;
   return answerElement;
 };
 
-const Answers = (
-  answers,
-  correctAnswer,
-  onAnsweredQuestion,
-  callback,
-) => {
+const Answers = (answers, correctAnswer, humanPlayer) => {
   const answersElement = elementFactory('div', {
     className: 'answers',
   });
@@ -48,8 +39,7 @@ const Answers = (
       answerText,
       correct,
       answersElement,
-      onAnsweredQuestion,
-      callback,
+      humanPlayer,
     );
     answersElement.appendChild(answerElement);
   });

@@ -5,7 +5,7 @@ import elementFactory from '../utils/elementFactory';
 import PageContent from './PageContent';
 import ModalWindow from './Modal/ModalWindow';
 
-const startGame = (choosenMode) => {
+const executeGame = (choosenMode) => {
   const section = document.querySelector('.section');
   const sectionWrapper = document.querySelector('.section__wrapper');
   const placeholder = elementFactory('div', {
@@ -19,28 +19,18 @@ const startGame = (choosenMode) => {
   section.appendChild(RemainingTime());
 };
 
-const displayAnswer = (
-  answers,
-  correctAnswer,
-  onAnsweredQuestion,
-  callback,
-) => {
+const displayAnswer = (answers, correctAnswer, humanPlayer) => {
   const placeholder = document.querySelector('.placeholder');
 
-  placeholder.innerHTML = Answers(
-    answers,
-    correctAnswer,
-    onAnsweredQuestion,
-    callback,
+  placeholder.childNodes.forEach((item) => item.remove());
+  placeholder.appendChild(
+    Answers(answers, correctAnswer, humanPlayer),
   );
 };
 
 const displayModal = (game, humanPlayer, computerPlayer) => {
-  PageContent(game.mode);
   const modal = ModalWindow(game, humanPlayer, computerPlayer);
-  // const container = document.querySelector('#swquiz-app');
-  // container.appendChild(modal);
-  document.body.appendChild(modal);
+  document.querySelector('#swquiz-app').appendChild(modal);
 };
 
-export { startGame, displayAnswer, displayModal };
+export { executeGame, displayAnswer, displayModal };
