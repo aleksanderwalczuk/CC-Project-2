@@ -13,30 +13,24 @@ const App = ({ options }) => {
 
   // VisualImage('../../static/assets/img/modes/people/1.jpg');
 
-  const buttonPlay = createButtonRed('play the game');
-  const buttonRules = createWhiteButtonWithIcon(
-    'Rules',
-    'fa',
-    'fa-graduation-cap',
-  );
-  const gameModeInfo = createGameModeName('Who is this character?');
+  // const buttonPlay = createButtonRed('play the game');
+  // const buttonRules = createWhiteButtonWithIcon(
+  //   'Rules',
+  //   'fa',
+  //   'fa-graduation-cap',
+  // );
+  // const gameModeInfo = createGameModeName('Who is this character?');
   // const remainingTime = createRemainingTime();
 
-  render(
-    '#swquiz-app',
+  // render(
+  //   '#swquiz-app',
     // gameModeInfo,
-    buttonRules,
-    buttonPlay,
+    // buttonRules,
+    // buttonPlay,
     // remainingTime,
-  );
+  // );
 
-  // CREATE MODAL WINDOW
-  const modalWindow = ModalWindow(
-    game,
-    humanPlayerGame,
-    computerPlayerGame,
-    // handleModalClose,
-  );
+
   LoadPage();
 
   // CREATE MODAL WINDOW

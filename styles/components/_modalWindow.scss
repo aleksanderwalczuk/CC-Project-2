@@ -146,11 +146,14 @@
   }
   &__button {
     margin-top: 40px;
+    max-width: unset;
     width: 700px;
+    height: unset;
     align-self: center;
     font-weight: 500;
     font-size: $font-size-secondary;
     line-height: 2.75rem;
+    flex-grow: unset;
   }
 }
 @media only screen and (max-width: $breakpoint-xxl-max) {
