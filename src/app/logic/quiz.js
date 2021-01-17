@@ -16,7 +16,7 @@ const fetchItems = (api) => {
     .then(({ count, next, results }) => {
       gameInfo.questionScope.push(...results);
       if (validate(next)) {
-        setTimeout(() => fetchItems(next), 1000);
+        fetchItems(next);
       }
       if (count === gameInfo.questionScope.length) {
         gameInfo.questionScope = gameInfo.questionScope.map(
@@ -26,7 +26,7 @@ const fetchItems = (api) => {
           }),
         );
         localStorage.setItem(
-          gameInfo.mode,
+          `quiz-${gameInfo.mode}`,
           JSON.stringify(gameInfo.questionScope),
         );
       }
@@ -104,9 +104,11 @@ export const initGameInfo = (mode, url) => {
   gameInfo.apiUrl =
     url || process.env.SW_API_BASE_URL || 'https://swapi.dev/api';
   gameInfo.mode = mode;
-  const cached = localStorage.getItem(mode) || 0;
+  const cached = localStorage.getItem(`quiz-${mode}`) || 0;
   if (cached) {
-    gameInfo.questionScope = JSON.parse(localStorage.getItem(mode));
+    gameInfo.questionScope = JSON.parse(
+      localStorage.getItem(`quiz-${mode}`),
+    );
     return;
   }
   fetchQuestionScope();
