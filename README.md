@@ -267,3 +267,41 @@ To complete your Free Trial signup, you must provide a credit card or other paym
 
 ## Porady odnośnie do projektu
 - Dzięki testing-library, elementy widoku (DOM) można testować wg Guide: https://testing-library.com/docs/dom-testing-library/example-intro
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hi there, We are The Name from Gdańsk! 👋
+
+
+🔭 This is our first project launched together!
+🌱 A game we are currently playing is VS Code🤣
+👯 Our team: :woman_technologist: Paulina :man_technologist: Sebastian :woman_technologist: Weronika :man_technologist: Dominik :woman_technologist: Aleksandra :man_technologist: Sebastian
+
+---
+
+Languages and Tools:
+
+Visual Studio Code HTML5 CSS3 Sass JavaScript Node.js Git GitHub Terminal
+
+
+📺 
+
+➡️ more
+
+📕 
+➡️ more 
+
+
