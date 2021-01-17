@@ -4,7 +4,7 @@ html {
 }
 
 @media only screen and (max-width: $breakpoint-xxl-max) {
-  .modal{
+  .modal {
     background-color: yellowgreen;
     &__container {
       height: calc(100% - 124px);
@@ -67,14 +67,16 @@ html {
       &__image {
         & img {
           border-radius: 8px;
-          filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25)) drop-shadow(2px 2px 8px rgba(255, 0, 0, 0.9))
+          filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25))
+            drop-shadow(2px 2px 8px rgba(255, 0, 0, 0.9));
         }
       }
     }
   }
   .player-form {
     padding: 0;
-    &__item, &__label {
+    &__item,
+    &__label {
       flex: 1;
     }
     &__input {
@@ -95,7 +97,7 @@ html {
       border-radius: 8px;
     }
     &__image {
-      opacity: .8;
+      opacity: 0.8;
       height: 200px;
       top: -200px;
     }
@@ -103,8 +105,8 @@ html {
 }
 
 @media only screen and (max-width: $breakpoint-xl-max) {
-  .modal{
-    background-color:green;
+  .modal {
+    background-color: green;
   }
   .details {
     height: calc(100% - 18rem);
@@ -112,7 +114,9 @@ html {
       &__head {
         font-size: 1.125rem;
       }
-      &__answer, &__answer--correct, &__answer--incorrect {
+      &__answer,
+      &__answer--correct,
+      &__answer--incorrect {
         font-size: 1.125rem;
       }
       &__image {
@@ -129,8 +133,8 @@ html {
 }
 
 @media only screen and (max-width: $breakpoint-md-max) {
-  .modal{
-    background-color:blue;
+  .modal {
+    background-color: blue;
     &__container {
       height: calc(100% - 120px);
       max-width: unset;
@@ -146,13 +150,15 @@ html {
       font-size: 1.25rem;
     }
     &__table {
-      & td, th {
+      & td,
+      th {
         padding: 4px;
       }
     }
   }
   .player-form {
-    &__label, &__input {
+    &__label,
+    &__input {
       font-size: 1rem;
       line-height: 1.5rem;
     }
@@ -161,13 +167,13 @@ html {
     }
     &__image {
       height: 160px;
-      top: -160px
+      top: -160px;
     }
   }
 }
 
 @media only screen and (max-width: $breakpoint-sm-max) {
-  .modal{
+  .modal {
     background-color: red;
     &__container {
       height: calc(100% - 80px);
@@ -184,9 +190,10 @@ html {
       & td:first-of-type {
         text-align: left;
         padding-left: 16px;
-        
       }
-      &__answer, &__answer--correct, &__answer--incorrect {
+      &__answer,
+      &__answer--correct,
+      &__answer--incorrect {
         font-size: 1rem;
       }
     }
@@ -196,32 +203,30 @@ html {
   }
   .player-form {
     flex-wrap: wrap-reverse;
-    &__label, &__input {
+    &__label,
+    &__input {
       flex-basis: 100%;
-     
     }
     &__label {
       padding: 0 0 12px 0;
       text-align: center;
       display: none;
-
     }
     &__image {
       left: unset;
       right: 20px;
-      opacity: .5;
+      opacity: 0.5;
       z-index: 1;
     }
   }
 }
 
 @media only screen and (max-width: $breakpoint-xs-max) {
-  .modal{
-    
+  .modal {
     background-color: violet;
     &__heading {
       line-height: 1;
-      padding-bottom: .25rem;
+      padding-bottom: 0.25rem;
     }
     &__container {
       height: calc(100% - 48px);
@@ -249,7 +254,7 @@ html {
       line-height: 1.5;
       padding: 8px;
     }
-    &__image{
+    &__image {
       display: none;
     }
   }

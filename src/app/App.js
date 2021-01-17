@@ -24,12 +24,11 @@ const App = ({ options }) => {
 
   // render(
   //   '#swquiz-app',
-    // gameModeInfo,
-    // buttonRules,
-    // buttonPlay,
-    // remainingTime,
+  // gameModeInfo,
+  // buttonRules,
+  // buttonPlay,
+  // remainingTime,
   // );
-
 
   // LoadPage();
 
