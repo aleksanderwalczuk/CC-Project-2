@@ -1,6 +1,6 @@
-import PageContent from './MainMenu';
 import elementFactory from '../utils/elementFactory';
 import { PEOPLE, VEHICLES, STARSHIPS } from '../constants';
+import PageContent from './PageContent';
 
 function ModeMenu() {
   // Creating nav's elements.

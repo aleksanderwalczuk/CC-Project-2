@@ -7,8 +7,10 @@ const repeatableText =
 const rulesTexts = {
   [PEOPLE]:
     'who from Star Wars is showed on the left (Jar Jar Binks right now) from available options.',
-  [VEHICLES]: 'which vehicle from Star Wars is showed on the left.',
-  [STARSHIPS]: 'which starship from Star Wars is showed on the left.',
+  [VEHICLES]:
+    'which vehicle from Star Wars is showed on the left (Sith Speeder right now).',
+  [STARSHIPS]:
+    'which starship from Star Wars is showed on the left (TIE Advanced x1 right now).',
 };
 
 const ModeRules = (mode) => {
