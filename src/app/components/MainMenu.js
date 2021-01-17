@@ -24,9 +24,8 @@ function PageContent(optionMode = PEOPLE) {
     'fa',
     'fa-id-badge',
   );
-  const gameModeInfo = createGameModeName(
-    `Who is this ${optionMode}?`,
-  );
+  const gameModeInfo = createGameModeName(optionMode);
+
   gameWrapper.classList.add('section__wrapper');
   buttonsWrapper.classList.add('section__wrapper__buttons');
   section.append(visualImage, gameWrapper);
