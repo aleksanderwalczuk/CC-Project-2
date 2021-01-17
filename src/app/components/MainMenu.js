@@ -1,5 +1,4 @@
 import createVisualImage from './VisualImage';
-import createLogo from './Logo';
 import createButtonRed from './ButtonRed';
 import createWhiteButtonWithIcon from './ButtonWhiteWithIcon';
 import createGameModeName from './GameModeName';
@@ -76,7 +75,7 @@ export const LoadPage = () => {
   const header = elementFactory(
     'header',
     { className: 'header' },
-    createLogo(),
+    elementFactory('div', { className: 'starwars__logo' }),
     ModeMenu(),
   );
   const section = elementFactory('section', { className: 'section' });
