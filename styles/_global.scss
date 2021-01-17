@@ -41,4 +41,26 @@ body {
 
 .mode-info__heading {
   margin: 0 0 40px;
+  padding: 25px 16px 22px;
+}
+
+.text__md {
+  font-size: $font-size-secondary;
+  font-weight: 500;
+  line-height: 123%;
+  @include lg {
+    font-size: $font-size-secondary / 1.5;
+  }
+}
+.text__lg {
+  font-size: $font-size-primary;
+  font-weight: 600;
+  line-height: 123%;
+  &--centered {
+    @extend .text__lg;
+    text-align: center;
+  }
+  @include lg {
+    font-size: $font-size-primary / 1.5;
+  }
 }

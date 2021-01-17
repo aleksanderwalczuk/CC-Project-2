@@ -1,4 +1,5 @@
 .button {
+  @extend .text__lg--centered;
   // Positioning
   position: relative;
   flex-grow: 1;
@@ -14,11 +15,6 @@
   // Color
   background-color: $color-primary;
   color: $text-color-primary;
-
-  // Text
-  font-weight: 500;
-  font-size: $font-size-primary;
-  line-height: 44px;
 
   // Other
   text-align: center;
