@@ -52,6 +52,8 @@ html {
   margin-left: 285px;
   height: 355px;
   padding-top: 12px;
+  position: relative;
+  z-index: 2;
   &__heading {
     margin-bottom: 4px;
     margin-left: 50px;
@@ -142,6 +144,11 @@ html {
     font-size: $font-size-secondary;
     font-weight: 400;
     // min-width: 300px;
+    &:focus {
+      outline-style: none;
+      // box-shadow: none;
+      border-color: #f33
+    }
   }
   &__label {
     padding: 0 28px;

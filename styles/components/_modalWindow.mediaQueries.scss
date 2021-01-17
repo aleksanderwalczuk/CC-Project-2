@@ -31,13 +31,14 @@ html {
     min-height: 200px;
     &__heading {
       font-size: 24px;
-      margin: 16px 0 0 0;
-      text-align: center;
+      margin: 16px 0 8px 0;
+      text-align: left;
+      padding-left: 16px;
     }
     &__table {
       border-collapse: collapse;
       display: block;
-      height: calc(100% - 54px);
+      height: calc(100% - 62px);
       overflow-y: scroll;
       & tbody {
         display: table-row-group;
@@ -60,9 +61,9 @@ html {
       }
       & th:first-of-type,
       & td:first-of-type {
-        padding: 4px;
+        padding: 4px 4px 4px 16px;
         // width: 19%;
-        text-align: center;
+        text-align: left;
       }
       & td:first-of-type {
         // width: unset;
@@ -80,7 +81,7 @@ html {
       &__image {
         & img {
           border-radius: 8px;
-          filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(4px 4px 12px rgba(255, 0, 0, 0.9));
+          filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25)) drop-shadow(2px 2px 8px rgba(255, 0, 0, 0.9))
         }
       }
     }
@@ -129,7 +130,6 @@ html {
         font-size: 1.125rem;
       }
       &__answer, &__answer--correct, &__answer--incorrect {
-        
         font-size: 1.125rem;
       }
       &__image {
@@ -158,12 +158,27 @@ html {
       line-height: 1.75rem;
     }
   }
+  .details {
+    &__heading {
+      font-size: 1.25rem;
+    }
+    &__table {
+
+      & td, th {
+        padding: 4px;
+      }
+      
+    }
+  }
   .player-form {
     // flex-wrap: wrap;
     &__label, &__input {
       font-size: 1rem;
       line-height: 1.5rem;
       // flex-basis: 100%;
+    }
+    &__label {
+      line-height: 1.4;
     }
     &__input {
       // height: 64px;
@@ -186,22 +201,41 @@ html {
   }
   .details {
     margin-left: 0;
-    position: relative;
-    z-index: 2;
+    // position: relative;
+    // z-index: 2;
+    &__table {
+      transform: translate(-16px);
+      width: calc(100% + 16px);
+      & th:first-of-type,
+      & td:first-of-type {
+        text-align: left;
+        padding-left: 16px;
+        
+      }
+      &__answer, &__answer--correct, &__answer--incorrect {
+        font-size: 1rem;
+      }
+    }
+    &__heading {
+      padding-left: 0;
+    }
+
   }
   .player-form {
     flex-wrap: wrap-reverse;
     &__label, &__input {
       flex-basis: 100%;
+     
     }
     &__label {
       padding: 0 0 12px 0;
       text-align: center;
-    }
-    &__input {
+      display: none;
 
     }
+    &__input{
 
+    }
     &__image {
       left: unset;
       right: 20px;
@@ -213,11 +247,41 @@ html {
 @media only screen and (max-width: $breakpoint-xs-max) {
 // @media (min-width: $breakpoint-xs-max) {
   .modal{
+    
     background-color: violet;
+    &__heading {
+      line-height: 1;
+      padding-bottom: .25rem;
+    }
     &__container {
       height: calc(100% - 48px);
       max-width: unset;
       width: calc(100% - 48px);
+      padding: 24px;
+    }
+    &__text {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+  }
+  .details {
+    &__heading {
+      text-align: left;
+      font-size: 1.125rem;
+    }
+  }
+  .player-form {
+    &__input {
+      height: 43px;
+    }
+    &__button {
+      font-size: 1.125rem;
+      // text-align: justify;
+      line-height: 1.5;
+      padding: 8px;
+    }
+    &__image{
+      display: none;
     }
   }
 }
