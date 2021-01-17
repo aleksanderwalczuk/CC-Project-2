@@ -1,21 +1,29 @@
+import elementFactory from '../utils/elementFactory';
+
 function Lightsaber() {
-  const divElement = document.createElement('div');
-  const handle = document.createElement('div');
-  const blade = document.createElement('div');
-  const redBlade = document.createElement('div');
-
-  divElement.classList.add(
-    'remaining-time__lightsaber',
-    'lightsaber',
+  const redBlade2 = elementFactory(
+    'div',
+    { className: 'lightsaber__red-blade' }
   );
-  handle.classList.add('lightsaber__handle');
-  blade.classList.add('lightsaber__blade');
-  redBlade.classList.add('lightsaber__red-blade');
 
-  divElement.appendChild(handle);
-  divElement.appendChild(blade);
-  blade.appendChild(redBlade);
-  return divElement;
+  const blade2 = elementFactory(
+    'div',
+    { className: 'lightsaber__blade' },
+    redBlade2
+  );
+  
+  const handle2 = elementFactory(
+    'div',
+    { className: 'lightsaber__handle' }
+  );
+  
+  const container = elementFactory(
+    'div',
+    { className: 'remaining-time__lightsaber lightsaber' },
+    handle2,
+    blade2
+  );
+  return container;
 }
 
 function handleBladeSizeChange(percent) {
