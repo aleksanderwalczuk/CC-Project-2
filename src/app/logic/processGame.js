@@ -1,5 +1,6 @@
 import Answers from '../components/Answers';
-import VisualImage from '../components/VisualImage';
+import ModalWindow from '../components/Modal/ModalWindow';
+import { updateImage } from '../components/VisualImage';
 import createComputerPlayer from './ComputerPlayer';
 import createPlayer from './Player';
 import generateQuestion, {
@@ -9,7 +10,7 @@ import generateQuestion, {
 
 class Game {
   initGame(mode) {
-    this.timeLeft = process.env.QUIZ_MAX_TIME_SECONDS;
+    this.timeLeft = 5 || process.env.QUIZ_MAX_TIME_SECONDS;
     this.questions = [];
     this.mode = mode;
     this.running = false;
@@ -49,9 +50,15 @@ class Game {
     return {
       mode: this.mode,
       questions: this.questions,
-      computerPlayer: this.computerPlayer.getModalData(),
-      humanPlayer: this.humanPlayer.getModalData(),
     };
+  }
+
+  getComputerPlayerAnswers() {
+    return this.computerPlayer.getModalData();
+  }
+
+  getHumanPlayerAnswers() {
+    return this.humanPlayer.getModalData();
   }
 
   sendAnswerToPlayerCallback() {
@@ -67,8 +74,7 @@ const game = new Game();
 
 const spreadQuestion = (question) => {
   game.sendQuestionToComputerPlayer(question);
-  // TODO: Replace after #81 merge
-  VisualImage(question.image); // updateImage(question.image);
+  updateImage(question.image);
   Answers(
     question.answers,
     question.rightAnswer,
@@ -110,7 +116,11 @@ const closeGame = (interval) => {
   clearInterval(interval);
   if (game.getRunning()) {
     game.changeRunningFlag();
-    // TODO: send_to_modal(game.generateObjectForModal());
+    ModalWindow(
+      game.generateObjectForModal(),
+      game.getHumanPlayerAnswers(),
+      game.getComputerPlayerAnswers(),
+    );
   }
 };
 
