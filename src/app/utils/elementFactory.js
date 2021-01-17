@@ -5,7 +5,7 @@ const elementFactory = (tag, attributes = {}, ...children) => {
 
   Object.entries(attributes).forEach(([key, value]) => {
     if (key === 'className') {
-      newElement.classList.add(...value.split(' '));
+      newElement.classList.add(...value.trim().split(' '));
     } else {
       newElement.setAttribute(key, value);
     }

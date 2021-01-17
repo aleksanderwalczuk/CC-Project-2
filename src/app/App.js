@@ -1,32 +1,23 @@
-import VisualImage from './components/VisualImage';
-import Logo from './components/Logo';
-import createButtonRed from './components/ButtonRed';
-import createWhiteButtonWithIcon from './components/ButtonWhiteWithIcon';
-import createGameModeName from './components/GameModeName';
-import createRemainingTime from './components/RemainingTime';
+import { LoadPage } from './components/MainMenu';
 import render from './utils/render';
+import ModalWindow from './components/Modal/ModalWindow';
+// MOCK DATA TO BE REMOVED
+import {
+  game,
+  humanPlayerGame,
+  computerPlayerGame,
+} from './mockResponse';
 
 const App = ({ options }) => {
-  Logo();
+  LoadPage();
 
-  VisualImage('../../static/assets/img/modes/people/1.jpg');
-
-  const buttonPlay = createButtonRed('play the game');
-  const buttonRules = createWhiteButtonWithIcon(
-    'Rules',
-    'fa',
-    'fa-graduation-cap',
+  // CREATE MODAL WINDOW
+  const modalWindow = ModalWindow(
+    game,
+    humanPlayerGame,
+    computerPlayerGame,
   );
-  const gameModeInfo = createGameModeName('Who is this character?');
-  const remainingTime = createRemainingTime();
-
-  render(
-    '#swquiz-app',
-    gameModeInfo,
-    buttonRules,
-    buttonPlay,
-    remainingTime,
-  );
+  render('#swquiz-app', modalWindow);
 };
 
 export default App;
