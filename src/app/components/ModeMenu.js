@@ -1,27 +1,41 @@
+import elementFactory from '../utils/elementFactory';
+import { PEOPLE, VEHICLES, STARSHIPS } from '../constants';
+import PageContent from './PageContent';
+
 function ModeMenu() {
-  const menu = document.createElement('nav');
-  const options = ['People', 'Vehicles', 'Starships'];
-  options.forEach((option) => {
-    const btn = document.createElement('button');
-    btn.classList.add('menu_button');
-    btn.textContent = option;
-    menu.append(btn);
-  });
-  menu.classList.add('menu');
-  document.querySelector('#swquiz-app').append(menu);
-  const menuOption = {
-    selectOption: '',
-  };
-  const menuElements = document.querySelectorAll('.menu_button');
-  function handleSelectOption() {
-    menuOption.selectOption = this.textContent;
+  // Creating nav's elements.
+  const options = [PEOPLE, VEHICLES, STARSHIPS];
+  const optionsButtons = options.reduce((acc, option) => {
+    acc.push(
+      elementFactory('button', { className: 'menu__button' }, option),
+    );
+    return acc;
+  }, []);
+
+  optionsButtons[0].classList.add('menu__button--select');
+  const newModeMenu = elementFactory(
+    'nav',
+    { className: 'menu' },
+    ...optionsButtons,
+  );
+
+  let menuOption;
+
+  // Function that checks which button was clicked and passes a variable with this information.
+  function handleSelectOption(event) {
+    const menuElements = document.querySelectorAll('.menu__button');
+    menuOption = event.target.textContent;
     menuElements.forEach((menuBtn) => {
-      menuBtn.classList.remove('menu_button--select');
+      menuBtn.classList.remove('menu__button--select');
     });
-    this.classList.add('menu_button--select');
+    event.target.classList.add('menu__button--select');
+    PageContent(menuOption);
   }
+  const menuElements = [...newModeMenu.children];
   menuElements.forEach((optionBtn) =>
     optionBtn.addEventListener('click', handleSelectOption),
   );
+  return newModeMenu;
 }
+
 export default ModeMenu;

@@ -2,8 +2,11 @@
 $font-primary: 'Montserrat', sans-serif;
 
 // rwd breakpoints
+$breakpoint-xs-max: 575px;
 $breakpoint-sm-max: 767px;
-$breakpoint-md-max: 1199px;
+$breakpoint-md-max: 991px;
+$breakpoint-xl-max: 1199px;
+$breakpoint-xxl-max: 1399px;
 
 // Colors
 $color-primary: #fff;

@@ -1,12 +1,6 @@
-import VisualImage from './components/VisualImage';
-import Logo from './components/Logo';
-import createButtonRed from './components/ButtonRed';
-import createWhiteButtonWithIcon from './components/ButtonWhiteWithIcon';
-import createGameModeName from './components/GameModeName';
-import createRemainingTime from './components/RemainingTime';
+import { LoadPage } from './components/MainMenu';
 import render from './utils/render';
 import ModalWindow from './components/Modal/ModalWindow';
-// import handleModalClose from './logic/handleModalClose'
 // MOCK DATA TO BE REMOVED
 import {
   game,
@@ -42,6 +36,14 @@ const App = ({ options }) => {
     humanPlayerGame,
     computerPlayerGame,
     // handleModalClose,
+  );
+  LoadPage();
+
+  // CREATE MODAL WINDOW
+  const modalWindow = ModalWindow(
+    game,
+    humanPlayerGame,
+    computerPlayerGame,
   );
   render('#swquiz-app', modalWindow);
 };

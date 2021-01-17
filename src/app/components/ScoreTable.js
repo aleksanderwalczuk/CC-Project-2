@@ -1,6 +1,9 @@
 import ef from '../utils/elementFactory';
+import { getRanking } from '../logic/RankStore';
 
-const ScoreTable = (scoreList) => {
+const ScoreTable = (mode) => {
+  const rankList = getRanking(mode);
+
   const header = ef(
     'h3',
     { className: 'scores__header' },
@@ -24,7 +27,7 @@ const ScoreTable = (scoreList) => {
 
   // generating cells with places, players and scores
   const places = ['1st', '2nd', '3rd'];
-  const playersCells = scoreList.reduce(
+  const playersCells = rankList.reduce(
     (acc, { nickname, score }, index) => {
       acc.push(
         ef('p', { className: cellClass }, places[index]),
