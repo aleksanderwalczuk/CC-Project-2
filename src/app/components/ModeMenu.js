@@ -1,9 +1,10 @@
 import PageContent from './MainMenu';
 import elementFactory from '../utils/elementFactory';
+import { PEOPLE, VEHICLES, STARSHIPS } from '../constants';
 
 function ModeMenu() {
   // Creating nav's elements.
-  const options = ['People', 'Vehicles', 'Starships'];
+  const options = [PEOPLE, VEHICLES, STARSHIPS];
   const optionsButtons = options.reduce((acc, option) => {
     acc.push(
       elementFactory('button', { className: 'menu__button' }, option),
@@ -18,14 +19,12 @@ function ModeMenu() {
     ...optionsButtons,
   );
 
-  const menuOption = {
-    selectOption: '',
-  };
+  let menuOption;
 
   // Function that checks which button was clicked and passes a variable with this information.
   function handleSelectOption(event) {
     const menuElements = document.querySelectorAll('.menu__button');
-    menuOption.selectOption = event.target.textContent;
+    menuOption = event.target.textContent;
     menuElements.forEach((menuBtn) => {
       menuBtn.classList.remove('menu__button--select');
     });

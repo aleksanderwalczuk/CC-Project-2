@@ -3,11 +3,12 @@ import createLogo from './Logo';
 import createButtonRed from './ButtonRed';
 import createWhiteButtonWithIcon from './ButtonWhiteWithIcon';
 import createGameModeName from './GameModeName';
-import ModeMenu, { menuOption } from './ModeMenu';
+import ModeMenu from './ModeMenu';
 import createModeRules from './ModeRules';
+import { PEOPLE } from '../constants';
 
 // Creating page content
-function PageContent(optionMode = { selectOption: 'People' }) {
+function PageContent(optionMode = PEOPLE) {
   const section = document.querySelector('.section');
   section.textContent = '';
   const gameWrapper = document.createElement('div');
@@ -15,7 +16,7 @@ function PageContent(optionMode = { selectOption: 'People' }) {
   const visualImage = createVisualImage(
     '../../../static/assets/img/modes/people/1.jpg',
   );
-  const modeRules = createModeRules(optionMode.selectOption);
+  const modeRules = createModeRules(optionMode);
   // Insert score table for player #18;
   const buttonPlay = createButtonRed('play the game');
   const buttonRulesRanking = createWhiteButtonWithIcon(
@@ -24,7 +25,7 @@ function PageContent(optionMode = { selectOption: 'People' }) {
     'fa-id-badge',
   );
   const gameModeInfo = createGameModeName(
-    `Who is this ${optionMode.selectOption}?`,
+    `Who is this ${optionMode}?`,
   );
   gameWrapper.classList.add('section__wrapper');
   buttonsWrapper.classList.add('section__wrapper__buttons');
