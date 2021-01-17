@@ -43,12 +43,16 @@ const replaceContent = (
 };
 
 // Creating page content
-function PageContent(optionMode = PEOPLE, sectionRef) {
+function PageContent(
+  optionMode = PEOPLE,
+  view = 'rules',
+  sectionRef,
+) {
   if (!section.ref && sectionRef) {
     section.ref = sectionRef;
-    section.buttonDisplay = RANK;
   }
   section.ref.textContent = '';
+  section.buttonDisplay = view === 'rules' ? RANK : RULES;
   const visualImage = createVisualImage(
     `../../../static/assets/img/modes/${optionMode}/${insertDefaultImage(
       optionMode,
@@ -58,9 +62,11 @@ function PageContent(optionMode = PEOPLE, sectionRef) {
   const scoreTable = createScoreTable(optionMode);
   const buttonPlay = createButtonRed('play the game');
   const buttonRulesRanking = createWhiteButtonWithIcon(
-    'Hall of fame',
+    `${section.buttonDisplay === RANK ? 'Hall of fame' : 'Rules'}`,
     'fa',
-    'fa-id-badge',
+    `fa-${
+      section.buttonDisplay === RANK ? 'id-badge' : 'graduation-cap'
+    }`,
   );
   const gameModeInfo = createGameModeName(optionMode);
 
@@ -74,7 +80,7 @@ function PageContent(optionMode = PEOPLE, sectionRef) {
     'div',
     { className: 'section__wrapper' },
     gameModeInfo,
-    modeRules,
+    section.buttonDisplay === RANK ? modeRules : scoreTable,
     buttonsWrapper,
   );
   section.ref.append(visualImage, gameWrapper);

@@ -15,6 +15,6 @@ export const LoadPage = () => {
   const section = elementFactory('section', { className: 'section' });
 
   render('#swquiz-app', header, section);
-  PageContent(PEOPLE, section);
+  PageContent(PEOPLE, 'rules', section);
 };
 export default PageContent;
