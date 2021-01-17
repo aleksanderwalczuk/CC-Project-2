@@ -8,6 +8,8 @@ import { PEOPLE, STARSHIPS, VEHICLES } from '../constants';
 import elementFactory from '../utils/elementFactory';
 
 const section = {};
+const RULES = '<span></span> Rules';
+const RANK = '<span></span> Hall of fame';
 
 const insertDefaultImage = (optionMode) => {
   switch (optionMode) {
@@ -22,10 +24,29 @@ const insertDefaultImage = (optionMode) => {
   }
 };
 
+const replaceContent = (
+  modeRules,
+  gameWrapper,
+  scoreTable,
+  buttonsWrapper,
+  buttonRulesRanking,
+  icon,
+) => {
+  modeRules.remove();
+  gameWrapper.insertBefore(scoreTable, buttonsWrapper);
+  buttonRulesRanking.innerHTML = section.buttonDisplay;
+  buttonRulesRanking.firstElementChild.classList.add(
+    'button__icon',
+    'fa',
+    `fa-${icon}`,
+  );
+};
+
 // Creating page content
 function PageContent(optionMode = PEOPLE, sectionRef) {
   if (!section.ref && sectionRef) {
     section.ref = sectionRef;
+    section.buttonDisplay = RANK;
   }
   section.ref.textContent = '';
   const visualImage = createVisualImage(
@@ -59,27 +80,26 @@ function PageContent(optionMode = PEOPLE, sectionRef) {
   section.ref.append(visualImage, gameWrapper);
 
   // Changing the rules and ranking view by pressing the button
-  let rules = false;
   function handleChangeOfView() {
-    if (!rules) {
-      modeRules.remove();
-      gameWrapper.insertBefore(scoreTable, buttonsWrapper);
-      rules = true;
-      buttonRulesRanking.innerHTML = `<span></span> Rules`;
-      buttonRulesRanking.firstElementChild.classList.add(
-        'button__icon',
-        'fa',
-        'fa-graduation-cap',
+    if (section.buttonDisplay === RULES) {
+      section.buttonDisplay = RANK;
+      replaceContent(
+        scoreTable,
+        gameWrapper,
+        modeRules,
+        buttonsWrapper,
+        buttonRulesRanking,
+        'id-badge',
       );
     } else {
-      rules = false;
-      scoreTable.remove();
-      gameWrapper.insertBefore(modeRules, buttonsWrapper);
-      buttonRulesRanking.innerHTML = `<span></span> Hall of fame`;
-      buttonRulesRanking.firstElementChild.classList.add(
-        'button__icon',
-        'fa',
-        'fa-id-badge',
+      section.buttonDisplay = RULES;
+      replaceContent(
+        modeRules,
+        gameWrapper,
+        scoreTable,
+        buttonsWrapper,
+        buttonRulesRanking,
+        'graduation-cap',
       );
     }
   }
