@@ -1,10 +1,13 @@
 .visual-box {
   display: flex;
   max-width: calc(505px - 40px);
+  padding: 0 50px 0 0;
   &__image {
     display: inline-block;
     max-width: 100%;
+    min-width: 411px;
     max-height: 554px;
+    margin: 0 0 40px;
     // remove following prop if necessary
     object-fit: fill;
     border-radius: 16px;

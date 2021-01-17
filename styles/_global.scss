@@ -29,10 +29,16 @@ body {
 }
 
 .mode__container--active {
+  overflow: auto;
   max-height: 350px;
   height: 100%;
+  margin: 0 0 40px;
   padding: 1.25rem;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: $border-radius;
   background-color: $color-primary;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.mode-info__heading {
+  margin: 0 0 40px;
 }

@@ -11,3 +11,10 @@
     @content;
   }
 }
+
+// Large devices
+@mixin lg {
+  @media all and (max-width: #{$breakpoint-xl-max}) {
+    @content;
+  }
+}

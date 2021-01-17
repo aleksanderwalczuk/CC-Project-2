@@ -1,0 +1,97 @@
+body > div {
+  padding: 52px 85px 52px 90px;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 52px;
+}
+.starwars__logo {
+  width: 505px;
+  height: 248px;
+  background: url('../static/assets/ui/StarWarsLogo.png') no-repeat
+    center;
+  margin: 0 0 0 -40px;
+}
+.menu {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 1200px;
+  height: 180px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+    4px 4px 40px rgba(255, 0, 0, 0.9);
+  &__button {
+    position: relative;
+    border: none;
+    padding: 20px 8px;
+    background-color: #ffffff;
+    color: rgba(0, 0, 0, 0.4);
+    font-family: $font-primary;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 36px;
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    &--select {
+      color: black;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        border-radius: 4px;
+        background: rgba(255, 0, 0, 0.5);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+          4px 4px 20px rgba(255, 0, 0, 0.9);
+      }
+    }
+  }
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 50px;
+  &__wrapper {
+    max-width: 1200px;
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+@include lg {
+  .header {
+    height: 120px;
+    border-radius: 16px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 0 40px;
+  }
+  .starwars__logo {
+    height: 100%;
+    max-width: 300px;
+    background-size: contain;
+  }
+  .menu {
+    justify-content: space-between;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 16px;
+  }
+  .section {
+    flex-wrap: wrap;
+  }
+}
