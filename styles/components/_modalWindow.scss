@@ -1,146 +1,151 @@
 .modal {
-    // Positioning /
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1;
+  // Positioning /
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  // Display & Box Model /
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // Color /
+  background-color: rgba(0, 0, 0, 0.8);
+  &__container {
     // Display & Box Model /
-    width: 100vw;
-    height: 100vh;
+    height: 889px;
+    max-width: 1200px;
+    border-radius: $border-radius;
+    padding: 48px 64px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     // Color /
-    background-color: rgba(0,0,0,.8);
-    &__container {
-        // Display & Box Model /
-        height: 889px;
-        max-width: 1200px;
-        border-radius: $border-radius;
-        padding: 48px 64px;
-        display: flex;
-        flex-direction: column;
-        // Color /
-        background: $color-primary;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 40px rgba(255, 0, 0, 0.9);
-        // Text /
-        text-align: left;
-    }
-    &__heading {
-        margin: 0 auto;
-        text-align: center;
-        text-transform: uppercase;
-        line-height: 3.25rem;
-    }
-    &__text {
-        margin: 16px 0;
-        font-weight: 500;
-        font-size: 1.75rem;
-        line-height: 2.125rem;
-    }
+    background: $color-primary;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+      4px 4px 40px rgba(255, 0, 0, 0.9);
+    // Text /
+    text-align: left;
+  }
+  &__heading {
+    margin: 0 auto;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 3.25rem;
+  }
+  &__text {
+    margin: 16px 0;
+    font-weight: 500;
+    font-size: 1.75rem;
+    line-height: 2.125rem;
+  }
 }
 
 .details {
-    margin-left: 285px;
-    height: 355px;
-    padding-top: 12px;
-    &__heading {
-        margin-bottom: 4px;
-        margin-left: 50px;
-        font-weight: 600;
-        font-size: 1.625rem;
+  margin-left: 285px;
+  height: 355px;
+  padding-top: 12px;
+  &__heading {
+    margin-bottom: 4px;
+    margin-left: 50px;
+    font-weight: 600;
+    font-size: 1.625rem;
+  }
+  &__table {
+    height: 40%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    & tbody,
+    & thead tr {
+      display: block;
     }
-    &__table {
-        height: 40%;
-        font-size: 1.5rem;
-        font-weight: 600;
-        & tbody, & thead tr {
-            display: block;
-        }
-        & thead {
-            padding-left: 180px;
-        }
-        & tbody {
-            height: 250px;
-            border-spacing: 16px 32px;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            vertical-align: middle;
-        }
-        & th:first-of-type, & td:first-of-type {
-            padding: 0 30px;
-        }
-        & td:first-of-type {
-            width: 125px;
-        }
-        & th:first-of-type {
-            width: 160px;
-        }
-        & td, & th {
-            width: 206px;
-        }
-        &__head {
-            font-weight: 600;
-            color: rgba(0, 0, 0, 0.6);
-        }
-        &__image {
-            position: relative;
-            & img {
-                z-index: 1;
-                width: 65px;
-                height: auto;
-                border-radius: $border-radius;
-                transform: matrix(-1, 0, 0, 1, 0, 0);
-                filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(4px 4px 20px rgba(255, 0, 0, 0.9));
-            }
-        }
-        &__answer {
-            color: $text-color-primary;
-            &--correct {
-                color: rgba(87, 181, 13, 0.6);
-            }
-            &--incorrect {
-                color: rgba(255, 0, 0, 0.6);
-            }
-        }
+    & thead {
+      padding-left: 180px;
     }
+    & tbody {
+      height: 250px;
+      border-spacing: 16px 32px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      vertical-align: middle;
+    }
+    & th:first-of-type,
+    & td:first-of-type {
+      padding: 0 30px;
+    }
+    & td:first-of-type {
+      width: 125px;
+    }
+    & th:first-of-type {
+      width: 160px;
+    }
+    & td,
+    & th {
+      width: 206px;
+    }
+    &__head {
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.6);
+    }
+    &__image {
+      position: relative;
+      & img {
+        z-index: 1;
+        width: 65px;
+        height: auto;
+        border-radius: $border-radius;
+        transform: matrix(-1, 0, 0, 1, 0, 0);
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+          drop-shadow(4px 4px 20px rgba(255, 0, 0, 0.9));
+      }
+    }
+    &__answer {
+      color: $text-color-primary;
+      &--correct {
+        color: rgba(87, 181, 13, 0.6);
+      }
+      &--incorrect {
+        color: rgba(255, 0, 0, 0.6);
+      }
+    }
+  }
 }
 
 .player-form {
-    display: flex;
-    padding: 32px 0;
-    &__image {
-        position: absolute;
-        top: -322px;
-        left: 12px;
-        z-index: 1;
-        height: 322px;
-    }
-    &__item {
-        position: relative;
-        display: inline-block;
-        line-height: 44px;
-    }
-    &__input {
-        height: 80px;
-        padding-left: 24px;
-        border: 4px solid #C4C4C4;
-        border-radius: 8px;
-        font-size: $font-size-secondary;
-        font-weight: 400;
-    }
-    &__label {
-        padding: 0 28px;  
-        font-weight: 500;
-        font-size: 1.75rem;
-        line-height: 2.125rem;
-    }
-    &__button {
-        margin-top: 40px;
-        width: 700px;
-        align-self: center;
-        font-weight: 500;
-        font-size: $font-size-secondary;
-        line-height: 2.75rem;
-    }
+  display: flex;
+  padding: 32px 0;
+  &__image {
+    position: absolute;
+    top: -322px;
+    left: 12px;
+    z-index: 1;
+    height: 322px;
+  }
+  &__item {
+    position: relative;
+    display: inline-block;
+    line-height: 44px;
+  }
+  &__input {
+    height: 80px;
+    padding-left: 24px;
+    border: 4px solid #c4c4c4;
+    border-radius: 8px;
+    font-size: $font-size-secondary;
+    font-weight: 400;
+  }
+  &__label {
+    padding: 0 28px;
+    font-weight: 500;
+    font-size: 1.75rem;
+    line-height: 2.125rem;
+  }
+  &__button {
+    margin-top: 40px;
+    width: 700px;
+    align-self: center;
+    font-weight: 500;
+    font-size: $font-size-secondary;
+    line-height: 2.75rem;
+  }
 }

@@ -4,7 +4,7 @@ function handleModalClose(event) {
   const swquiz = document.querySelector('#swquiz-app');
   const playersName = document.querySelector('.player-form__input')
     .value;
-  
+
   swquiz.removeChild(document.querySelector('.modal'));
   console.log(`close the modal ${playersName}`);
   return playersName;
