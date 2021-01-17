@@ -1,17 +1,23 @@
 import PageContent from './MainMenu';
+import elementFactory from '../utils/elementFactory';
 
 function ModeMenu() {
   // Creating nav's elements.
-  const newModeMenu = document.createElement('nav');
   const options = ['People', 'Vehicles', 'Starships'];
-  options.forEach((option) => {
-    const btn = document.createElement('button');
-    btn.classList.add('menu__button');
-    btn.textContent = option;
-    newModeMenu.appendChild(btn);
-  });
-  newModeMenu.classList.add('menu');
-  newModeMenu.firstElementChild.classList.add('menu__button--select');
+  const optionsButtons = options.reduce((acc, option) => {
+    acc.push(
+      elementFactory('button', { className: 'menu__button' }, option),
+    );
+    return acc;
+  }, []);
+
+  optionsButtons[0].classList.add('menu__button--select');
+  const newModeMenu = elementFactory(
+    'nav',
+    { className: 'menu' },
+    ...optionsButtons,
+  );
+
   const menuOption = {
     selectOption: '',
   };
