@@ -1,7 +1,7 @@
 function countScore({ questionsAnswered, questionsGuessed }) {
   const areNumbers =
-    Number.isInteger(questionsAnswered) &&
-    Number.isInteger(questionsGuessed);
+    Number.isInteger(Number(questionsAnswered)) &&
+    Number.isInteger(Number(questionsGuessed));
   if (questionsAnswered === 0 || !areNumbers) {
     return 0;
   }
