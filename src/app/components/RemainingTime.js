@@ -19,8 +19,9 @@ function handleTimeChange(domNode) {
     const second = `${sec < 10 ? `0${sec}` : sec}s`;
 
     element.textContent = `Time Left: ${minute} ${second}`;
-
-    handleBladeSizeChange(percentOfTime);
+    try {
+      handleBladeSizeChange(percentOfTime);
+    } catch (error) {}
   }, 50);
 }
 
