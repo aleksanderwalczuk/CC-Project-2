@@ -1,0 +1,223 @@
+//TO REMOVE!!!!
+html {
+  overflow: hidden;
+}
+
+@media only screen and (max-width: $breakpoint-xxl-max) {
+// @media (min-width: $breakpoint-xxl-max) {
+  .modal{
+    background-color: yellowgreen;
+    &__container {
+      height: calc(100% - 124px);
+      max-width: unset;
+      width: calc(100% - 124px);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    &__heading {
+      font-size: 32px;
+    }
+    &__text {
+      font-size: 24px;
+      margin: 0;
+    }
+  }
+  .details {
+    margin-left: 20%;
+    // height: calc(100% - 22rem);
+    padding-top: 0;
+    min-height: 200px;
+    &__heading {
+      font-size: 24px;
+      margin: 16px 0 0 0;
+      text-align: center;
+    }
+    &__table {
+      border-collapse: collapse;
+      display: block;
+      height: calc(100% - 54px);
+      overflow-y: scroll;
+      & tbody {
+        display: table-row-group;
+      }
+      & thead tr {
+        display: table-row;
+      }
+      & thead {
+        padding-left: unset;
+      }
+      & tbody tr {
+
+      }
+      & tbody {
+        height: unset;
+        border-spacing: unset;
+      }
+      & th {
+        display: table-cell;
+      }
+      & th:first-of-type,
+      & td:first-of-type {
+        padding: 4px;
+        // width: 19%;
+        text-align: center;
+      }
+      & td:first-of-type {
+        // width: unset;
+      }
+      & th:first-of-type {
+        // width: unset;
+      }
+
+      & td,
+      & th {
+        // width: unset;
+        width: 30%;
+        padding: 8px;
+      }
+      &__image {
+        & img {
+          border-radius: 8px;
+          filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(4px 4px 12px rgba(255, 0, 0, 0.9));
+        }
+      }
+    }
+  }
+  .player-form {
+    padding: 0;
+    &__item, &__label {
+      flex: 1;
+    }
+    &__input {
+      height: 64px;
+      padding-left: 12px;
+      font-size: 24px;
+      width: 100%;
+    }
+    &__label {
+      font-size: 24px;
+      padding: 0 0 0 16px;
+    }
+    &__button {
+      margin-top: 16px;
+      width: 100%;
+      font-size: 24px;
+      line-height: 32px;
+      border-radius: 8px;
+      
+    }
+    &__image {
+      opacity: .8;
+      height: 200px;
+      top: -200px;
+    }
+  }
+}
+
+@media only screen and (max-width: $breakpoint-xl-max) {
+// @media (min-width: $breakpoint-xl-max) {
+  .modal{
+    background-color:green;
+
+  }
+  .details {
+    height: calc(100% - 18rem);
+    &__table {
+      &__head {
+        font-size: 1.125rem;
+      }
+      &__answer, &__answer--correct, &__answer--incorrect {
+        
+        font-size: 1.125rem;
+      }
+      &__image {
+        min-width: 100px;
+      }
+    }
+  }
+  .player-form {
+    &__label {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+    }
+  }
+}
+@media only screen and (max-width: $breakpoint-md-max) {
+// @media (min-width: $breakpoint-md-max) {
+  .modal{
+    background-color:blue;
+    &__container {
+      height: calc(100% - 120px);
+      max-width: unset;
+      width: calc(100% - 120px);
+    }
+    &__text {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+    }
+  }
+  .player-form {
+    // flex-wrap: wrap;
+    &__label, &__input {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      // flex-basis: 100%;
+    }
+    &__input {
+      // height: 64px;
+    }
+    &__image {
+      height: 160px;
+      top: -160px
+    }
+  }
+}
+@media only screen and (max-width: $breakpoint-sm-max) {
+// @media (min-width: $breakpoint-sm-max) {
+  .modal{
+    background-color: red;
+    &__container {
+      height: calc(100% - 80px);
+      max-width: unset;
+      width: calc(100% - 80px);
+    }
+  }
+  .details {
+    margin-left: 0;
+    position: relative;
+    z-index: 2;
+  }
+  .player-form {
+    flex-wrap: wrap-reverse;
+    &__label, &__input {
+      flex-basis: 100%;
+    }
+    &__label {
+      padding: 0 0 12px 0;
+      text-align: center;
+    }
+    &__input {
+
+    }
+
+    &__image {
+      left: unset;
+      right: 20px;
+      opacity: .5;
+      z-index: 1;
+    }
+  }
+}
+@media only screen and (max-width: $breakpoint-xs-max) {
+// @media (min-width: $breakpoint-xs-max) {
+  .modal{
+    background-color: violet;
+    &__container {
+      height: calc(100% - 48px);
+      max-width: unset;
+      width: calc(100% - 48px);
+    }
+  }
+}
