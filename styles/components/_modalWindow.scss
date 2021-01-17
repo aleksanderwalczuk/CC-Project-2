@@ -91,7 +91,6 @@ html {
     & td,
     & th {
       width: 206px;
-      // border: violet dotted 2px;
     }
     &__head {
       font-weight: 600;
@@ -143,10 +142,8 @@ html {
     border-radius: 8px;
     font-size: $font-size-secondary;
     font-weight: 400;
-    // min-width: 300px;
     &:focus {
       outline-style: none;
-      // box-shadow: none;
       border-color: #f33
     }
   }
