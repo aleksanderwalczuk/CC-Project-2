@@ -8,6 +8,15 @@ import generateQuestion, {
 } from './quiz';
 
 class Game {
+  initGame(mode) {
+    this.timeLeft = process.env.QUIZ_MAX_TIME_SECONDS;
+    this.questions = [];
+    this.mode = mode;
+    this.running = false;
+    this.computerPlayer = createComputerPlayer();
+    this.humanPlayer = createPlayer();
+  }
+
   getTimeLeft() {
     return this.timeLeft;
   }
@@ -30,15 +39,6 @@ class Game {
 
   addQuestion(question) {
     this.questions.push(question);
-  }
-
-  initGame(mode) {
-    this.timeLeft = process.env.QUIZ_MAX_TIME_SECONDS;
-    this.questions = [];
-    this.mode = mode;
-    this.running = false;
-    this.computerPlayer = createComputerPlayer();
-    this.humanPlayer = createPlayer();
   }
 
   changeRunningFlag() {
@@ -67,7 +67,8 @@ const game = new Game();
 
 const spreadQuestion = (question) => {
   game.sendQuestionToComputerPlayer(question);
-  VisualImage(question.image);
+  // TODO: Replace after #81 merge
+  VisualImage(question.image); // updateImage(question.image);
   Answers(
     question.answers,
     question.rightAnswer,

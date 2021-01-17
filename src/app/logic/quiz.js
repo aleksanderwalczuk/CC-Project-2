@@ -2,8 +2,12 @@ const axios = require('axios');
 
 const gameInfo = {
   questionScope: [],
-  mode: 'people',
+  mode: 'People',
 };
+
+const validate = (url) =>
+  typeof url === 'string' &&
+  url.length > process.env.SW_API_BASE_URL.length;
 
 const fetchItems = (api) => {
   axios
@@ -11,8 +15,8 @@ const fetchItems = (api) => {
     .then((item) => item.data)
     .then(({ count, next, results }) => {
       gameInfo.questionScope.push(...results);
-      if (next !== null) {
-        fetchItems(next);
+      if (validate(next)) {
+        setTimeout(() => fetchItems(next), 1000);
       }
       if (count === gameInfo.questionScope.length) {
         gameInfo.questionScope = gameInfo.questionScope.map(
@@ -34,7 +38,7 @@ const fetchItems = (api) => {
 
 const fetchQuestionScope = () => {
   gameInfo.questionScope = [];
-  fetchItems(`${gameInfo.apiUrl}/${gameInfo.mode}/`);
+  fetchItems(`${gameInfo.apiUrl}/${gameInfo.mode.toLowerCase()}/`);
 };
 
 const pickRandomId = () => {
