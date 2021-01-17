@@ -6,6 +6,8 @@ import createGameModeName from './GameModeName';
 import ModeMenu from './ModeMenu';
 import createModeRules from './ModeRules';
 import { PEOPLE } from '../constants';
+import render from '../utils/render';
+import elementFactory from '../utils/elementFactory';
 
 // Creating page content
 function PageContent(optionMode = PEOPLE) {
@@ -63,15 +65,15 @@ function PageContent(optionMode = PEOPLE) {
 
 // Creating header and rendering of the page.
 export const LoadPage = () => {
-  const quiz = document.querySelector('#swquiz-app');
-  const header = document.createElement('header');
-  const section = document.createElement('section');
-  const newNav = ModeMenu();
-  const gameLogo = createLogo();
-  header.classList.add('header');
-  section.classList.add('section');
-  quiz.append(header, section);
-  header.append(gameLogo, newNav);
+  const header = elementFactory(
+    'header',
+    { className: 'header' },
+    createLogo(),
+    ModeMenu(),
+  );
+  const section = elementFactory('section', { className: 'section' });
+
+  render('#swquiz-app', header, section);
   PageContent();
 };
 export default PageContent;
