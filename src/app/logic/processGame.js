@@ -116,11 +116,16 @@ const closeGame = (interval) => {
   clearInterval(interval);
   if (game.getRunning()) {
     game.changeRunningFlag();
-    ModalWindow(
-      game.generateObjectForModal(),
-      game.getHumanPlayerAnswers(),
-      game.getComputerPlayerAnswers(),
-    );
+    // querySelector just to display results.
+    document
+      .querySelector('#swquiz-app')
+      .appendChild(
+        ModalWindow(
+          game.generateObjectForModal(),
+          game.getHumanPlayerAnswers(),
+          game.getComputerPlayerAnswers(),
+        ),
+      );
   }
 };
 
