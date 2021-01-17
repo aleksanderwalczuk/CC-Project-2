@@ -35,7 +35,7 @@ class Game {
   }
 
   reduceTime() {
-    this.timeLeft -= 0.5;
+    this.timeLeft -= 0.1;
   }
 
   addQuestion(question) {
@@ -135,10 +135,10 @@ const runGame = () => {
   getNewQuestion();
   const interval = setInterval(() => {
     game.reduceTime();
-    if (game.timeLeft === 0 || !game.getRunning()) {
+    if (Math.round(game.timeLeft) === 0 || !game.getRunning()) {
       closeGame(interval);
     }
-  }, 500);
+  }, 100);
 };
 
 const startGame = (mode) => {
