@@ -1,25 +1,22 @@
 import Answers from './Answers';
 import RemainingTime from './RemainingTime';
 import GameModeName from './GameModeName';
-import { PEOPLE } from '../constants';
 import elementFactory from '../utils/elementFactory';
+import PageContent from './PageContent';
+import ModalWindow from './Modal/ModalWindow';
 
-const startGame = (gameStarted, choosenMode) => {
-  if (gameStarted === true) {
-    const section = document.querySelector('.section');
-    const sectionWrapper = document.querySelector(
-      '.section__wrapper',
-    );
-    const placeholder = elementFactory('div', {
-      className: 'placeholder',
-    });
+const startGame = (choosenMode) => {
+  const section = document.querySelector('.section');
+  const sectionWrapper = document.querySelector('.section__wrapper');
+  const placeholder = elementFactory('div', {
+    className: 'placeholder',
+  });
 
-    sectionWrapper.innerHTML = '';
-    sectionWrapper.appendChild(GameModeName(choosenMode));
-    sectionWrapper.appendChild(placeholder);
+  sectionWrapper.innerHTML = '';
+  sectionWrapper.appendChild(GameModeName(choosenMode));
+  sectionWrapper.appendChild(placeholder);
 
-    section.appendChild(RemainingTime());
-  }
+  section.appendChild(RemainingTime());
 };
 
 const displayAnswer = (
@@ -28,13 +25,22 @@ const displayAnswer = (
   onAnsweredQuestion,
   callback,
 ) => {
-  const sectionWrapper = document.querySelector('.section__wrapper');
   const placeholder = document.querySelector('.placeholder');
 
-  sectionWrapper.removeChild(placeholder);
-  sectionWrapper.appendChild(
-    Answers(answers, correctAnswer, onAnsweredQuestion, callback),
+  placeholder.innerHTML = Answers(
+    answers,
+    correctAnswer,
+    onAnsweredQuestion,
+    callback,
   );
 };
 
-export { startGame, displayAnswer };
+const displayModal = (game, humanPlayer, computerPlayer) => {
+  PageContent(game.mode);
+  const modal = ModalWindow(game, humanPlayer, computerPlayer);
+  // const container = document.querySelector('#swquiz-app');
+  // container.appendChild(modal);
+  document.body.appendChild(modal);
+};
+
+export { startGame, displayAnswer, displayModal };
