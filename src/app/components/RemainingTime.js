@@ -1,28 +1,21 @@
 import { handleBladeSizeChange, Lightsaber } from './Lightsaber';
 
-function handleTimeChange(element) {
+function handleTimeChange(domNode) {
   const initialTime = process.env.QUIZ_MAX_TIME_SECONDS;
   let timer = initialTime;
-  const parameter = element;
+  const element = domNode;
   const idInterval = setInterval(() => {
     timer -= 1;
     const percentOfTime = ((100 * timer) / initialTime).toFixed(2);
     let min = Math.floor(timer / 60);
     let sec = timer % 60;
-
     if (timer === 0) {
       clearInterval(idInterval);
     }
+    const minute = `${min < 10 ? '0' + min : min}m`;
+    const second = `${sec < 10 ? '0' + sec : sec}s`;
 
-    if (min < 10) {
-      min = `0${min}`;
-    }
-
-    if (sec < 10) {
-      sec = `0${sec}`;
-    }
-
-    parameter.textContent = `Time Left: ${min}m ${sec}s`;
+    element.textContent = `Time Left: ${minute} ${second}`;
 
     handleBladeSizeChange(percentOfTime);
   }, 1000);

@@ -1,34 +1,34 @@
 import elementFactory from '../utils/elementFactory';
 
 function Lightsaber() {
-  const redBlade2 = elementFactory(
-    'div',
-    { className: 'lightsaber__red-blade' }
-  );
+  const activeBlade = elementFactory('div', {
+    className: 'lightsaber__blade--active',
+  });
 
-  const blade2 = elementFactory(
+  const blade = elementFactory(
     'div',
     { className: 'lightsaber__blade' },
-    redBlade2
+    activeBlade,
   );
-  
-  const handle2 = elementFactory(
-    'div',
-    { className: 'lightsaber__handle' }
-  );
-  
+
+  const handle = elementFactory('div', {
+    className: 'lightsaber__handle',
+  });
+
   const container = elementFactory(
     'div',
     { className: 'remaining-time__lightsaber lightsaber' },
-    handle2,
-    blade2
+    handle,
+    blade,
   );
   return container;
 }
 
 function handleBladeSizeChange(percent) {
-  const redBlade = document.querySelector('.lightsaber__red-blade');
-  redBlade.style.width = `${percent}%`;
+  const activeBlade = document.querySelector(
+    '.lightsaber__blade--active',
+  );
+  activeBlade.style.width = `${percent}%`;
 }
 
 export { Lightsaber, handleBladeSizeChange };
