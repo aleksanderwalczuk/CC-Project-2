@@ -1,6 +1,8 @@
 import elementFactory from '../../utils/elementFactory';
+// import PageContent from '../PageContent';
+import { rankPlayer } from '../../logic/RankStore';
 
-function ModalForm(callbackToCloseModal) {
+function ModalForm(dataToSendToLS) {
   const playerFormInput = elementFactory('input', {
     className: 'player-form__input',
     type: 'text',
@@ -41,8 +43,17 @@ function ModalForm(callbackToCloseModal) {
     playerFormLabel,
   );
 
-  // ADD EVENT TO SUBMIT EVENT
-  playerForm.addEventListener('submit', callbackToCloseModal);
+  // ADD EVENT TO SUBMIT
+  playerForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const swquiz = document.querySelector('#swquiz-app');
+    const playersName = document.querySelector('.player-form__input')
+      .value;
+    const { score, mode } = dataToSendToLS;
+    rankPlayer(playersName, score, mode);
+    swquiz.removeChild(document.querySelector('.modal'));
+    // PageContent(mode, 'rank');
+  });
 
   return playerForm;
 }

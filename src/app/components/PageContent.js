@@ -8,6 +8,8 @@ import { PEOPLE, STARSHIPS, VEHICLES } from '../constants';
 import elementFactory from '../utils/elementFactory';
 
 const section = {};
+const RULES = '<span></span> Rules';
+const RANK = '<span></span> Hall of fame';
 
 const insertDefaultImage = (optionMode) => {
   switch (optionMode) {
@@ -22,12 +24,35 @@ const insertDefaultImage = (optionMode) => {
   }
 };
 
+const replaceContent = (
+  modeRules,
+  gameWrapper,
+  scoreTable,
+  buttonsWrapper,
+  buttonRulesRanking,
+  icon,
+) => {
+  modeRules.remove();
+  gameWrapper.insertBefore(scoreTable, buttonsWrapper);
+  buttonRulesRanking.innerHTML = section.buttonDisplay;
+  buttonRulesRanking.firstElementChild.classList.add(
+    'button__icon',
+    'fa',
+    `fa-${icon}`,
+  );
+};
+
 // Creating page content
-function PageContent(optionMode = PEOPLE, sectionRef) {
+function PageContent(
+  optionMode = PEOPLE,
+  view = 'rules',
+  sectionRef,
+) {
   if (!section.ref && sectionRef) {
     section.ref = sectionRef;
   }
   section.ref.textContent = '';
+  section.buttonDisplay = view === 'rules' ? RANK : RULES;
   const visualImage = createVisualImage(
     `../../../static/assets/img/modes/${optionMode}/${insertDefaultImage(
       optionMode,
@@ -37,9 +62,11 @@ function PageContent(optionMode = PEOPLE, sectionRef) {
   const scoreTable = createScoreTable(optionMode);
   const buttonPlay = createButtonRed('play the game');
   const buttonRulesRanking = createWhiteButtonWithIcon(
-    'Hall of fame',
+    `${section.buttonDisplay === RANK ? 'Hall of fame' : 'Rules'}`,
     'fa',
-    'fa-id-badge',
+    `fa-${
+      section.buttonDisplay === RANK ? 'id-badge' : 'graduation-cap'
+    }`,
   );
   const gameModeInfo = createGameModeName(optionMode);
 
@@ -53,33 +80,32 @@ function PageContent(optionMode = PEOPLE, sectionRef) {
     'div',
     { className: 'section__wrapper' },
     gameModeInfo,
-    modeRules,
+    section.buttonDisplay === RANK ? modeRules : scoreTable,
     buttonsWrapper,
   );
   section.ref.append(visualImage, gameWrapper);
 
   // Changing the rules and ranking view by pressing the button
-  let rules = false;
   function handleChangeOfView() {
-    if (!rules) {
-      modeRules.remove();
-      gameWrapper.insertBefore(scoreTable, buttonsWrapper);
-      rules = true;
-      buttonRulesRanking.innerHTML = `<span></span> Rules`;
-      buttonRulesRanking.firstElementChild.classList.add(
-        'button__icon',
-        'fa',
-        'fa-graduation-cap',
+    if (section.buttonDisplay === RULES) {
+      section.buttonDisplay = RANK;
+      replaceContent(
+        scoreTable,
+        gameWrapper,
+        modeRules,
+        buttonsWrapper,
+        buttonRulesRanking,
+        'id-badge',
       );
     } else {
-      rules = false;
-      scoreTable.remove();
-      gameWrapper.insertBefore(modeRules, buttonsWrapper);
-      buttonRulesRanking.innerHTML = `<span></span> Hall of fame`;
-      buttonRulesRanking.firstElementChild.classList.add(
-        'button__icon',
-        'fa',
-        'fa-id-badge',
+      section.buttonDisplay = RULES;
+      replaceContent(
+        modeRules,
+        gameWrapper,
+        scoreTable,
+        buttonsWrapper,
+        buttonRulesRanking,
+        'graduation-cap',
       );
     }
   }
