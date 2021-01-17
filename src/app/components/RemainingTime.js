@@ -1,27 +1,23 @@
-function handleTimeChange(element) {
-  let timer = process.env.QUIZ_MAX_TIME_SECONDS;
+import { handleBladeSizeChange, Lightsaber } from './Lightsaber';
 
+function handleTimeChange(domNode) {
+  const initialTime = process.env.QUIZ_MAX_TIME_SECONDS;
+  let timer = initialTime;
+  const element = domNode;
   const idInterval = setInterval(() => {
-    timer--;
-
-    const min = Math.floor(timer / 60);
-    const sec = timer % 60;
-    let minToDisplay = min;
-    let secToDisplay = sec;
-
+    timer -= 1;
+    const percentOfTime = ((100 * timer) / initialTime).toFixed(2);
+    let min = Math.floor(timer / 60);
+    let sec = timer % 60;
     if (timer === 0) {
       clearInterval(idInterval);
     }
+    const minute = `${min < 10 ? '0' + min : min}m`;
+    const second = `${sec < 10 ? '0' + sec : sec}s`;
 
-    if (min < 10) {
-      minToDisplay = '0' + minToDisplay;
-    }
+    element.textContent = `Time Left: ${minute} ${second}`;
 
-    if (sec < 10) {
-      secToDisplay = '0' + secToDisplay;
-    }
-
-    element.textContent = `Time Left: ${minToDisplay}m ${secToDisplay}s`;
+    handleBladeSizeChange(percentOfTime);
   }, 1000);
 }
 
@@ -30,11 +26,11 @@ function RemainingTime() {
   const counter = document.createElement('div');
 
   parentElement.classList.add('remaining-time');
-  counter.textContent = 'Time Left : 02 m 00 s';
   counter.classList.add('remaining-time__counter');
+  counter.textContent = 'Time Left : 02 m 00 s';
 
   parentElement.appendChild(counter);
-
+  parentElement.appendChild(Lightsaber());
   handleTimeChange(counter);
 
   return parentElement;
