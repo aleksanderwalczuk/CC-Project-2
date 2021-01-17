@@ -2,7 +2,10 @@ import Answers from '../components/Answers';
 import VisualImage from '../components/VisualImage';
 import createComputerPlayer from './ComputerPlayer';
 import createPlayer from './Player';
-import { getQuestion, initGame, isGameInitialized } from './quiz';
+import generateQuestion, {
+  initGameInfo,
+  isGameInitialized,
+} from './quiz';
 
 class Game {
   getTimeLeft() {
@@ -29,7 +32,7 @@ class Game {
     this.questions.push(question);
   }
 
-  prepareNewGame(mode) {
+  initGame(mode) {
     this.timeLeft = process.env.QUIZ_MAX_TIME_SECONDS;
     this.questions = [];
     this.mode = mode;
@@ -55,11 +58,8 @@ class Game {
     return this.humanPlayer.getAnswer;
   }
 
-  sendQuestionToComputerPlayer(question) {
-    this.computerPlayer.getAnswer(
-      question.answers,
-      question.rightAnswer,
-    );
+  sendQuestionToComputerPlayer({ answers, rightAnswer }) {
+    this.computerPlayer.getAnswer(answers, rightAnswer);
   }
 }
 
@@ -72,9 +72,7 @@ const spreadQuestion = (question) => {
     question.answers,
     question.rightAnswer,
     game.sendAnswerToPlayerCallback,
-    // Eslint warn, function call before definition
-    // eslint-disable-next-line no-use-before-define
-    askQuestion,
+    getNewQuestion,
   );
 };
 
@@ -84,8 +82,6 @@ const verifyImage = (question) => {
       game.addQuestion(question);
       spreadQuestion(question);
     } else {
-      // Eslint warn. Function called before declaration.
-      // eslint-disable-next-line no-use-before-define
       getNewQuestion();
     }
   }
@@ -101,8 +97,8 @@ const verifyQuestion = (question) => {
 };
 
 const getNewQuestion = () => {
-  const question = getQuestion();
-  if (question.err === '' || question.err === undefined) {
+  const question = generateQuestion();
+  if (!question.err) {
     verifyQuestion(question);
   } else {
     getNewQuestion();
@@ -130,15 +126,15 @@ const runGame = () => {
 };
 
 const startGame = (mode) => {
-  game.prepareNewGame(mode);
+  game.initGame(mode);
   runGame();
 };
 
-const processGame = (
+export const processGame = (
   mode = 'people',
   url = process.env.SW_API_BASE_URL,
 ) => {
-  initGame(mode, url || 'https://swapi.dev/api');
+  initGameInfo(mode, url || 'https://swapi.dev/api');
   let initializeTimeout = 3;
   const gameInitializing = setInterval(() => {
     if (isGameInitialized()) {
@@ -153,14 +149,13 @@ const processGame = (
   }, 1000);
 };
 
-export default processGame;
 export const getTimeLeft = () => ({
   isRunning: game.getRunning(),
   timeLeft: game.getTimeLeft(),
 });
-export const askQuestion = () => getNewQuestion();
 export const cancelGame = () => {
   if (game.getRunning()) {
     game.changeRunningFlag();
   }
 };
+export default getNewQuestion;

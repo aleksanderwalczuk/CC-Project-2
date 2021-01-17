@@ -1,17 +1,20 @@
 const axios = require('axios');
 
-const gameInfo = {};
+const gameInfo = {
+  questionScope: [],
+  mode: 'people',
+};
 
 const fetchItems = (api) => {
   axios
     .get(api)
     .then((item) => item.data)
-    .then((item) => {
-      gameInfo.questionScope.push(...item.results);
-      if (item.next !== null) {
-        fetchItems(item.next);
+    .then(({ count, next, results }) => {
+      gameInfo.questionScope.push(...results);
+      if (next !== null) {
+        fetchItems(next);
       }
-      if (item.count === gameInfo.questionScope.length) {
+      if (count === gameInfo.questionScope.length) {
         gameInfo.questionScope = gameInfo.questionScope.map(
           (value) => ({
             name: value.name,
@@ -76,13 +79,13 @@ const generateQuestion = () => {
       answersIDs.push(id);
     }
   }
-  let correctIdIdxFromAnswers = Math.ceil(
+  const correctIdIdxFromAnswers = Math.ceil(
     Math.random() * answersIDs.length,
   );
-  if (correctIdIdxFromAnswers === 4) {
-    correctIdIdxFromAnswers = 0;
-  }
-  const rightAnswer = answersIDs[correctIdIdxFromAnswers];
+  const rightAnswer =
+    correctIdIdxFromAnswers === 4
+      ? answersIDs[0]
+      : answersIDs[correctIdIdxFromAnswers];
   const rightAnswerApiDataId =
     gameInfo.questionScope[rightAnswer].idx;
   getUrlData(rightAnswerApiDataId, question);
@@ -93,17 +96,19 @@ const generateQuestion = () => {
   return question;
 };
 
-export const initGame = (mode, url) => {
+export const initGameInfo = (mode, url) => {
   gameInfo.apiUrl =
     url || process.env.SW_API_BASE_URL || 'https://swapi.dev/api';
   gameInfo.mode = mode;
-  if (localStorage.getItem(mode) !== null) {
+  const cached = localStorage.getItem(mode) || 0;
+  if (cached) {
     gameInfo.questionScope = JSON.parse(localStorage.getItem(mode));
-  } else {
-    fetchQuestionScope();
+    return;
   }
+  fetchQuestionScope();
 };
 
-export const getQuestion = () => generateQuestion();
 export const isGameInitialized = () =>
   gameInfo.questionScope.length > 0;
+
+export default generateQuestion;
