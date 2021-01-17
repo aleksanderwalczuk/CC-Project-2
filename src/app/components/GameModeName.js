@@ -1,16 +1,17 @@
 import ef from '../utils/elementFactory';
-import validateString from '../utils/validateString';
+import { PEOPLE, VEHICLES, STARSHIPS } from '../constants';
 
-function GameModeName(message) {
-  const isAValidString = validateString(message);
-  if (!isAValidString) {
-    throw new Error('Not a valid string');
-  }
+function GameModeName(mode) {
+  const questions = {
+    [PEOPLE]: 'Who is this character?',
+    [VEHICLES]: 'Do you recognize this vehicle?',
+    [STARSHIPS]: 'Do you recognize this starship?',
+  };
 
   const question = ef(
     'span',
     { className: 'mode-info__question' },
-    message,
+    questions[mode],
   );
 
   const modeText = ef(
