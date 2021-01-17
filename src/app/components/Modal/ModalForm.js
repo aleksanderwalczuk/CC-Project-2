@@ -1,6 +1,6 @@
 import elementFactory from '../../utils/elementFactory';
 
-function ModalForm(callbackToCloseModal) {
+function ModalForm(dataToSendToLS) {
   const playerFormInput = elementFactory('input', {
     className: 'player-form__input',
     type: 'text',
@@ -42,7 +42,16 @@ function ModalForm(callbackToCloseModal) {
   );
 
   // ADD EVENT TO SUBMIT EVENT
-  playerForm.addEventListener('submit', callbackToCloseModal);
+  playerForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const swquiz = document.querySelector('#swquiz-app');
+    const playersName = document.querySelector('.player-form__input')
+      .value;
+    const dataToPass = { ...dataToSendToLS, nickname: playersName };
+    swquiz.removeChild(document.querySelector('.modal'));
+    console.log(dataToPass);
+    console.log(`close the modal ${playersName}`);
+  });
 
   return playerForm;
 }
