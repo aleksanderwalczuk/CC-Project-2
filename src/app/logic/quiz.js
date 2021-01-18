@@ -1,8 +1,10 @@
+import { PEOPLE } from '../constants';
+
 const axios = require('axios');
 
 const gameInfo = {
   questionScope: [],
-  mode: 'People',
+  mode: PEOPLE,
 };
 
 const validate = (url) =>
@@ -16,7 +18,11 @@ const fetchItems = (api) => {
     .then(({ count, next, results }) => {
       gameInfo.questionScope.push(...results);
       if (validate(next)) {
-        fetchItems(next);
+        const https = `${next.slice(0, 4)}s${next.slice(
+          4,
+          next.length,
+        )}`;
+        fetchItems(https);
       }
       if (count === gameInfo.questionScope.length) {
         gameInfo.questionScope = gameInfo.questionScope.map(
