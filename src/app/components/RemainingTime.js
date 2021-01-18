@@ -1,3 +1,4 @@
+import { getTimeLeft } from '../logic/processGame';
 import { handleBladeSizeChange, Lightsaber } from './Lightsaber';
 
 function handleTimeChange(domNode, callback) {

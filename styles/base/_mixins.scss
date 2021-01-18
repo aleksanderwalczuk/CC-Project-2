@@ -11,3 +11,16 @@
     @content;
   }
 }
+
+// Large devices
+@mixin lg {
+  @media all and (max-width: #{$breakpoint-xl-max}) {
+    @content;
+  }
+}
+// XLarge devices
+@mixin xlg {
+  @media all and (max-width: #{$breakpoint-xxl-max}) {
+    @content;
+  }
+}

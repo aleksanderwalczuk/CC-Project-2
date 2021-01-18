@@ -1,3 +1,5 @@
+import getNewQuestion from './processGame';
+
 export class Player {
   constructor() {
     this.detailedAnswers = [];

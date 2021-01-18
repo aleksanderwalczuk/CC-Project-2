@@ -14,7 +14,11 @@ function GameModeName(mode) {
     questions[mode],
   );
 
-  const modeText = ef('span', {}, 'Question: ');
+  const modeText = ef(
+    'span',
+    {},
+    'Question: ',
+  );
 
   const heading = ef(
     'h2',
