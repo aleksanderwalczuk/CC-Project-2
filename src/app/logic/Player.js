@@ -1,5 +1,3 @@
-import getNewQuestion from './processGame';
-
 export class Player {
   constructor() {
     this.detailedAnswers = [];
@@ -15,12 +13,12 @@ export class Player {
     };
   }
 
-  getAnswer(answer, isCorrect) {
+  getAnswer(answer, isCorrect, callback) {
     if (!answer) throw new Error('There is no answer');
     if (isCorrect) this.questionsGuessed += 1;
     this.detailedAnswers.push({ answer, isCorrect });
     this.questionsAnswered += 1;
-    setTimeout(() => getNewQuestion(), 1000);
+    callback();
   }
 }
 
