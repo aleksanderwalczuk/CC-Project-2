@@ -4,9 +4,10 @@ import validateString from '../utils/validateString';
 
 const createAnswerElement = (
   answerText,
-  correct,
+  isCorrect,
   answersElement,
   humanPlayer,
+  callback,
 ) => {
   const answerElement = elementFactory('div', {
     className: 'button button__answer',
@@ -16,20 +17,20 @@ const createAnswerElement = (
       return;
     }
     answerElement.classList.add(
-      `button__answer--${correct ? 'success' : 'fail'}`,
+      `button__answer--${isCorrect ? 'success' : 'fail'}`,
     );
 
     answersElement.setAttribute('disabled', true);
     setTimeout(
-      () => humanPlayer.getAnswer(answerText, correct),
-      1500,
+      () => humanPlayer.getAnswer(answerText, isCorrect, callback),
+      1000,
     );
   });
   answerElement.innerText = answerText;
   return answerElement;
 };
 
-const Answers = (answers, correctAnswer, humanPlayer) => {
+const Answers = (answers, correctAnswer, humanPlayer, callback) => {
   const answersElement = elementFactory('div', {
     className: 'answers',
   });
@@ -37,12 +38,13 @@ const Answers = (answers, correctAnswer, humanPlayer) => {
     if (!validateString(answerText)) {
       throw new Error('Not a valid string');
     }
-    const correct = isAnswerCorrect(answerText, correctAnswer);
+    const isCorrect = isAnswerCorrect(answerText, correctAnswer);
     const answerElement = createAnswerElement(
       answerText,
-      correct,
+      isCorrect,
       answersElement,
       humanPlayer,
+      callback,
     );
     answersElement.appendChild(answerElement);
   });

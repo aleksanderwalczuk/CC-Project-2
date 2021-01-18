@@ -62,7 +62,9 @@ function PageContent(
   const modeRules = createModeRules(optionMode);
   const scoreTable = createScoreTable(optionMode);
   const buttonPlay = createButtonRed('play the game');
-  buttonPlay.addEventListener('click', () => processGame(optionMode));
+  buttonPlay.addEventListener('click', () =>
+    processGame(optionMode, PageContent),
+  );
   const buttonRulesRanking = createWhiteButtonWithIcon(
     `${section.buttonDisplay === RANK ? 'Hall of fame' : 'Rules'}`,
     'fa',

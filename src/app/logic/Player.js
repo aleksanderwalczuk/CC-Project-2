@@ -20,7 +20,7 @@ export class Player {
     if (isCorrect) this.questionsGuessed += 1;
     this.detailedAnswers.push({ answer, isCorrect });
     this.questionsAnswered += 1;
-    setTimeout(() => getNewQuestion(), 1000);
+    callback();
   }
 }
 

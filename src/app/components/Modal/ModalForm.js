@@ -1,8 +1,7 @@
 import elementFactory from '../../utils/elementFactory';
-import PageContent from '../PageContent';
 import { rankPlayer } from '../../logic/RankStore';
 
-function ModalForm(dataToSendToLS) {
+function ModalForm(dataToSendToLS, callback) {
   const playerFormInput = elementFactory('input', {
     className: 'player-form__input',
     type: 'text',
@@ -52,7 +51,7 @@ function ModalForm(dataToSendToLS) {
     const { score, mode } = dataToSendToLS;
     rankPlayer(playersName, score, mode);
     swquiz.removeChild(document.querySelector('.modal'));
-    PageContent(mode, 'rank');
+    callback(mode, 'rank');
   });
 
   return playerForm;
