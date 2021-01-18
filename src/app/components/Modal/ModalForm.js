@@ -4,6 +4,7 @@ import { rankPlayer } from '../../logic/RankStore';
 function ModalForm(dataToSendToLS, callback) {
   const playerFormInput = elementFactory('input', {
     className: 'player-form__input',
+    placeholder: 'Your nickname',
     type: 'text',
     name: 'name',
     id: 'name',
