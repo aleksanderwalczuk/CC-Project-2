@@ -1,27 +1,31 @@
+import { getTimeLeft } from '../logic/processGame';
 import { handleBladeSizeChange, Lightsaber } from './Lightsaber';
 
-function handleTimeChange(domNode) {
+function handleTimeChange(domNode, callback) {
   const initialTime = process.env.QUIZ_MAX_TIME_SECONDS;
-  let timer = initialTime;
   const element = domNode;
   const idInterval = setInterval(() => {
-    timer -= 1;
-    const percentOfTime = ((100 * timer) / initialTime).toFixed(2);
-    let min = Math.floor(timer / 60);
-    let sec = timer % 60;
-    if (timer === 0) {
+    const timer = callback();
+    if (!timer.isRunning) {
       clearInterval(idInterval);
     }
-    const minute = `${min < 10 ? '0' + min : min}m`;
-    const second = `${sec < 10 ? '0' + sec : sec}s`;
+    const percentOfTime = (
+      (100 * timer.timeLeft) /
+      initialTime
+    ).toFixed(2);
+    const min = Math.floor(Math.round(timer.timeLeft) / 60);
+    const sec = Math.round(timer.timeLeft) % 60;
+    const minute = `${min < 10 ? `0${min}` : min}m`;
+    const second = `${sec < 10 ? `0${sec}` : sec}s`;
 
     element.textContent = `Time Left: ${minute} ${second}`;
-
-    handleBladeSizeChange(percentOfTime);
-  }, 1000);
+    try {
+      handleBladeSizeChange(percentOfTime);
+    } catch (error) {}
+  }, 50);
 }
 
-function RemainingTime() {
+function RemainingTime(callback) {
   const parentElement = document.createElement('div');
   const counter = document.createElement('div');
 
@@ -31,7 +35,13 @@ function RemainingTime() {
 
   parentElement.appendChild(counter);
   parentElement.appendChild(Lightsaber());
-  handleTimeChange(counter);
+  const initInterval = setInterval(() => {
+    const isRunning = callback();
+    if (isRunning.isRunning) {
+      clearInterval(initInterval);
+      handleTimeChange(counter, callback);
+    }
+  }, 50);
 
   return parentElement;
 }

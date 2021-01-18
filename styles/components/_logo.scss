@@ -1,7 +1,11 @@
 .starwars__logo {
+  margin-top: 40px;
   width: 505px;
-  height: 248px;
-  background: url('../static/assets/ui/StarWarsLogo.png') no-repeat
-    center;
-  margin: 0 0 0 -40px;
+  height: auto;
+  text-align: center;
+
+  &__image {
+    max-width: auto;
+    height: 180px;
+  }
 }

@@ -3,7 +3,12 @@ import ModalDetails from './ModalDetails';
 import ModalForm from './ModalForm';
 import countScore from './countScore';
 
-function ModalWindow(game, humanPlayerGame, computerPlayerGame) {
+function ModalWindow(
+  game,
+  humanPlayerGame,
+  computerPlayerGame,
+  callback,
+) {
   // CREATE MAIN ELEMENTS
   const modalHeader = elementFactory(
     'h2',
@@ -28,7 +33,7 @@ function ModalWindow(game, humanPlayerGame, computerPlayerGame) {
     mode: game.mode,
     score: countScore(humanPlayerGame),
   };
-  const playerForm = ModalForm(dataToSendToForm);
+  const playerForm = ModalForm(dataToSendToForm, callback);
   const formButton = elementFactory(
     'button',
     {

@@ -1,6 +1,21 @@
 import elementFactory from '../utils/elementFactory';
 import { PEOPLE, VEHICLES, STARSHIPS } from '../constants';
 import PageContent from './PageContent';
+import { cancelGame } from '../logic/processGame';
+
+export const clearSelection = (selectedOption) => {
+  const menuElements = document.querySelectorAll('.menu__button');
+  menuElements.forEach((menuBtn) => {
+    menuBtn.classList.remove('menu__button--select');
+    if (
+      selectedOption &&
+      menuBtn.textContent.toUpperCase() ===
+        selectedOption.toUpperCase()
+    ) {
+      menuBtn.classList.add('menu__button--select');
+    }
+  });
+};
 
 function ModeMenu() {
   // Creating nav's elements.
@@ -23,12 +38,9 @@ function ModeMenu() {
 
   // Function that checks which button was clicked and passes a variable with this information.
   function handleSelectOption(event) {
-    const menuElements = document.querySelectorAll('.menu__button');
     menuOption = event.target.textContent;
-    menuElements.forEach((menuBtn) => {
-      menuBtn.classList.remove('menu__button--select');
-    });
-    event.target.classList.add('menu__button--select');
+    clearSelection(menuOption);
+    cancelGame();
     PageContent(menuOption);
   }
   const menuElements = [...newModeMenu.children];

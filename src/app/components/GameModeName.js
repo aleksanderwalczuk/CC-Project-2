@@ -16,8 +16,8 @@ function GameModeName(mode) {
 
   const modeText = ef(
     'span',
-    { className: 'mode-info__text' },
-    'mode: ',
+    {},
+    'Question: ',
   );
 
   const heading = ef(

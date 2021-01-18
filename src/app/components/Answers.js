@@ -4,11 +4,13 @@ import validateString from '../utils/validateString';
 
 const createAnswerElement = (
   answerText,
-  correct,
+  isCorrect,
   answersElement,
-  onAnsweredQuestion,
+  humanPlayer,
   callback,
 ) => {
+  const answer = elementFactory('p', { className: 'answer__text' });
+  answer.innerText = answerText;
   const answerElement = elementFactory('div', {
     className: 'button button__answer',
   });
@@ -17,25 +19,20 @@ const createAnswerElement = (
       return;
     }
     answerElement.classList.add(
-      `button__answer--${correct ? 'success' : 'fail'}`,
+      `button__answer--${isCorrect ? 'success' : 'fail'}`,
     );
 
     answersElement.setAttribute('disabled', true);
     setTimeout(
-      () => onAnsweredQuestion(answerText, correct, callback),
-      1500,
+      () => humanPlayer.getAnswer(answerText, isCorrect, callback),
+      1000,
     );
   });
-  answerElement.innerText = answerText;
+  answerElement.appendChild(answer);
   return answerElement;
 };
 
-const Answers = (
-  answers,
-  correctAnswer,
-  onAnsweredQuestion,
-  callback,
-) => {
+const Answers = (answers, correctAnswer, humanPlayer, callback) => {
   const answersElement = elementFactory('div', {
     className: 'answers',
   });
@@ -43,12 +40,12 @@ const Answers = (
     if (!validateString(answerText)) {
       throw new Error('Not a valid string');
     }
-    const correct = isAnswerCorrect(answerText, correctAnswer);
+    const isCorrect = isAnswerCorrect(answerText, correctAnswer);
     const answerElement = createAnswerElement(
       answerText,
-      correct,
+      isCorrect,
       answersElement,
-      onAnsweredQuestion,
+      humanPlayer,
       callback,
     );
     answersElement.appendChild(answerElement);
