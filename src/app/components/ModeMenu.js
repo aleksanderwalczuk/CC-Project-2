@@ -1,6 +1,7 @@
 import elementFactory from '../utils/elementFactory';
 import { PEOPLE, VEHICLES, STARSHIPS } from '../constants';
 import PageContent from './PageContent';
+import { cancelGame } from '../logic/processGame';
 
 function ModeMenu() {
   // Creating nav's elements.
@@ -29,6 +30,7 @@ function ModeMenu() {
       menuBtn.classList.remove('menu__button--select');
     });
     event.target.classList.add('menu__button--select');
+    cancelGame();
     PageContent(menuOption);
   }
   const menuElements = [...newModeMenu.children];
