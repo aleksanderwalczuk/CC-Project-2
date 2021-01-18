@@ -5,12 +5,14 @@
   margin: 0 0 50px;
 }
 .starwars__logo {
+  max-width: 465px;
   text-align: center;
   display: flex;
   
   &__image {
-    align-self: center;
-    height: 80%;
+    // align-self: center;
+    // height: 80%;
+    width: 100%;
   }
 }
 
