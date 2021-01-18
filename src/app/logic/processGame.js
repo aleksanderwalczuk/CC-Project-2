@@ -26,6 +26,7 @@ const spreadQuestion = (question) => {
   displayAnswers(
     question.answers,
     question.rightAnswer,
+    game.getHumanPlayer(),
     getNewQuestion,
   );
 };

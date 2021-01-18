@@ -17,11 +17,16 @@ const handleGame = (chosenMode) => {
   section.appendChild(RemainingTime());
 };
 
-const displayAnswers = (answers, correctAnswer, callback) => {
+const displayAnswers = (
+  answers,
+  correctAnswer,
+  humanPlayer,
+  callback,
+) => {
   const answersWrapper = document.querySelector('.answers-wrapper');
   answersWrapper.innerHTML = '';
   answersWrapper.appendChild(
-    Answers(answers, correctAnswer, callback),
+    Answers(answers, correctAnswer, humanPlayer, callback),
   );
 };
 

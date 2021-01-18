@@ -6,6 +6,7 @@ const createAnswerElement = (
   answerText,
   isCorrect,
   answersElement,
+  humanPlayer,
   callback,
 ) => {
   const answerElement = elementFactory('div', {
@@ -20,13 +21,16 @@ const createAnswerElement = (
     );
 
     answersElement.setAttribute('disabled', true);
-    setTimeout(() => callback(answerText, isCorrect), 1000);
+    setTimeout(
+      () => humanPlayer.getAnswer(answerText, isCorrect, callback),
+      1000,
+    );
   });
   answerElement.innerText = answerText;
   return answerElement;
 };
 
-const Answers = (answers, correctAnswer, callback) => {
+const Answers = (answers, correctAnswer, humanPlayer, callback) => {
   const answersElement = elementFactory('div', {
     className: 'answers',
   });
@@ -39,6 +43,7 @@ const Answers = (answers, correctAnswer, callback) => {
       answerText,
       isCorrect,
       answersElement,
+      humanPlayer,
       callback,
     );
     answersElement.appendChild(answerElement);
