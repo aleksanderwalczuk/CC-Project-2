@@ -10,7 +10,6 @@ const App = ({ options }) => {
   const header = elementFactory(
     'header',
     { className: 'header' },
-    elementFactory('div', {}),
     elementFactory('div', { className: 'starwars__logo' }, image),
     ModeMenu(),
   );

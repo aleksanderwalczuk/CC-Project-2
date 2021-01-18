@@ -9,6 +9,8 @@ const createAnswerElement = (
   humanPlayer,
   callback,
 ) => {
+  const answer = elementFactory('p', { className: 'answer__text' });
+  answer.innerText = answerText;
   const answerElement = elementFactory('div', {
     className: 'button button__answer',
   });
@@ -26,7 +28,7 @@ const createAnswerElement = (
       1000,
     );
   });
-  answerElement.innerText = answerText;
+  answerElement.appendChild(answer);
   return answerElement;
 };
 
