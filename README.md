@@ -9,9 +9,10 @@ This is a Star Wars quiz application. From us. For you. For fun.
 
 Version 1.0
 ---
-Hi there, We are The Name from Gdańsk! 👋
+Hi there, We are The Front Znad Zatoki Gdańsk! 👋
 
-Here's a link to the website, where you can check out our app. 
+Here's a link to the website, where you can check out our app: https://rednaxela700.github.io/CC-Project-2/ 
+
 Try it yourself and see how much you know about Star Wars Universum!
 
 ---
