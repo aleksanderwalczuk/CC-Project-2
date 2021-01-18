@@ -9,7 +9,6 @@ import generateQuestion, {
   isGameInitialized,
 } from './quiz';
 import Game from './Game';
-// import ModalWindow from '../components/Modal/ModalWindow';
 import { PEOPLE } from '../constants';
 
 const game = new Game();
