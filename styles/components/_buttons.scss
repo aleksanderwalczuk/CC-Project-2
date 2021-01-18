@@ -19,6 +19,13 @@
   // Other
   text-align: center;
   cursor: pointer;
+  &__app {
+    @extend .button;
+    &--start {
+      @extend .button--red;
+      background: rgba(255, 0, 0, 1);
+    }
+  }
 
   &__answer {
     margin: 1rem;
@@ -44,7 +51,9 @@
   }
   &__icon {
     position: absolute;
+    top: 50%;
     left: 8%; //check!
+    transform: translateY(-50%);
   }
 
   &--red {
@@ -52,7 +61,6 @@
     background-color: $color-fail;
     color: $color-primary;
     text-transform: uppercase;
-    opacity: 0.8;
   }
 
   &:hover {
@@ -67,5 +75,13 @@
 
   &:active {
     transform: scale(0.99);
+  }
+}
+@include lg {
+  .section__wrapper__buttons > .button {
+    height: auto;
+    &:first-child {
+      margin: 0 20px 0 0;
+    }
   }
 }

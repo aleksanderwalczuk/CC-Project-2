@@ -8,10 +8,14 @@ body {
   font-family: $font-primary;
   height: 100%;
   min-height: 100vh;
-  background-image: url('../static/assets/ui/QuizBackground.png');
-  background-repeat: no-repeat;
+  background: url('../static/assets/ui/QuizBackground.png') center;
   background-size: cover;
-  background-position: center;
+}
+
+body > div {
+  padding: 52px 85px 52px 90px;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
 .row {
@@ -28,11 +32,21 @@ body {
   // flex: 1;
 }
 
+.app__box {
+  margin: 0 0 40px;
+  @include lg {
+    margin: 0 0 20px;
+  }
+  @include sm {
+    margin: 0 0 10px;
+  }
+}
+
 .mode__container--active {
+  @extend .app__box;
   overflow: auto;
   max-height: 350px;
   height: 100%;
-  margin: 0 0 40px;
   padding: 1.25rem;
   border-radius: $border-radius;
   background-color: $color-primary;
@@ -40,7 +54,7 @@ body {
 }
 
 .mode-info__heading {
-  margin: 0 0 40px;
+  @extend .app__box;
   padding: 25px 16px 22px;
 }
 
@@ -48,9 +62,6 @@ body {
   font-size: $font-size-secondary;
   font-weight: 500;
   line-height: 123%;
-  @include lg {
-    font-size: $font-size-secondary / 1.5;
-  }
 }
 .text__lg {
   font-size: $font-size-primary;
@@ -60,7 +71,59 @@ body {
     @extend .text__lg;
     text-align: center;
   }
-  @include lg {
-    font-size: $font-size-primary / 1.5;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  // margin: 0 0 50px;
+  &__wrapper {
+    max-width: 1200px;
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+@include lg {
+  body > div {
+    padding: 25px 20px 25px 20px;
+  }
+  .text {
+    &__md,
+    &__lg {
+      font-size: $font-size-secondary / 1.5;
+    }
+  }
+
+  .section {
+    flex-wrap: wrap;
+    &__wrapper {
+      flex-basis: 70%;
+    }
+  }
+
+  .mode__container--active {
+    height: auto;
+  }
+}
+@include md {
+  .text {
+    &__md,
+    &__lg {
+      font-size: $font-size-secondary / 2;
+    }
+  }
+  .section {
+    &__wrapper {
+      flex-basis: unset;
+    }
+  }
+}
+
+@include sm {
+  body > div {
+    padding: 15px 10px 15px 10px;
   }
 }

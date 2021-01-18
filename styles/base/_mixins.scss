@@ -18,3 +18,9 @@
     @content;
   }
 }
+// XLarge devices
+@mixin lg {
+  @media all and (max-width: #{$breakpoint-xxl-max}) {
+    @content;
+  }
+}
