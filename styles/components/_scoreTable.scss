@@ -1,16 +1,13 @@
 .scores {
-  background-color: $color-primary;
-  border-radius: $border-radius;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  @extend .mode__container--active;
 
   &__header {
+    @extend .text__lg--centered;
     display: flex;
     justify-content: center;
     padding: 1.25rem;
     margin: 0;
-    font-size: $font-size-primary;
     font-weight: 500;
-    text-align: center;
     &-icon {
       margin-right: 2rem;
     }
@@ -23,14 +20,56 @@
     grid-template-columns: 1fr 7fr 2fr;
 
     &-cell {
+      @extend .text__md;
       padding: 0 1.25rem;
       margin: 0.5rem 0;
-      font-size: $font-size-secondary;
-      font-weight: 500;
 
       &--bold {
         font-weight: 600;
       }
+    }
+  }
+}
+
+@include lg {
+  .section {
+    flex-wrap: wrap;
+    &__wrapper {
+      flex-basis: 70%;
+    }
+  }
+
+  .visual-box {
+    display: block;
+    flex-basis: 30%;
+    padding: 0 30px 0 0;
+
+    &__image {
+      min-width: unset;
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
+        drop-shadow(4px 4px 20px rgba(255, 0, 0, 0.9));
+    }
+  }
+  .section__wrapper__buttons > .button {
+    height: auto;
+    &:first-child {
+      margin: 0 20px 0 0;
+    }
+  }
+}
+@include md {
+  .section {
+    &__wrapper {
+      flex-basis: unset;
+    }
+  }
+
+  .visual-box {
+    flex-basis: unset;
+    margin: 0 auto;
+    padding: 0;
+    &__image {
+      max-height: 313px;
     }
   }
 }
