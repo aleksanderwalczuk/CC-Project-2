@@ -1,4 +1,5 @@
 .button {
+  @extend .text__lg--centered;
   // Positioning
   position: relative;
   flex-grow: 1;
@@ -15,13 +16,16 @@
   background-color: $color-primary;
   color: $text-color-primary;
 
-  // Text
-  font-weight: 500;
-  font-size: $font-size-primary;
-  line-height: 44px;
-
   // Other
   text-align: center;
+  cursor: pointer;
+  &__app {
+    @extend .button;
+    &--start {
+      @extend .button--red;
+      background: rgba(255, 0, 0, 1);
+    }
+  }
 
   &__answer {
     margin: 1rem;
@@ -47,7 +51,9 @@
   }
   &__icon {
     position: absolute;
+    top: 50%;
     left: 8%; //check!
+    transform: translateY(-50%);
   }
 
   &--red {
@@ -55,7 +61,6 @@
     background-color: $color-fail;
     color: $color-primary;
     text-transform: uppercase;
-    opacity: 0.8;
   }
 
   &:hover {

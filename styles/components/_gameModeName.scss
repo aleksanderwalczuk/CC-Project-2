@@ -8,10 +8,9 @@
     inset 4px 5px 4px rgba(0, 0, 0, 0.5);
 
   &__heading {
-    font-size: $font-size-primary;
-    font-weight: 600;
+    @extend .text__lg--centered;
+
     color: $text-color-primary;
-    line-height: 51px;
   }
 
   &__text {

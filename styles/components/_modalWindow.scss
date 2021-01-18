@@ -30,6 +30,7 @@
   }
   &__heading {
     margin: 0 auto;
+    padding: 0;
     text-align: center;
     text-transform: uppercase;
     line-height: 3.25rem;
@@ -149,6 +150,7 @@
     line-height: 2.125rem;
   }
   &__button {
+    // @extend .text__md; -> Gets overwritten by main button class
     margin-top: 40px;
     max-width: unset;
     width: 700px;
