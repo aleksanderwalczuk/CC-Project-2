@@ -1,12 +1,15 @@
-import ModalWindow from '../components/Modal/ModalWindow';
 import { updateImage } from '../components/VisualImage';
-import { handleGame, displayAnswers } from '../components/GameOn';
+import {
+  handleGame,
+  displayAnswers,
+  displayModal,
+} from '../components/GameOn';
 import generateQuestion, {
   initGameInfo,
   isGameInitialized,
 } from './quiz';
 import Game from './Game';
-import render from '../utils/render';
+// import ModalWindow from '../components/Modal/ModalWindow';
 import { PEOPLE } from '../constants';
 
 const game = new Game();
@@ -55,19 +58,17 @@ const closeGame = (interval) => {
   clearInterval(interval);
   if (game.getRunning()) {
     game.changeRunningFlag();
-    render(
-      '#swquiz-app',
-      ModalWindow(
-        game.generateObjectForModal(),
-        game.getHumanPlayerAnswers(),
-        game.getComputerPlayerAnswers(),
-      ),
+    displayModal(
+      game.generateObjectForModal(),
+      game.getHumanPlayerAnswers(),
+      game.getComputerPlayerAnswers(),
+      game.callback,
     );
   }
 };
 
 const runGame = (mode) => {
-  handleGame(mode);
+  handleGame(mode, getTimeLeft);
   game.changeRunningFlag();
   getNewQuestion();
   const interval = setInterval(() => {
@@ -85,8 +86,10 @@ const startGame = (mode) => {
 
 export const processGame = (
   mode = PEOPLE,
+  callback,
   url = process.env.SW_API_BASE_URL,
 ) => {
+  game.callback = callback;
   initGameInfo(mode, url || 'https://swapi.dev/api');
   let initializeTimeout = 3;
   const gameInitializing = setInterval(() => {

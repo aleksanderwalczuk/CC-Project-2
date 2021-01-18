@@ -1,11 +1,10 @@
-import { getTimeLeft } from '../logic/processGame';
 import { handleBladeSizeChange, Lightsaber } from './Lightsaber';
 
-function handleTimeChange(domNode) {
+function handleTimeChange(domNode, callback) {
   const initialTime = process.env.QUIZ_MAX_TIME_SECONDS;
   const element = domNode;
   const idInterval = setInterval(() => {
-    const timer = getTimeLeft();
+    const timer = callback();
     if (!timer.isRunning) {
       clearInterval(idInterval);
     }
@@ -25,7 +24,7 @@ function handleTimeChange(domNode) {
   }, 50);
 }
 
-function RemainingTime() {
+function RemainingTime(callback) {
   const parentElement = document.createElement('div');
   const counter = document.createElement('div');
 
@@ -36,10 +35,10 @@ function RemainingTime() {
   parentElement.appendChild(counter);
   parentElement.appendChild(Lightsaber());
   const initInterval = setInterval(() => {
-    const isRunning = getTimeLeft();
+    const isRunning = callback();
     if (isRunning.isRunning) {
       clearInterval(initInterval);
-      handleTimeChange(counter);
+      handleTimeChange(counter, callback);
     }
   }, 50);
 

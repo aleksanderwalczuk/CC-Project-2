@@ -2,8 +2,10 @@ import Answers from './Answers';
 import RemainingTime from './RemainingTime';
 import GameModeName from './GameModeName';
 import elementFactory from '../utils/elementFactory';
+import render from '../utils/render';
+import ModalWindow from './Modal/ModalWindow';
 
-const handleGame = (chosenMode) => {
+const handleGame = (chosenMode, callback) => {
   const section = document.querySelector('.section');
   const sectionWrapper = document.querySelector('.section__wrapper');
   const answersWrapper = elementFactory('div', {
@@ -14,7 +16,7 @@ const handleGame = (chosenMode) => {
   sectionWrapper.appendChild(GameModeName(chosenMode));
   sectionWrapper.appendChild(answersWrapper);
 
-  section.appendChild(RemainingTime());
+  section.appendChild(RemainingTime(callback));
 };
 
 const displayAnswers = (
@@ -30,4 +32,16 @@ const displayAnswers = (
   );
 };
 
-export { handleGame, displayAnswers };
+const displayModal = (
+  game,
+  humanPlayer,
+  computerPlayer,
+  callback,
+) => {
+  render(
+    '#swquiz-app',
+    ModalWindow(game, humanPlayer, computerPlayer, callback),
+  );
+};
+
+export { handleGame, displayAnswers, displayModal };
