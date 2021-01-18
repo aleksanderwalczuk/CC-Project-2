@@ -6,6 +6,7 @@ import generateQuestion, {
   isGameInitialized,
 } from './quiz';
 import Game from './Game';
+import render from '../utils/render';
 
 const game = new Game();
 
@@ -52,11 +53,13 @@ const closeGame = (interval) => {
   clearInterval(interval);
   if (game.getRunning()) {
     game.changeRunningFlag();
-    // displayModal(...) - from GameOn
-    ModalWindow(
-      game.generateObjectForModal(),
-      game.getHumanPlayerAnswers(),
-      game.getComputerPlayerAnswers(),
+    render(
+      '#swquiz',
+      ModalWindow(
+        game.generateObjectForModal,
+        game.getHumanPlayerAnswers,
+        game.getComputerPlayerAnswers,
+      ),
     );
   }
 };
