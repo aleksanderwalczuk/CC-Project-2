@@ -7,6 +7,7 @@ import generateQuestion, {
 } from './quiz';
 import Game from './Game';
 import render from '../utils/render';
+import { PEOPLE } from '../constants';
 
 const game = new Game();
 
@@ -54,11 +55,11 @@ const closeGame = (interval) => {
   if (game.getRunning()) {
     game.changeRunningFlag();
     render(
-      '#swquiz',
+      '#swquiz-app',
       ModalWindow(
-        game.generateObjectForModal,
-        game.getHumanPlayerAnswers,
-        game.getComputerPlayerAnswers,
+        game.generateObjectForModal(),
+        game.getHumanPlayerAnswers(),
+        game.getComputerPlayerAnswers(),
       ),
     );
   }
@@ -82,7 +83,7 @@ const startGame = (mode) => {
 };
 
 export const processGame = (
-  mode = 'people',
+  mode = PEOPLE,
   url = process.env.SW_API_BASE_URL,
 ) => {
   initGameInfo(mode, url || 'https://swapi.dev/api');
