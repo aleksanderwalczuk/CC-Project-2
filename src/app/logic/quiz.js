@@ -1,8 +1,10 @@
+import { PEOPLE } from '../constants';
+
 const axios = require('axios');
 
 const gameInfo = {
   questionScope: [],
-  mode: 'People',
+  mode: PEOPLE,
 };
 
 const validate = (url) =>
