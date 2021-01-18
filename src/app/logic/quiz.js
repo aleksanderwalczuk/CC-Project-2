@@ -9,6 +9,12 @@ const validate = (url) =>
   typeof url === 'string' &&
   url.length > process.env.SW_API_BASE_URL.length;
 
+const convertUrlToHttps = (next) => {
+  if (next.charAt(4) !== 's' && typeof next === 'string')
+    return `${next.substring(0, 4)}s${next.substring(4)}`;
+  return next;
+};
+
 const fetchItems = (api) => {
   axios
     .get(api)
@@ -16,7 +22,7 @@ const fetchItems = (api) => {
     .then(({ count, next, results }) => {
       gameInfo.questionScope.push(...results);
       if (validate(next)) {
-        fetchItems(next);
+        fetchItems(convertUrlToHttps(next));
       }
       if (count === gameInfo.questionScope.length) {
         gameInfo.questionScope = gameInfo.questionScope.map(
