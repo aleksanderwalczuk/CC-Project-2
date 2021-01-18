@@ -1,8 +1,8 @@
-import Answers from '../components/Answers';
 import ModalWindow from '../components/Modal/ModalWindow';
 import { updateImage } from '../components/VisualImage';
 import createComputerPlayer from './ComputerPlayer';
 import createPlayer from './Player';
+import { handleGame, displayAnswers } from '../components/GameOn';
 import generateQuestion, {
   initGameInfo,
   isGameInitialized,
@@ -76,14 +76,22 @@ class Game {
 
 const game = new Game();
 
+const getNewQuestion = () => {
+  const question = generateQuestion();
+  if (!question.err) {
+    verifyQuestion(question);
+  } else {
+    getNewQuestion();
+  }
+};
+
 const spreadQuestion = (question) => {
   game.sendQuestionToComputerPlayer(question);
   updateImage(question.image);
-  // TODO: displayAnswers(...) - from GameOn
-  Answers(
+  displayAnswers(
     question.answers,
     question.rightAnswer,
-    game.getHumanPlayer(),
+    getNewQuestion,
   );
 };
 
@@ -107,15 +115,6 @@ const verifyQuestion = (question) => {
   }, 100);
 };
 
-const getNewQuestion = () => {
-  const question = generateQuestion();
-  if (!question.err) {
-    verifyQuestion(question);
-  } else {
-    getNewQuestion();
-  }
-};
-
 const closeGame = (interval) => {
   clearInterval(interval);
   if (game.getRunning()) {
@@ -129,8 +128,8 @@ const closeGame = (interval) => {
   }
 };
 
-const runGame = () => {
-  // TODO: executeGame(game.getMode())  - from GameOn
+const runGame = (mode) => {
+  handleGame(mode);
   game.changeRunningFlag();
   getNewQuestion();
   const interval = setInterval(() => {
@@ -143,7 +142,7 @@ const runGame = () => {
 
 const startGame = (mode) => {
   game.initGame(mode);
-  runGame();
+  runGame(mode);
 };
 
 export const processGame = (
