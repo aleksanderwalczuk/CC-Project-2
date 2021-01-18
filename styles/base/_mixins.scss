@@ -19,7 +19,7 @@
   }
 }
 // XLarge devices
-@mixin lg {
+@mixin xlg {
   @media all and (max-width: #{$breakpoint-xxl-max}) {
     @content;
   }
