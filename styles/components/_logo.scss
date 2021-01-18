@@ -1,0 +1,11 @@
+.starwars__logo {
+  margin-top: 40px;
+  width: 505px;
+  height: auto;
+  text-align: center;
+
+  &__image {
+    max-width: auto;
+    height: 180px;
+  }
+}
