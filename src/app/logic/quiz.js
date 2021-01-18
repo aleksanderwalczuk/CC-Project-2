@@ -56,7 +56,7 @@ const pickRandomId = () => {
 };
 
 const getUrlData = (id, question) => {
-  fetch(`/static/assets/img/modes/${gameInfo.mode}/${id}.jpg`)
+  fetch(`./static/assets/img/modes/${gameInfo.mode}/${id}.jpg`)
     .then((res) => res.blob())
     .then((blob) => {
       const reader = new FileReader();
