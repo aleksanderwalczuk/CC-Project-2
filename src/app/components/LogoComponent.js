@@ -8,7 +8,7 @@ const generateLogo = () => {
   const image = elementFactory('img', {
     className: 'starwars__logo__image',
     alt: 'Star Wars logo',
-    src: '../../static/assets/ui/StarWarsLogo.png',
+    src: './static/assets/ui/StarWarsLogo.png',
   });
   image.addEventListener('click', () => {
     clearSelection(PEOPLE);

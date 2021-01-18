@@ -1,13 +1,21 @@
+import { PEOPLE } from '../constants';
+
 const axios = require('axios');
 
 const gameInfo = {
   questionScope: [],
-  mode: 'People',
+  mode: PEOPLE,
 };
 
 const validate = (url) =>
   typeof url === 'string' &&
   url.length > process.env.SW_API_BASE_URL.length;
+
+const convertUrlToHttps = (next) => {
+  if (next.charAt(4) !== 's' && typeof next === 'string')
+    return `${next.substring(0, 4)}s${next.substring(4)}`;
+  return next;
+};
 
 const fetchItems = (api) => {
   axios
@@ -16,7 +24,7 @@ const fetchItems = (api) => {
     .then(({ count, next, results }) => {
       gameInfo.questionScope.push(...results);
       if (validate(next)) {
-        fetchItems(next);
+        fetchItems(convertUrlToHttps(next));
       }
       if (count === gameInfo.questionScope.length) {
         gameInfo.questionScope = gameInfo.questionScope.map(
@@ -56,7 +64,7 @@ const pickRandomId = () => {
 };
 
 const getUrlData = (id, question) => {
-  fetch(`/static/assets/img/modes/${gameInfo.mode}/${id}.jpg`)
+  fetch(`./static/assets/img/modes/${gameInfo.mode}/${id}.jpg`)
     .then((res) => res.blob())
     .then((blob) => {
       const reader = new FileReader();
