@@ -9,37 +9,37 @@ const game = {
         'Darth Vader',
         'Darth Sidious',
       ],
-      rightAnswer: 'Darth Vader',
+      rightAnswer: 'jAR jAR bINKS',
     },
     {
-      image: '../../static/assets/img/modes/people/2.jpg',
+      image: '../../static/assets/img/modes/vehicles/14.jpg',
       answers: [
         'Luke Skywalker',
         'Leia Organa',
         'Darth Vader',
-        'Darth Sidious',
+        'Wicket Systri Warrick',
       ],
-      rightAnswer: 'Darth Vader',
+      rightAnswer: 'Wicket Systri Warrick',
     },
     {
-      image: '../../static/assets/img/modes/people/3.jpg',
+      image: '../../static/assets/img/modes/starships/10.jpg',
       answers: [
-        'Luke Skywalker',
-        'Leia Organa',
-        'Darth Vader',
-        'Darth Sidious',
+        'fire suppression ship',
+        'Jabba Desilijic Tiure',
+        'Armed government transport',
+        'Deep Space Mobile Battlestation',
       ],
-      rightAnswer: 'Darth Vader',
+      rightAnswer: 'Deep Space Mobile Battlestation',
     },
     {
       image: '../../static/assets/img/modes/people/4.jpg',
       answers: [
-        'Luke Skywalker',
+        'Beru Whitesun lars',
         'Leia Organa',
         'Darth Vader',
         'Darth Sidious',
       ],
-      rightAnswer: 'Darth Vader',
+      rightAnswer: 'Armed government transport',
     },
   ],
 };
@@ -52,9 +52,9 @@ const humanPlayerGame = {
   detailedAnswers: [
     // 'Luke Skywalker',
     // or ?
-    { answer: 'Darth Vader', isCorrect: true },
-    { answer: 'Darth Vader', isCorrect: true },
-    { answer: 'Luke Skywalker', isCorrect: false },
+    { answer: 'Jabba Desilijic Tiure', isCorrect: true },
+    { answer: 'Beru Whitesun lars', isCorrect: true },
+    { answer: 'Deep Space Mobile Battlestation', isCorrect: false },
   ],
 };
 
@@ -67,7 +67,7 @@ const computerPlayerGame = {
     // or ?
     { answer: 'Luke Skywalker', isCorrect: false },
     { answer: 'Luke Skywalker', isCorrect: false },
-    { answer: 'Luke Skywalker', isCorrect: false },
+    { answer: 'Deep Space Mobile Battlestation', isCorrect: false },
     { answer: 'Darth Vader', isCorrect: true },
   ],
 };

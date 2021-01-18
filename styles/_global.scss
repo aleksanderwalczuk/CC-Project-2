@@ -18,20 +18,6 @@ body > div {
   margin: 0 auto;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  // flex-basis: 100%;
-  // flex: 1;
-}
-
 .app__box {
   margin: 0 0 40px;
   @include lg {

@@ -1,3 +1,4 @@
+//MODAL
 .modal {
   // Positioning /
   position: absolute;
@@ -29,15 +30,15 @@
   }
   &__heading {
     margin: 0 auto;
+    padding: 0;
     text-align: center;
     text-transform: uppercase;
-    line-height: 3.25rem;
   }
   &__text {
+    @extend .text__md;
     margin: 16px 0;
-    font-weight: 500;
-    font-size: 1.75rem;
-    line-height: 2.125rem;
+    font-size: $font-size-primary / 1.5;
+    text-align: justify;
   }
 }
 
@@ -45,16 +46,18 @@
   margin-left: 285px;
   height: 355px;
   padding-top: 12px;
+  position: relative;
+  z-index: 2;
   &__heading {
     margin-bottom: 4px;
     margin-left: 50px;
-    font-weight: 600;
-    font-size: 1.625rem;
+    @extend .text__lg;
+    font-size: 1.625rem; //can't devide $font-size-* in to a pretty nr
   }
   &__table {
     height: 40%;
-    font-size: 1.5rem;
-    font-weight: 600;
+    @extend .text__lg;
+    font-size: $font-size-secondary / 1.5;
     & tbody,
     & thead tr {
       display: block;
@@ -124,28 +127,274 @@
   &__item {
     position: relative;
     display: inline-block;
-    line-height: 44px;
   }
   &__input {
     height: 80px;
     padding-left: 24px;
     border: 4px solid #c4c4c4;
     border-radius: 8px;
-    font-size: $font-size-secondary;
+    @extend .text__md;
     font-weight: 400;
+    &:focus {
+      outline-style: none;
+      border-color: #f33;
+    }
   }
   &__label {
     padding: 0 28px;
-    font-weight: 500;
-    font-size: 1.75rem;
-    line-height: 2.125rem;
+    @extend .text__md;
+    font-size: $font-size-primary / 1.5;
   }
   &__button {
+    // @extend .text__md; -> Gets overwritten by main button class
     margin-top: 40px;
+    max-width: unset;
     width: 700px;
+    height: unset;
     align-self: center;
     font-weight: 500;
     font-size: $font-size-secondary;
-    line-height: 2.75rem;
+    line-height: 123%;
+    flex-grow: unset;
+  }
+}
+
+@include xlg {
+  .modal {
+    &__container {
+      height: calc(100% - 124px);
+      max-width: unset;
+      width: calc(100% - 124px);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    &__heading {
+      font-size: $font-size-secondary / 1.125;
+    }
+    &__text {
+      font-size: $font-size-primary / 1.75;
+      margin: 0;
+    }
+  }
+  .details {
+    margin-left: 20%;
+    padding-top: 0;
+    min-height: 200px;
+    &__heading {
+      font-size: $font-size-primary / 1.75;
+      margin: 16px 0 8px 0;
+      text-align: left;
+      padding-left: 16px;
+    }
+    &__table {
+      border-collapse: collapse;
+      display: block;
+      height: calc(100% - 62px);
+      overflow-y: scroll;
+      & tbody {
+        display: table-row-group;
+      }
+      & thead tr {
+        display: table-row;
+      }
+      & thead {
+        padding-left: unset;
+      }
+      & tbody {
+        height: unset;
+        border-spacing: unset;
+      }
+      & th {
+        display: table-cell;
+      }
+      & th:first-of-type,
+      & td:first-of-type {
+        padding: 4px 4px 4px 16px;
+        text-align: left;
+      }
+      & td,
+      & th {
+        width: 30%;
+        padding: 8px;
+      }
+      &__image {
+        & img {
+          border-radius: 8px;
+          filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25))
+            drop-shadow(2px 2px 8px rgba(255, 0, 0, 0.9));
+        }
+      }
+    }
+  }
+  .player-form {
+    padding: 0;
+    &__item,
+    &__label {
+      flex: 1;
+    }
+    &__input {
+      height: 64px;
+      padding-left: 12px;
+      font-size: $font-size-primary / 1.75;
+      width: 100%;
+    }
+    &__label {
+      font-size: $font-size-primary / 1.75;
+      padding: 0 0 0 16px;
+    }
+    &__button {
+      margin-top: 16px;
+      width: 100%;
+      font-size: $font-size-primary / 1.75;
+      line-height: 32px;
+      border-radius: 8px;
+    }
+    &__image {
+      height: 200px;
+      top: -200px;
+    }
+  }
+}
+
+@include lg {
+  .details {
+    height: calc(100% - 18rem);
+    &__table {
+      &__head {
+        font-size: 1.125rem;
+      }
+      &__answer,
+      &__answer--correct,
+      &__answer--incorrect {
+        font-size: $font-size-secondary / 2;
+      }
+      &__image {
+        min-width: 100px;
+      }
+    }
+  }
+  .player-form {
+    &__label {
+      font-size: $font-size-secondary / 1.8;
+    }
+  }
+}
+
+@include md {
+  .modal {
+    &__container {
+      height: calc(100% - 120px);
+      max-width: unset;
+      width: calc(100% - 120px);
+    }
+    &__text {
+      font-size: $font-size-secondary / 1.8;
+    }
+  }
+  .details {
+    &__heading {
+      font-size: $font-size-secondary / 1.8;
+    }
+    &__table {
+      & td,
+      th {
+        padding: 4px;
+      }
+    }
+  }
+  .player-form {
+    &__label,
+    &__input {
+      font-size: $font-size-secondary / 2.25;
+    }
+    &__image {
+      height: 160px;
+      top: -160px;
+    }
+  }
+}
+
+@include sm {
+  .modal {
+    &__container {
+      height: calc(100% - 80px);
+      max-width: unset;
+      width: calc(100% - 80px);
+    }
+  }
+  .details {
+    margin-left: 0;
+    &__table {
+      transform: translate(-16px);
+      width: calc(100% + 16px);
+      & th:first-of-type,
+      & td:first-of-type {
+        text-align: left;
+        padding-left: 16px;
+      }
+      &__answer,
+      &__answer--correct,
+      &__answer--incorrect {
+        font-size: $font-size-secondary / 2.25;
+      }
+    }
+    &__heading {
+      padding-left: 0;
+    }
+  }
+  .player-form {
+    flex-wrap: wrap-reverse;
+    &__label,
+    &__input {
+      flex-basis: 100%;
+    }
+    &__label {
+      padding: 0 0 12px 0;
+      text-align: center;
+      display: none;
+    }
+    &__image {
+      left: unset;
+      right: 20px;
+      opacity: 0.5;
+      z-index: 1;
+    }
+  }
+}
+
+@include xsm {
+  .modal {
+    &__heading {
+      padding-bottom: 0.25rem;
+    }
+    &__container {
+      height: calc(100% - 48px);
+      max-width: unset;
+      width: calc(100% - 48px);
+      padding: 24px;
+    }
+    &__text {
+      font-size: $font-size-secondary / 2.25;
+    }
+  }
+  .details {
+    &__heading {
+      text-align: left;
+      font-size: $font-size-secondary / 1.8;
+    }
+  }
+  .player-form {
+    &__input {
+      height: 43px;
+    }
+    &__button {
+      font-size: $font-size-secondary / 1.8;
+      padding: 8px;
+    }
+    &__image {
+      display: none;
+    }
   }
 }

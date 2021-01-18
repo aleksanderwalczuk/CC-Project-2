@@ -1,3 +1,9 @@
+// XSmall devices
+@mixin xsm {
+  @media (max-width: #{$breakpoint-xs-max}) {
+    @content;
+  }
+}
 // Small devices
 @mixin sm {
   @media (max-width: #{$breakpoint-sm-max}) {
