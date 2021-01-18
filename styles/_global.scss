@@ -73,19 +73,6 @@ body > div {
   }
 }
 
-.section {
-  display: flex;
-  justify-content: space-between;
-  // margin: 0 0 50px;
-  &__wrapper {
-    max-width: 1200px;
-    &__buttons {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
-}
-
 @include lg {
   body > div {
     padding: 25px 20px 25px 20px;
@@ -94,13 +81,6 @@ body > div {
     &__md,
     &__lg {
       font-size: $font-size-secondary / 1.5;
-    }
-  }
-
-  .section {
-    flex-wrap: wrap;
-    &__wrapper {
-      flex-basis: 70%;
     }
   }
 
@@ -113,11 +93,6 @@ body > div {
     &__md,
     &__lg {
       font-size: $font-size-secondary / 2;
-    }
-  }
-  .section {
-    &__wrapper {
-      flex-basis: unset;
     }
   }
 }
