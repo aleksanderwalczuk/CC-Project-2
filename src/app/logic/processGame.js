@@ -1,89 +1,35 @@
-import Answers from '../components/Answers';
-import ModalWindow from '../components/Modal/ModalWindow';
 import { updateImage } from '../components/VisualImage';
-import createComputerPlayer from './ComputerPlayer';
-import createPlayer from './Player';
+import {
+  handleGame,
+  displayAnswers,
+  displayModal,
+} from '../components/GameOn';
 import generateQuestion, {
   initGameInfo,
   isGameInitialized,
 } from './quiz';
-
-class Game {
-  initGame(mode) {
-    this.timeLeft = process.env.QUIZ_MAX_TIME_SECONDS;
-    this.questions = [];
-    this.mode = mode;
-    this.running = false;
-    this.computerPlayer = createComputerPlayer();
-    this.humanPlayer = createPlayer();
-  }
-
-  getTimeLeft() {
-    return this.timeLeft;
-  }
-
-  getMode() {
-    return this.mode;
-  }
-
-  getRunning() {
-    return this.running;
-  }
-
-  getQuestions() {
-    return this.questions;
-  }
-
-  getHumanPlayer() {
-    return this.humanPlayer;
-  }
-
-  reduceTime() {
-    this.timeLeft -= 0.1;
-  }
-
-  addQuestion(question) {
-    this.questions.push(question);
-  }
-
-  changeRunningFlag() {
-    this.running = !this.running;
-  }
-
-  generateObjectForModal() {
-    return {
-      mode: this.mode,
-      questions: this.questions,
-    };
-  }
-
-  getComputerPlayerAnswers() {
-    return this.computerPlayer.getModalData();
-  }
-
-  getHumanPlayerAnswers() {
-    return this.humanPlayer.getModalData();
-  }
-
-  sendAnswerToPlayerCallback() {
-    return this.humanPlayer.getAnswer;
-  }
-
-  sendQuestionToComputerPlayer({ answers, rightAnswer }) {
-    this.computerPlayer.getAnswer(answers, rightAnswer);
-  }
-}
+import Game from './Game';
+import { PEOPLE } from '../constants';
 
 const game = new Game();
+
+const getNewQuestion = () => {
+  const question = generateQuestion();
+  if (!question.err) {
+    verifyQuestion(question);
+  } else {
+    getNewQuestion();
+  }
+};
 
 const spreadQuestion = (question) => {
   game.sendQuestionToComputerPlayer(question);
   updateImage(question.image);
-  // TODO: displayAnswers(...) - from GameOn
-  Answers(
+  displayAnswers(
     question.answers,
     question.rightAnswer,
     game.getHumanPlayer(),
+    getNewQuestion,
   );
 };
 
@@ -107,30 +53,21 @@ const verifyQuestion = (question) => {
   }, 100);
 };
 
-const getNewQuestion = () => {
-  const question = generateQuestion();
-  if (!question.err) {
-    verifyQuestion(question);
-  } else {
-    getNewQuestion();
-  }
-};
-
 const closeGame = (interval) => {
   clearInterval(interval);
   if (game.getRunning()) {
     game.changeRunningFlag();
-    // displayModal(...) - from GameOn
-    ModalWindow(
+    displayModal(
       game.generateObjectForModal(),
       game.getHumanPlayerAnswers(),
       game.getComputerPlayerAnswers(),
+      game.callback,
     );
   }
 };
 
-const runGame = () => {
-  // TODO: executeGame(game.getMode())  - from GameOn
+const runGame = (mode) => {
+  handleGame(mode, getTimeLeft);
   game.changeRunningFlag();
   getNewQuestion();
   const interval = setInterval(() => {
@@ -143,13 +80,15 @@ const runGame = () => {
 
 const startGame = (mode) => {
   game.initGame(mode);
-  runGame();
+  runGame(mode);
 };
 
 export const processGame = (
-  mode = 'people',
+  mode = PEOPLE,
+  callback,
   url = process.env.SW_API_BASE_URL,
 ) => {
+  game.callback = callback;
   initGameInfo(mode, url || 'https://swapi.dev/api');
   let initializeTimeout = 3;
   const gameInitializing = setInterval(() => {
