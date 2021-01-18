@@ -1,15 +1,4 @@
-@import './components/mainMenu';
-@import './components/modeMenu';
-@import './components/buttons';
-@import './components/gameModeName';
-@import './components/logo';
-@import './components/visualImage';
-@import './components/modalWindow';
-@import './components/remainingTime';
+@import './components/game';
+@import './components/header';
 @import './components/lightsaber';
-@import './components/answers';
-@import './components/modeRules';
-@import './components/scoreTable';
-// @import './components/header';
-// @import './components/game';
-//add all components styles
+@import './components/modalWindow';

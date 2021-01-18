@@ -1,44 +1,21 @@
-import { LoadPage } from './components/MainMenu';
+import ModeMenu from './components/ModeMenu';
 import render from './utils/render';
-import ModalWindow from './components/Modal/ModalWindow';
-// MOCK DATA TO BE REMOVED
-import {
-  game,
-  humanPlayerGame,
-  computerPlayerGame,
-} from './mockResponse';
+import elementFactory from './utils/elementFactory';
+import PageContent from './components/PageContent';
+import { PEOPLE } from './constants';
+import generateLogo from './components/LogoComponent';
 
 const App = ({ options }) => {
-  // Logo();
-
-  // VisualImage('../../static/assets/img/modes/people/1.jpg');
-
-  // const buttonPlay = createButtonRed('play the game');
-  // const buttonRules = createWhiteButtonWithIcon(
-  //   'Rules',
-  //   'fa',
-  //   'fa-graduation-cap',
-  // );
-  // const gameModeInfo = createGameModeName('Who is this character?');
-  // const remainingTime = createRemainingTime();
-
-  // render(
-  //   '#swquiz-app',
-  // gameModeInfo,
-  // buttonRules,
-  // buttonPlay,
-  // remainingTime,
-  // );
-
-  // LoadPage();
-
-  // CREATE MODAL WINDOW
-  const modalWindow = ModalWindow(
-    game,
-    humanPlayerGame,
-    computerPlayerGame,
+  const image = generateLogo();
+  const header = elementFactory(
+    'header',
+    { className: 'header' },
+    elementFactory('div', { className: 'starwars__logo' }, image),
+    ModeMenu(),
   );
-  render('#swquiz-app', modalWindow);
+  const section = elementFactory('section', { className: 'section' });
+  render('#swquiz-app', header, section);
+  PageContent(PEOPLE, 'rules', section);
 };
 
 export default App;

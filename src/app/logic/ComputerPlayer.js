@@ -8,10 +8,10 @@ class ComputerPlayer extends Player {
       throw new Error('There is no answers or correctAnswer');
     }
     const randomAnswer = answers[getRandomInt(0, 3)];
-    if (isAnswerCorrect(randomAnswer, correctAnswer)) {
-      this.correctAnswersCounter += 1;
-    }
-    this.allAnswers.push(randomAnswer);
+    const isCorrect = isAnswerCorrect(randomAnswer, correctAnswer);
+    if (isCorrect) this.questionsGuessed += 1;
+    this.questionsAnswered += 1;
+    this.detailedAnswers.push({ answer: randomAnswer, isCorrect });
     if (typeof callback === 'function') callback(randomAnswer);
   }
 }
