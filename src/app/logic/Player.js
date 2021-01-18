@@ -15,7 +15,7 @@ export class Player {
     };
   }
 
-  getAnswer(answer, isCorrect) {
+  getAnswer(answer, isCorrect, callback) {
     if (!answer) throw new Error('There is no answer');
     if (isCorrect) this.questionsGuessed += 1;
     this.detailedAnswers.push({ answer, isCorrect });
