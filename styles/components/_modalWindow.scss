@@ -33,13 +33,11 @@
     padding: 0;
     text-align: center;
     text-transform: uppercase;
-    line-height: 3.25rem;
   }
   &__text {
+    @extend .text__md;
     margin: 16px 0;
-    font-weight: 500;
-    font-size: 1.75rem;
-    line-height: 2.125rem;
+    font-size: $font-size-primary / 1.5;
     text-align: justify;
   }
 }
@@ -53,13 +51,13 @@
   &__heading {
     margin-bottom: 4px;
     margin-left: 50px;
-    font-weight: 600;
-    font-size: 1.625rem;
+    @extend .text__lg;
+    font-size: 1.625rem; //can't devide $font-size-* in to a pretty nr
   }
   &__table {
     height: 40%;
-    font-size: 1.5rem;
-    font-weight: 600;
+    @extend .text__lg;
+    font-size: $font-size-secondary / 1.5;
     & tbody,
     & thead tr {
       display: block;
@@ -129,14 +127,13 @@
   &__item {
     position: relative;
     display: inline-block;
-    line-height: 44px;
   }
   &__input {
     height: 80px;
     padding-left: 24px;
     border: 4px solid #c4c4c4;
     border-radius: 8px;
-    font-size: $font-size-secondary;
+    @extend .text__md;
     font-weight: 400;
     &:focus {
       outline-style: none;
@@ -145,9 +142,8 @@
   }
   &__label {
     padding: 0 28px;
-    font-weight: 500;
-    font-size: 1.75rem;
-    line-height: 2.125rem;
+    @extend .text__md;
+    font-size: $font-size-primary / 1.5;
   }
   &__button {
     // @extend .text__md; -> Gets overwritten by main button class
@@ -158,7 +154,7 @@
     align-self: center;
     font-weight: 500;
     font-size: $font-size-secondary;
-    line-height: 2.75rem;
+    line-height: 123%;
     flex-grow: unset;
   }
 }
@@ -175,10 +171,10 @@
       justify-content: space-between;
     }
     &__heading {
-      font-size: 32px;
+      font-size: $font-size-secondary / 1.125;
     }
     &__text {
-      font-size: 24px;
+      font-size: $font-size-primary / 1.75;
       margin: 0;
     }
   }
@@ -187,7 +183,7 @@
     padding-top: 0;
     min-height: 200px;
     &__heading {
-      font-size: 24px;
+      font-size: $font-size-primary / 1.75;
       margin: 16px 0 8px 0;
       text-align: left;
       padding-left: 16px;
@@ -241,17 +237,17 @@
     &__input {
       height: 64px;
       padding-left: 12px;
-      font-size: 24px;
+      font-size: $font-size-primary / 1.75;
       width: 100%;
     }
     &__label {
-      font-size: 24px;
+      font-size: $font-size-primary / 1.75;
       padding: 0 0 0 16px;
     }
     &__button {
       margin-top: 16px;
       width: 100%;
-      font-size: 24px;
+      font-size: $font-size-primary / 1.75;
       line-height: 32px;
       border-radius: 8px;
     }
@@ -272,7 +268,7 @@
       &__answer,
       &__answer--correct,
       &__answer--incorrect {
-        font-size: 1.125rem;
+        font-size: $font-size-secondary / 2;
       }
       &__image {
         min-width: 100px;
@@ -281,8 +277,7 @@
   }
   .player-form {
     &__label {
-      font-size: 1.25rem;
-      line-height: 1.75rem;
+      font-size: $font-size-secondary / 1.8;
     }
   }
 }
@@ -295,13 +290,12 @@
       width: calc(100% - 120px);
     }
     &__text {
-      font-size: 1.25rem;
-      line-height: 1.75rem;
+      font-size: $font-size-secondary / 1.8;
     }
   }
   .details {
     &__heading {
-      font-size: 1.25rem;
+      font-size: $font-size-secondary / 1.8;
     }
     &__table {
       & td,
@@ -313,11 +307,7 @@
   .player-form {
     &__label,
     &__input {
-      font-size: 1rem;
-      line-height: 1.5rem;
-    }
-    &__label {
-      line-height: 1.4;
+      font-size: $font-size-secondary / 2.25;
     }
     &__image {
       height: 160px;
@@ -347,7 +337,7 @@
       &__answer,
       &__answer--correct,
       &__answer--incorrect {
-        font-size: 1rem;
+        font-size: $font-size-secondary / 2.25;
       }
     }
     &__heading {
@@ -377,7 +367,6 @@
 @include xsm {
   .modal {
     &__heading {
-      line-height: 1;
       padding-bottom: 0.25rem;
     }
     &__container {
@@ -387,14 +376,13 @@
       padding: 24px;
     }
     &__text {
-      font-size: 1rem;
-      line-height: 1.5;
+      font-size: $font-size-secondary / 2.25;
     }
   }
   .details {
     &__heading {
       text-align: left;
-      font-size: 1.125rem;
+      font-size: $font-size-secondary / 1.8;
     }
   }
   .player-form {
@@ -402,8 +390,7 @@
       height: 43px;
     }
     &__button {
-      font-size: 1.125rem;
-      line-height: 1.5;
+      font-size: $font-size-secondary / 1.8;
       padding: 8px;
     }
     &__image {
