@@ -55,7 +55,7 @@ function PageContent(
   section.ref.textContent = '';
   section.buttonDisplay = view === 'rules' ? RANK : RULES;
   const visualImage = createVisualImage(
-    `../../../static/assets/img/modes/${optionMode}/${insertDefaultImage(
+    `./static/assets/img/modes/${optionMode}/${insertDefaultImage(
       optionMode,
     )}.jpg`,
   );
