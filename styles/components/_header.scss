@@ -1,17 +1,13 @@
 .header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 465px 1fr;
+  column-gap: 48px;
   justify-content: space-between;
   align-items: center;
-  margin: 0 0 50px;
+  margin: 0 0 48px;
 }
 .starwars__logo {
-  max-width: 465px;
-  text-align: center;
-  display: flex;
-
   &__image {
-    // align-self: center;
-    // height: 80%;
     width: 100%;
   }
 }
