@@ -59,6 +59,7 @@
 
 @include xlg {
   .header {
+    grid-template-columns: 400px 1fr;
     // height: 120px;
     // border-radius: 16px;
     // background-color: #ffffff;
@@ -68,7 +69,7 @@
   }
   .starwars__logo {
     // height: 100%;
-    // max-width: 300px;
+    // max-width: 400px;
     // background-size: contain;
   }
   .menu {
@@ -76,7 +77,14 @@
     // background-color: transparent;
     // box-shadow: none;
     // border-radius: 16px;
-    // height: 140px;
+    height: 140px;
+    &__button{
+      &--select {
+        &::after {
+          height: 4px;
+        }
+      }
+    }
   }
 }
 
@@ -88,38 +96,40 @@
     // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     // padding: 0 40px;
     // margin: 0 0 25px;
+    grid-template-columns: 320px 1fr;
   }
   .starwars__logo {
-    height: 100%;
-    max-width: 300px;
-    background-size: contain;
+    // height: 100%;
+    // max-width: 300px;
+    // background-size: contain;
   }
   .menu {
     // justify-content: space-between;
     // background-color: transparent;
     // box-shadow: none;
     // border-radius: 16px;
-    height: 100px;
+    height: 120px;
   }
 }
 
 @include md {
   .header {
-    padding: 0 20px 0 10px;
-    height: 90px;
+    // padding: 0 20px 0 10px;
+    // height: 90px;
   }
 
   .starwars__logo {
-    max-width: 200px;
-    height: 90px;
-    margin: 0 20px 0 0;
+    // max-width: 200px;
+    // height: 90px;
+    // margin: 0 20px 0 0;
   }
 
   .menu {
-    height: auto;
+    height: 80px;
     &__button {
       &--select::after {
-        height: 6px;
+        // height: 6px;
+        bottom: 4px;
       }
     }
   }
@@ -128,13 +138,13 @@
 @include sm {
   .header {
     // flex-direction: column;
-    margin: 0 0 15px;
+    // margin: 0 0 15px;
   }
   .starwars__logo {
-    width: 100px;
+    // width: 100px;
   }
   .menu {
-    flex-basis: 60%;
-    flex-grow: unset;
+    // flex-basis: 60%;
+    // flex-grow: unset;
   }
 }
