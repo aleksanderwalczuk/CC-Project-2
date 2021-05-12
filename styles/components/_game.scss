@@ -215,6 +215,7 @@
 @include xlg {
   .section {
     grid-template-columns: 400px 1fr;
+    display: none;
   }
 }
 @include lg {

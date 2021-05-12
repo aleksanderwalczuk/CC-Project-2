@@ -83,7 +83,7 @@ body {
   .text {
     &__md,
     &__lg {
-      font-size: $font-size-secondary / 2;
+      font-size: $font-size-secondary / 1.75;
     }
   }
 }
@@ -94,5 +94,11 @@ body {
   }
   #swquiz-app {
     padding: 0 16px;
+  }
+  .text {
+    &__md,
+    &__lg {
+      font-size: $font-size-secondary / 2;
+    }
   }
 }
