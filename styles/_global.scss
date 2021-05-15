@@ -31,12 +31,13 @@ body {
 .mode__container--active {
   @extend .app__box;
   overflow: auto;
-  max-height: 350px;
+  // max-height: 350px;
   height: 100%;
-  padding: 1.25rem;
+  margin: 48px 0;
+  padding: 48px;
   border-radius: $border-radius;
   background-color: $color-primary;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%), 0px 4px 30px #ff0000;
 }
 
 .mode-info__heading {
@@ -46,7 +47,7 @@ body {
 .text__md {
   font-size: $font-size-secondary;
   font-weight: 500;
-  line-height: 123%;
+  line-height: 133%;
 }
 .text__lg {
   font-size: $font-size-primary;
@@ -59,9 +60,13 @@ body {
 }
 
 #swquiz-app {
-  max-width: 1400px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
 }
 
 @include lg {
